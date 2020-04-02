@@ -1,0 +1,775 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8D5ADBEAA6C63539F5B941A6 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E2921152DF65690583D0B4 /* Pods_KW_Install.framework */; };
+		9B07A4C578F098BB81285AA0 /* Pods_KW_Install_KW_InstallUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F02E381BAB7CDC1090CB12D3 /* Pods_KW_Install_KW_InstallUITests.framework */; };
+		A344190C243676AB0038ACD3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344190B243676AB0038ACD3 /* Constants.swift */; };
+		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
+		A3B38163243663590030582B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38162243663590030582B /* SceneDelegate.swift */; };
+		A3B38165243663590030582B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38164243663590030582B /* ContentView.swift */; };
+		A3B381672436635B0030582B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3B381662436635B0030582B /* Assets.xcassets */; };
+		A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3B381692436635B0030582B /* Preview Assets.xcassets */; };
+		A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3B3816B2436635B0030582B /* LaunchScreen.storyboard */; };
+		A3B381782436635B0030582B /* KW_InstallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B381772436635B0030582B /* KW_InstallTests.swift */; };
+		A3B381832436635B0030582B /* KW_InstallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B381822436635B0030582B /* KW_InstallUITests.swift */; };
+		A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
+		A3F1FDD324368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
+		A3F1FDD424368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
+		DF4EBAFCC042560E76685D21 /* Pods_KW_InstallTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06FE17436AF73961AB8A2293 /* Pods_KW_InstallTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A3B381742436635B0030582B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3B38155243663590030582B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3B3815C243663590030582B;
+			remoteInfo = "KW Install";
+		};
+		A3B3817F2436635B0030582B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A3B38155243663590030582B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3B3815C243663590030582B;
+			remoteInfo = "KW Install";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		06FE17436AF73961AB8A2293 /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08EA35B28FC24AF51DF1C66B /* Pods-KW Install-KW InstallUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW Install-KW InstallUITests.release.xcconfig"; path = "Target Support Files/Pods-KW Install-KW InstallUITests/Pods-KW Install-KW InstallUITests.release.xcconfig"; sourceTree = "<group>"; };
+		36E2921152DF65690583D0B4 /* Pods_KW_Install.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_Install.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38661A1E5C08F85275BC080F /* Pods-KW InstallTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW InstallTests.release.xcconfig"; path = "Target Support Files/Pods-KW InstallTests/Pods-KW InstallTests.release.xcconfig"; sourceTree = "<group>"; };
+		75D513871ECAFDC43A70E98F /* Pods-KW Install.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW Install.release.xcconfig"; path = "Target Support Files/Pods-KW Install/Pods-KW Install.release.xcconfig"; sourceTree = "<group>"; };
+		A344190B243676AB0038ACD3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		A3B38164243663590030582B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A3B381662436635B0030582B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A3B381692436635B0030582B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A3B3816C2436635B0030582B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A3B3816E2436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3B381732436635B0030582B /* KW InstallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KW InstallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B381772436635B0030582B /* KW_InstallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KW_InstallTests.swift; sourceTree = "<group>"; };
+		A3B381792436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3B3817E2436635B0030582B /* KW InstallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "KW InstallUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B381822436635B0030582B /* KW_InstallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KW_InstallUITests.swift; sourceTree = "<group>"; };
+		A3B381842436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3F1FDD124368B310008C7F0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		AD271BF9CABCC77E30A3C445 /* Pods-KW Install-KW InstallUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW Install-KW InstallUITests.debug.xcconfig"; path = "Target Support Files/Pods-KW Install-KW InstallUITests/Pods-KW Install-KW InstallUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		D12F6C6772F76FBFA5B91951 /* Pods-KW InstallTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW InstallTests.debug.xcconfig"; path = "Target Support Files/Pods-KW InstallTests/Pods-KW InstallTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F02E381BAB7CDC1090CB12D3 /* Pods_KW_Install_KW_InstallUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_Install_KW_InstallUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF557F8E6B7EFE8E39625E30 /* Pods-KW Install.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KW Install.debug.xcconfig"; path = "Target Support Files/Pods-KW Install/Pods-KW Install.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A3B3815A243663590030582B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5ADBEAA6C63539F5B941A6 /* Pods_KW_Install.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B381702436635B0030582B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF4EBAFCC042560E76685D21 /* Pods_KW_InstallTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B3817B2436635B0030582B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B07A4C578F098BB81285AA0 /* Pods_KW_Install_KW_InstallUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8743242E6599C5847249F522 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36E2921152DF65690583D0B4 /* Pods_KW_Install.framework */,
+				F02E381BAB7CDC1090CB12D3 /* Pods_KW_Install_KW_InstallUITests.framework */,
+				06FE17436AF73961AB8A2293 /* Pods_KW_InstallTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A344190D243688020038ACD3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A3B38164243663590030582B /* ContentView.swift */,
+				A3F1FDD124368B310008C7F0 /* CalendarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A3B38154243663590030582B = {
+			isa = PBXGroup;
+			children = (
+				A3B3815F243663590030582B /* KW Install */,
+				A3B381762436635B0030582B /* KW InstallTests */,
+				A3B381812436635B0030582B /* KW InstallUITests */,
+				A3B3815E243663590030582B /* Products */,
+				A68F91631CD69AECC278FBEE /* Pods */,
+				8743242E6599C5847249F522 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A3B3815E243663590030582B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3B3815D243663590030582B /* KW Install.app */,
+				A3B381732436635B0030582B /* KW InstallTests.xctest */,
+				A3B3817E2436635B0030582B /* KW InstallUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A3B3815F243663590030582B /* KW Install */ = {
+			isa = PBXGroup;
+			children = (
+				A344190D243688020038ACD3 /* Views */,
+				A3B38160243663590030582B /* AppDelegate.swift */,
+				A3B38162243663590030582B /* SceneDelegate.swift */,
+				A3B381662436635B0030582B /* Assets.xcassets */,
+				A3B3816B2436635B0030582B /* LaunchScreen.storyboard */,
+				A3B3816E2436635B0030582B /* Info.plist */,
+				A3B381682436635B0030582B /* Preview Content */,
+				A344190B243676AB0038ACD3 /* Constants.swift */,
+			);
+			path = "KW Install";
+			sourceTree = "<group>";
+		};
+		A3B381682436635B0030582B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				A3B381692436635B0030582B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A3B381762436635B0030582B /* KW InstallTests */ = {
+			isa = PBXGroup;
+			children = (
+				A3B381772436635B0030582B /* KW_InstallTests.swift */,
+				A3B381792436635B0030582B /* Info.plist */,
+			);
+			path = "KW InstallTests";
+			sourceTree = "<group>";
+		};
+		A3B381812436635B0030582B /* KW InstallUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A3B381822436635B0030582B /* KW_InstallUITests.swift */,
+				A3B381842436635B0030582B /* Info.plist */,
+			);
+			path = "KW InstallUITests";
+			sourceTree = "<group>";
+		};
+		A68F91631CD69AECC278FBEE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF557F8E6B7EFE8E39625E30 /* Pods-KW Install.debug.xcconfig */,
+				75D513871ECAFDC43A70E98F /* Pods-KW Install.release.xcconfig */,
+				AD271BF9CABCC77E30A3C445 /* Pods-KW Install-KW InstallUITests.debug.xcconfig */,
+				08EA35B28FC24AF51DF1C66B /* Pods-KW Install-KW InstallUITests.release.xcconfig */,
+				D12F6C6772F76FBFA5B91951 /* Pods-KW InstallTests.debug.xcconfig */,
+				38661A1E5C08F85275BC080F /* Pods-KW InstallTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A3B3815C243663590030582B /* KW Install */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3B381872436635B0030582B /* Build configuration list for PBXNativeTarget "KW Install" */;
+			buildPhases = (
+				091E765673591BB701EF5AAD /* [CP] Check Pods Manifest.lock */,
+				A3B38159243663590030582B /* Sources */,
+				A3B3815A243663590030582B /* Frameworks */,
+				A3B3815B243663590030582B /* Resources */,
+				C0F2BDB85A75BA1D86E3EF54 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KW Install";
+			productName = "KW Install";
+			productReference = A3B3815D243663590030582B /* KW Install.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A3B381722436635B0030582B /* KW InstallTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3B3818A2436635B0030582B /* Build configuration list for PBXNativeTarget "KW InstallTests" */;
+			buildPhases = (
+				386DFEFD1CD648BAD35483C5 /* [CP] Check Pods Manifest.lock */,
+				A3B3816F2436635B0030582B /* Sources */,
+				A3B381702436635B0030582B /* Frameworks */,
+				A3B381712436635B0030582B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3B381752436635B0030582B /* PBXTargetDependency */,
+			);
+			name = "KW InstallTests";
+			productName = "KW InstallTests";
+			productReference = A3B381732436635B0030582B /* KW InstallTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A3B3817D2436635B0030582B /* KW InstallUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3B3818D2436635B0030582B /* Build configuration list for PBXNativeTarget "KW InstallUITests" */;
+			buildPhases = (
+				7FFFCBB6E10599A13BFF47D0 /* [CP] Check Pods Manifest.lock */,
+				A3B3817A2436635B0030582B /* Sources */,
+				A3B3817B2436635B0030582B /* Frameworks */,
+				A3B3817C2436635B0030582B /* Resources */,
+				B8CB5A576796D55624CFC6FD /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A3B381802436635B0030582B /* PBXTargetDependency */,
+			);
+			name = "KW InstallUITests";
+			productName = "KW InstallUITests";
+			productReference = A3B3817E2436635B0030582B /* KW InstallUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A3B38155243663590030582B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1140;
+				LastUpgradeCheck = 1140;
+				ORGANIZATIONNAME = "Luke Morse";
+				TargetAttributes = {
+					A3B3815C243663590030582B = {
+						CreatedOnToolsVersion = 11.4;
+					};
+					A3B381722436635B0030582B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = A3B3815C243663590030582B;
+					};
+					A3B3817D2436635B0030582B = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = A3B3815C243663590030582B;
+					};
+				};
+			};
+			buildConfigurationList = A3B38158243663590030582B /* Build configuration list for PBXProject "KW Install" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A3B38154243663590030582B;
+			productRefGroup = A3B3815E243663590030582B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A3B3815C243663590030582B /* KW Install */,
+				A3B381722436635B0030582B /* KW InstallTests */,
+				A3B3817D2436635B0030582B /* KW InstallUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A3B3815B243663590030582B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */,
+				A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */,
+				A3B381672436635B0030582B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B381712436635B0030582B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B3817C2436635B0030582B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		091E765673591BB701EF5AAD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KW Install-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		386DFEFD1CD648BAD35483C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KW InstallTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7FFFCBB6E10599A13BFF47D0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KW Install-KW InstallUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8CB5A576796D55624CFC6FD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KW Install-KW InstallUITests/Pods-KW Install-KW InstallUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KW Install-KW InstallUITests/Pods-KW Install-KW InstallUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KW Install-KW InstallUITests/Pods-KW Install-KW InstallUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0F2BDB85A75BA1D86E3EF54 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KW Install/Pods-KW Install-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KW Install/Pods-KW Install-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KW Install/Pods-KW Install-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A3B38159243663590030582B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */,
+				A3B38161243663590030582B /* AppDelegate.swift in Sources */,
+				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
+				A3B38165243663590030582B /* ContentView.swift in Sources */,
+				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B3816F2436635B0030582B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F1FDD324368B310008C7F0 /* CalendarView.swift in Sources */,
+				A3B381782436635B0030582B /* KW_InstallTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A3B3817A2436635B0030582B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A3F1FDD424368B310008C7F0 /* CalendarView.swift in Sources */,
+				A3B381832436635B0030582B /* KW_InstallUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A3B381752436635B0030582B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3B3815C243663590030582B /* KW Install */;
+			targetProxy = A3B381742436635B0030582B /* PBXContainerItemProxy */;
+		};
+		A3B381802436635B0030582B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A3B3815C243663590030582B /* KW Install */;
+			targetProxy = A3B3817F2436635B0030582B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A3B3816B2436635B0030582B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A3B3816C2436635B0030582B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A3B381852436635B0030582B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A3B381862436635B0030582B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A3B381882436635B0030582B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF557F8E6B7EFE8E39625E30 /* Pods-KW Install.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KW Install/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "KW Install/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A3B381892436635B0030582B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75D513871ECAFDC43A70E98F /* Pods-KW Install.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"KW Install/Preview Content\"";
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "KW Install/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A3B3818B2436635B0030582B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D12F6C6772F76FBFA5B91951 /* Pods-KW InstallTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				INFOPLIST_FILE = "KW InstallTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-InstallTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KW Install.app/KW Install";
+			};
+			name = Debug;
+		};
+		A3B3818C2436635B0030582B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38661A1E5C08F85275BC080F /* Pods-KW InstallTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				INFOPLIST_FILE = "KW InstallTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-InstallTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KW Install.app/KW Install";
+			};
+			name = Release;
+		};
+		A3B3818E2436635B0030582B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD271BF9CABCC77E30A3C445 /* Pods-KW Install-KW InstallUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				INFOPLIST_FILE = "KW InstallUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-InstallUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "KW Install";
+			};
+			name = Debug;
+		};
+		A3B3818F2436635B0030582B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08EA35B28FC24AF51DF1C66B /* Pods-KW Install-KW InstallUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4Z8CKPY35P;
+				INFOPLIST_FILE = "KW InstallUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-InstallUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "KW Install";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A3B38158243663590030582B /* Build configuration list for PBXProject "KW Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3B381852436635B0030582B /* Debug */,
+				A3B381862436635B0030582B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3B381872436635B0030582B /* Build configuration list for PBXNativeTarget "KW Install" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3B381882436635B0030582B /* Debug */,
+				A3B381892436635B0030582B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3B3818A2436635B0030582B /* Build configuration list for PBXNativeTarget "KW InstallTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3B3818B2436635B0030582B /* Debug */,
+				A3B3818C2436635B0030582B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A3B3818D2436635B0030582B /* Build configuration list for PBXNativeTarget "KW InstallUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A3B3818E2436635B0030582B /* Debug */,
+				A3B3818F2436635B0030582B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A3B38155243663590030582B /* Project object */;
+}

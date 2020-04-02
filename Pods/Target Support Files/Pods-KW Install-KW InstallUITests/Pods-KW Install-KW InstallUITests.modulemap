@@ -1,0 +1,6 @@
+framework module Pods_KW_Install_KW_InstallUITests {
+  umbrella header "Pods-KW Install-KW InstallUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
