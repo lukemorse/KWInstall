@@ -1,6 +1,0 @@
-framework module Pods_KW_Install {
-  umbrella header "Pods-KW Install-umbrella.h"
-
-  export *
-  module * { export * }
-}

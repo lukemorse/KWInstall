@@ -20,7 +20,7 @@ struct ContentView: View {
                 Text("\(Constants.TabBarText.tabBar0)")
             }).tag(0)
             
-            Text("\(Constants.TabBarText.tabBar1)").tabItem({
+            CalendarView().tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar1)
                     .font(.title)
                 Text("\(Constants.TabBarText.tabBar1)")
