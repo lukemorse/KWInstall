@@ -26,7 +26,7 @@ struct ContentView: View {
                 Text("\(Constants.TabBarText.tabBar1)")
             }).tag(1)
             
-            Text("\(Constants.TabBarText.tabBar2)").tabItem({
+            InstallationView().tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar2)
                     .font(.title)
                 Text("\(Constants.TabBarText.tabBar2)")

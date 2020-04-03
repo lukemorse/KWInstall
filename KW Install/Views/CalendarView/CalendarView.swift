@@ -19,14 +19,16 @@ struct CalendarView : View {
         VStack {
             HStack {
                 Image("Logo")
-                
                 Text("Today's Installations")
                     .font(.largeTitle)
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
             }
             List {
-            /*@START_MENU_TOKEN@*/ /*@PLACEHOLDER=Content@*/Text("Content")/*@END_MENU_TOKEN@*/
+                //Add day's schools here
+                Text("George Westinghouse College Prep")
+                Text("Gwendolyn Brooks College")
+                Text("John Hancock College")
             }
             RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
         }       

@@ -50,7 +50,7 @@ struct InstallationView: View {
                 .background(Color.blue)
                 .cornerRadius(10)
             Text("Floorplans:")
-            CollectionView()
+            FloorPlanGridView()
             Spacer()
         }
         .padding()

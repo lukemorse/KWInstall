@@ -11,6 +11,7 @@
 		A344190C243676AB0038ACD3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344190B243676AB0038ACD3 /* Constants.swift */; };
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
+		A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */; };
 		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
 		A3B38163243663590030582B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38162243663590030582B /* SceneDelegate.swift */; };
 		A3B38165243663590030582B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38164243663590030582B /* ContentView.swift */; };
@@ -34,6 +35,7 @@
 		A344190B243676AB0038ACD3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
 		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				A3B38164243663590030582B /* ContentView.swift */,
 				A394986224377F8E00C0B358 /* InstallationView.swift */,
 				A315C7632437974E00A69725 /* CollectionView.swift */,
+				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
 			);
 			path = Views;
@@ -244,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */,
 				A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */,
 				A3B38161243663590030582B /* AppDelegate.swift in Sources */,
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
