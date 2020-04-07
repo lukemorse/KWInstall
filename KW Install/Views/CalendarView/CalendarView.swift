@@ -19,8 +19,6 @@ struct CalendarView : View {
     var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
-        
-//        NavigationView {
             VStack {
                 if viewModel.installList.isEmpty {
                     emptySection
@@ -30,9 +28,6 @@ struct CalendarView : View {
                 
                 RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
             }
-//            .navigationBarTitle(
-//                Text("Today's Installations"), displayMode: .inline)
-//                .navigationBarItems(leading: Image("Logo"))
                 
                 .onAppear() {
                     self.viewModel.fetchInstalls()

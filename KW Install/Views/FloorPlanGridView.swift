@@ -32,6 +32,7 @@ struct FloorPlanGridView: View {
                 }
             }
         }
+        .frame(height: 300)
         .padding()
     }
 }

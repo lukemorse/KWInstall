@@ -13,14 +13,6 @@ struct ContactsView: View {
     var contacts: [String] = ["Team Leader: (Name)", "Name","Name","Name"]
     var body: some View {
         VStack {
-            HStack {
-                Image("Logo")
-                Text("TEAM NAME")
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-            }
-            
             List {
                 ForEach(0..<contacts.count, id: \.self) {
                     Text(self.contacts[$0])

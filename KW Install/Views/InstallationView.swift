@@ -62,7 +62,7 @@ struct InstallationView: View {
                 
                 Text("Floorplans:")
                 FloorPlanGridView()
-                Spacer()
+//                Spacer()
             }
             .padding()
         }
@@ -88,8 +88,9 @@ struct InstallationView: View {
     
 }
 
-//struct InstallationView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        InstallationView()
-//    }
-//}
+struct InstallationView_Previews: PreviewProvider {
+    static var previews: some View {
+        InstallationView(installation: Installation(address: GeoPoint(latitude: 20, longitude: 20), completed: false, districtContact: "", districtName: "", schoolContact: "", schoolName: "", email: "", numFloors: 1, numRooms: 1, numPods: 1, timeStamp: Timestamp(date: Date())))
+    }
+}
+
