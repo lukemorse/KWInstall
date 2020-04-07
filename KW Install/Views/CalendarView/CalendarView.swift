@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct CalendarView : View {
+    @ObservedObject var viewModel: CalendarViewModel
+    init(viewModel: CalendarViewModel) {
+        self.viewModel = viewModel
+    }
     
     @State var isPresented = true
     
@@ -16,24 +20,28 @@ struct CalendarView : View {
     
     var body: some View {
         
-        VStack {
-            HStack {
-                Image("Logo")
-                Text("Today's Installations")
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
+//        NavigationView {
+            VStack {
+                if viewModel.installList.isEmpty {
+                    emptySection
+                } else {
+                    installListView
+                }
+                
+                RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
             }
-            List {
-                //Add day's schools here
-                Text("George Westinghouse College Prep")
-                Text("Gwendolyn Brooks College")
-                Text("John Hancock College")
+//            .navigationBarTitle(
+//                Text("Today's Installations"), displayMode: .inline)
+//                .navigationBarItems(leading: Image("Logo"))
+                
+                .onAppear() {
+                    self.viewModel.fetchInstalls()
             }
-            RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
-        }       
+//        }
     }
     
+    
+    //Calendar
     func datesView(dates: [Date]) -> some View {
         ScrollView (.horizontal) {
             HStack {
@@ -43,8 +51,6 @@ struct CalendarView : View {
             }
         }.padding(.horizontal, 15)
     }
- 
-    
     
     func getTextFromDate(date: Date!) -> String {
         let formatter = DateFormatter()
@@ -52,13 +58,37 @@ struct CalendarView : View {
         formatter.dateFormat = "EEEE, MMMM d, yyyy"
         return date == nil ? "" : formatter.string(from: date)
     }
+}
 
+// Update UI
+extension CalendarView {
+    var installListView: some View {
+        
+        //        NavigationView {
+        List(0..<viewModel.installList.count) { row in
+            VStack {
+                NavigationLink(destination: InstallationView(installation: self.viewModel.installList[row])) {
+                    Text(self.viewModel.installList[row].schoolName)
+                }
+                //                    .navigationBarTitle("Installation Detail")
+            }
+            
+        }
+        //        }
+    }
+    
+    var emptySection: some View {
+        Section {
+            Text("No results")
+                .foregroundColor(.gray)
+        }
+    }
 }
 
 #if DEBUG
 struct CalendarView_Previews : PreviewProvider {
     static var previews: some View {
-        CalendarView()
+        CalendarView(viewModel: CalendarViewModel(dataFetcher: DataFetcher()))
     }
 }
 #endif

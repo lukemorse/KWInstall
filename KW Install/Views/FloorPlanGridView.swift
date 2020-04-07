@@ -19,7 +19,7 @@ struct FloorPlanGridView: View {
         
         return GeometryReader { geometry in
             
-            ScrollView{
+            ScrollView {
                 ForEach(0..<chunked.count) { row in // create number of rows
                     HStack {
                         ForEach(0..<chunked[row].count) { column in // create 3 columns
@@ -36,11 +36,7 @@ struct FloorPlanGridView: View {
     }
 }
 
-struct FloorPlanGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        FloorPlanGridView()
-    }
-}
+
 
 
 extension Array {
@@ -48,5 +44,12 @@ extension Array {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
         }
+    }
+}
+
+
+struct FloorPlanGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        FloorPlanGridView()
     }
 }
