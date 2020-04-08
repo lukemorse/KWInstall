@@ -20,7 +20,6 @@ struct ContactsView: View {
                         .padding(10)
                 }
             }
-            
             Spacer()
         }
     }

@@ -36,6 +36,7 @@
 		A3F605DB243CFCFE00780235 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F605DA243CFCFE00780235 /* MailView.swift */; };
 		A3F61D11243D3F98003E6B32 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D10243D3F98003E6B32 /* User.swift */; };
 		A3F61D13243D41C7003E6B32 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D12243D41C7003E6B32 /* Team.swift */; };
+		A3F61D15243D47E0003E6B32 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */; };
 		C421D8DA391899005E19BB29 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19030538E7CBE4179E897444 /* Pods_KW_Install.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 				A394986224377F8E00C0B358 /* InstallationView.swift */,
 				A3D76539243B684B00C772AF /* CompletedView.swift */,
 				A3D7653B243B68D100C772AF /* ContactsView.swift */,
+				A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */,
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
@@ -357,6 +360,7 @@
 				A3B38165243663590030582B /* MainView.swift in Sources */,
 				A3D7653E243B68DB00C772AF /* ReferencesView.swift in Sources */,
 				A31C8C81243BE0CE00C6084D /* Installation.swift in Sources */,
+				A3F61D15243D47E0003E6B32 /* ContactsViewModel.swift in Sources */,
 				A36F2D1D243BB48F00E1674A /* Utilities.swift in Sources */,
 				A3C587552436A4FD00780909 /* RKCell.swift in Sources */,
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,

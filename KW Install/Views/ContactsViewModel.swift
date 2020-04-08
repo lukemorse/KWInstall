@@ -1,5 +1,5 @@
 //
-//  CalendarViewModel.swift
+//  ContactsViewModel.swift
 //  KW Install
 //
 //  Created by Luke Morse on 4/7/20.
@@ -11,16 +11,16 @@ import Combine
 import Firebase
 import CodableFirebase
 
-class CalendarViewModel: ObservableObject {
+class ContactsViewModel: ObservableObject {
   // 2
-    @Published var installList: [Installation] = []
+    @Published var teamLeader: User
+    @Published var members: [User] = []
     
     func fetchInstalls() -> Void {
         Firestore.firestore().collection("teams").document("2YRtIFLhYdTe7UNCvoVz").collection("installations").document("zeKjtHNgEwKPEnxyIi5i").getDocument { document, error in
             if let document = document {
                 let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
                 print("Installation: \(install)")
-                self.installList = [install]
             } else {
                 print("Document does not exist")
             }
