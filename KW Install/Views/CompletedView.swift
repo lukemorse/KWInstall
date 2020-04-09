@@ -10,26 +10,30 @@ import SwiftUI
 
 struct CompletedView: View {
     
-    var completeList: [String] = ["George Westinghouse College Prep", "Gwendolyn Brooks College","John Hancock College"]
+    var completedInstallations: [Installation] = []
+    
     var body: some View {
         VStack {
-            HStack {
-                Image("Logo")
-                Text("COMPLETED")
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-            }
-            
-            List {
-                ForEach(0..<completeList.count, id: \.self) {
-                    Text(self.completeList[$0])
-                        .font(.headline)
-                        .padding(10)
+            if completedInstallations.isEmpty {
+                emptySection
+            } else {
+                List {
+                    ForEach(0..<self.completedInstallations.count, id: \.self) {
+                        Text(self.completedInstallations[$0].schoolName)
+                            .font(.headline)
+                            .padding(10)
+                    }
                 }
             }
             
             Spacer()
+        }
+    }
+    
+    var emptySection: some View {
+        Section {
+            Text("No results")
+                .foregroundColor(.gray)
         }
     }
 }

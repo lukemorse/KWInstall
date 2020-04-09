@@ -10,18 +10,26 @@ import SwiftUI
 
 struct MainView: View {
     
+    @EnvironmentObject var globalData: GlobalData
+    @ObservedObject var viewModel: MainViewModel
     @State var selected = 0
+    
+    init() {
+        viewModel = MainViewModel(calendarViewModel: CalendarViewModel())
+    }
     
     var body: some View {
         TabView(selection: $selected) {
             
             //Calendar
             NavigationView {
-                CalendarView(viewModel: CalendarViewModel(dataFetcher: DataFetcher())).navigationBarTitle(
+                CalendarView(viewModel: viewModel.calendarViewModel)
+                    .navigationBarTitle(
                     Text("Today's Installations"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")
-                        .fixedSize())
+                        .fixedSize()
+                        )
             }
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar0)
@@ -31,7 +39,7 @@ struct MainView: View {
             
             //Team Contacts
             NavigationView {
-                ContactsView().navigationBarTitle(
+                ContactsView(team: viewModel.teamData).navigationBarTitle(
                     Text("Team"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")
@@ -45,7 +53,7 @@ struct MainView: View {
             
             //Completed
             NavigationView {
-                CompletedView().navigationBarTitle(
+                CompletedView(completedInstallations: viewModel.completedInstallations  ).navigationBarTitle(
                     Text("Completed"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")
@@ -70,13 +78,21 @@ struct MainView: View {
                     .font(.title)
                 Text("\(Constants.TabBarText.tabBar3)")
             }).tag(3)
+                .onTapGesture {
+                    self.viewModel.getCompletedInstallations()
+            }
             
         }.accentColor(Color.red)
+            .onAppear(){
+                self.viewModel.fetchTeamData()
+//                self.viewModel.getCompletedInstallations()
+//                self.viewModel.getInstallations()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView().environmentObject(GlobalData())
     }
 }

@@ -12,9 +12,9 @@ import CodableFirebase
 
 struct Team: Encodable {
     let name: String
-    let leader: User
-    let members: [User]
-    let installations: [Installation]
+    let leader: String
+    let members: [String]
+    var installations: [DocumentReference]
     
     private enum CodingKeys: String, CodingKey {
         case name
@@ -30,14 +30,15 @@ struct Team: Encodable {
         try container.encode(members, forKey: .members)
         try container.encode(installations, forKey: .installations)
     }
+    
 }
 
 extension Team: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        leader = try container.decode(User.self, forKey: .leader)
-        members = try container.decode([User].self, forKey: .members)
-        installations = try container.decode([Installation].self, forKey: .installations)
+        leader = try container.decode(String.self, forKey: .leader)
+        members = try container.decode([String].self, forKey: .members)
+        installations = try container.decode([DocumentReference].self, forKey: .installations)
     }
 }

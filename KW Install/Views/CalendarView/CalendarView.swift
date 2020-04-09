@@ -7,13 +7,11 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct CalendarView : View {
-    @ObservedObject var viewModel: CalendarViewModel
-    init(viewModel: CalendarViewModel) {
-        self.viewModel = viewModel
-    }
     
+    @ObservedObject var viewModel: CalendarViewModel
     @State var isPresented = true
     
     var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
@@ -28,11 +26,10 @@ struct CalendarView : View {
                 
                 RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
             }
-                
                 .onAppear() {
                     self.viewModel.fetchInstalls()
             }
-//        }
+        
     }
     
     
@@ -53,24 +50,6 @@ struct CalendarView : View {
         formatter.dateFormat = "EEEE, MMMM d, yyyy"
         return date == nil ? "" : formatter.string(from: date)
     }
-}
-
-// Update UI
-extension CalendarView {
-    var installListView: some View {
-        
-        //        NavigationView {
-        List(0..<viewModel.installList.count) { row in
-            VStack {
-                NavigationLink(destination: InstallationView(installation: self.viewModel.installList[row])) {
-                    Text(self.viewModel.installList[row].schoolName)
-                }
-                //                    .navigationBarTitle("Installation Detail")
-            }
-            
-        }
-        //        }
-    }
     
     var emptySection: some View {
         Section {
@@ -80,11 +59,26 @@ extension CalendarView {
     }
 }
 
-#if DEBUG
-struct CalendarView_Previews : PreviewProvider {
-    static var previews: some View {
-        CalendarView(viewModel: CalendarViewModel(dataFetcher: DataFetcher()))
+// Update UI
+extension CalendarView {
+    var installListView: some View {
+        List(0..<self.viewModel.installList.count) { row in
+            VStack {
+                NavigationLink(destination: InstallationView(installation: self.viewModel.installList[row])) {
+                    Text(self.viewModel.installList[row].schoolName)
+                }
+            }
+        }
     }
 }
+
+
+
+#if DEBUG
+//struct CalendarView_Previews : PreviewProvider {
+//    static var previews: some View {
+//        CalendarView()
+//    }
+//}
 #endif
 

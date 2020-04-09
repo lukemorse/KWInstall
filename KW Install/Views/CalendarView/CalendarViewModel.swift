@@ -12,17 +12,22 @@ import Firebase
 import CodableFirebase
 
 class CalendarViewModel: ObservableObject {
-  // 2
+    // 2
     @Published var installList: [Installation] = []
+    @Published var installRefs: [DocumentReference] = []
     
     func fetchInstalls() -> Void {
-        Firestore.firestore().collection("teams").document("2YRtIFLhYdTe7UNCvoVz").collection("installations").document("zeKjtHNgEwKPEnxyIi5i").getDocument { document, error in
-            if let document = document {
-                let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
-                print("Installation: \(install)")
-                self.installList = [install]
-            } else {
-                print("Document does not exist")
+        print("Fetch instlls")
+        if installRefs.isEmpty {return}
+        for ref in installRefs {
+            ref.getDocument { document, error in
+                if let document = document {
+                    let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
+                    print("Installation: \(install)")
+                    self.installList.append(install)
+                } else {
+                    print("Document does not exist")
+                }
             }
         }
     }

@@ -26,9 +26,9 @@ struct Installation: Encodable {
     private enum CodingKeys: String, CodingKey {
         case address
         case completed
-        case districtContact = "districtContactPerson"
+        case districtContact
         case districtName
-        case schoolContact = "schoolContactPerson"
+        case schoolContact
         case schoolName
         case email
         case numFloors
