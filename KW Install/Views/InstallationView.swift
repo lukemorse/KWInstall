@@ -16,78 +16,80 @@ struct InstallationView: View {
     
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
-    @State private var centerCoordinate = CLLocationCoordinate2D()
+    //    @State private var centerCoordinate = CLLocationCoordinate2D()
     
     var body: some View {
         VStack() {
-            ZStack {
+            ScrollView {
+                
                 makeMap(geoPoint: installation.address)
-            }
-            Text(installation.districtName + ": " + installation.schoolName)
-                .font(.title)
-                .multilineTextAlignment(.center)
-                .padding(.vertical, 10.0)
-            Text("Quick Information:")
-                .font(.headline)
-                .fontWeight(.bold)
-                .multilineTextAlignment(.center)
-                .padding(.vertical, 10.0)
-            
-            Group {
-                Text("School Contact Person: " + installation.schoolContact)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text("District Contact Person: " + installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
-                Text("Number of Floors: " + String(installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
-                Text("Number of Rooms: " + String(installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
-                Text("Number of KW-PODS Needed: " + String(installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .padding(.vertical, 10.0)
-            
-            Button(action: {
-                self.isShowingMailView.toggle()
-            })
-            {
-                Text("Send En-Route Message")
+                    .onTapGesture {
+                        self.openMapsAppWithDirections(to: CLLocationCoordinate2D(latitude: self.installation.address.latitude, longitude: self.installation.address.longitude))
+                }
+                
+                Text(installation.districtName + ": " + installation.schoolName)
+                    .font(.title)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 10.0)
+                Text("Quick Information:")
                     .font(.headline)
-                    .padding(10.0)
-                    .foregroundColor(Color.black)
-                    .background(Color.blue)
-                    .cornerRadius(10)
+                    .fontWeight(.bold)
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 10.0)
+                
+                Group {
+                    Text("School Contact Person: " + installation.schoolContact)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("District Contact Person: " + installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of Floors: " + String(installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of Rooms: " + String(installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of KW-PODS Needed: " + String(installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(.vertical, 10.0)
+                
+                Button(action: {
+                    self.isShowingMailView.toggle()
+                })
+                {
+                    Text("Send En-Route Message")
+                        .font(.headline)
+                        .padding(10.0)
+                        .foregroundColor(Color.black)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                }
+                .disabled(!MFMailComposeViewController.canSendMail())
+                .sheet(isPresented: $isShowingMailView) {
+                    MailView(result: self.$mailResult)
+                }
+                
+                Text("Floorplans:")
+                FloorPlanGridView()
+                Spacer()
             }
-            .disabled(!MFMailComposeViewController.canSendMail())
-            .sheet(isPresented: $isShowingMailView) {
-                MailView(result: self.$mailResult)
-            }
-            
-            Text("Floorplans:")
-            FloorPlanGridView()
-            Spacer()
         }
         .padding()
     }
     
     func makeMap(geoPoint: GeoPoint) -> some View {
-        
-        //        let centerCoordinate = CLLocationCoordinate2D(latitude: geoPoint.latitude, longitude: geoPoint.longitude)
-        return MapView(centerCoordinate:
-            $centerCoordinate)
+        return MapView(centerCoordinate: CLLocationCoordinate2D(latitude: installation.address.latitude, longitude: installation.address.longitude))
             .frame(height: 200)
             .edgesIgnoringSafeArea(.top)
+        
     }
     
-    //Mail Stuff
-    
-    //    private func mailView() -> some View {
-    //        MFMailComposeViewController.canSendMail() ?
-    //            AnyView(MailView(isShowing: $isShowingMailView, result: $mailResult)) :
-    //            AnyView(Text("Can't send emails from this device"))
-    //    }
-    
+    func openMapsAppWithDirections(to coordinate: CLLocationCoordinate2D) {
+        let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = installation.schoolName
+        mapItem.openInMaps(launchOptions: options)
+    }
     
 }
 
-//struct InstallationView_Previews: PreviewProvider {
-//    static var previews: some View {
-////        InstallationView()
-//    }
-//}
+struct InstallationView_Previews: PreviewProvider {
+    static var previews: some View {
+        InstallationView(installation: Installation(address: GeoPoint(latitude: 42.009650, longitude: -87.669270), completed: false, districtContact: "hi", districtName: "hi", schoolContact: "hi", schoolName: "Hi", email: "hi", numFloors: 5, numRooms: 5, numPods: 5, timeStamp: Timestamp(date: Date())))
+    }
+}

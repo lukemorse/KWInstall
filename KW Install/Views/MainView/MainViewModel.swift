@@ -31,7 +31,6 @@ class MainViewModel: ObservableObject {
                     print("Teamdata: \(teamData)")
                     self.getInstallations()
                 }
-                print("setting team data")
             } else {
                 print("Document does not exist")
             }
@@ -54,22 +53,6 @@ class MainViewModel: ObservableObject {
                         
                     } else {
                         print("Document does not exist")
-                    }
-                }
-            }
-        }
-    }
-    
-    func getCompletedInstallations() {
-        if let teamData = teamData {
-            let docRefs = teamData.installations
-            for ref in docRefs {
-                ref.getDocument { document, error in
-                    if let document = document {
-                        let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
-                        if install.completed {
-                            self.completedInstallations.append(install)
-                        }
                     }
                 }
             }

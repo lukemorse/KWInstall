@@ -11,6 +11,7 @@
 		A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C8C82243CB99200C6084D /* CalendarViewModel.swift */; };
 		A33AFF10243BA7E50027C216 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33AFF0F243BA7E50027C216 /* DataFetcher.swift */; };
 		A344190C243676AB0038ACD3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344190B243676AB0038ACD3 /* Constants.swift */; };
+		A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348CFD8243EB56800AF56D8 /* PasscodeField.swift */; };
 		A36F2D1D243BB48F00E1674A /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F2D1C243BB48F00E1674A /* Utilities.swift */; };
 		A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */; };
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
@@ -52,6 +53,7 @@
 		A31C8C82243CB99200C6084D /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A33AFF0F243BA7E50027C216 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		A344190B243676AB0038ACD3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A348CFD8243EB56800AF56D8 /* PasscodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeField.swift; sourceTree = "<group>"; };
 		A36F2D1C243BB48F00E1674A /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
 				A3F605DA243CFCFE00780235 /* MailView.swift */,
+				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,
 				A39498652437805E00C0B358 /* MapView.swift in Sources */,
 				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,
+				A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */,
 				A3C587532436A4FD00780909 /* RKMonth.swift in Sources */,
 				A3C587592436A4FD00780909 /* RKWeekdayHeader.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,

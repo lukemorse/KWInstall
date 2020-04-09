@@ -21,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let contentView = MainView()
+//        let contentView = PasscodeField { (str, innerHandler: (Bool) -> Void) in
+//            innerHandler(str == "1234")
+//        }
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

@@ -78,9 +78,6 @@ struct MainView: View {
                     .font(.title)
                 Text("\(Constants.TabBarText.tabBar3)")
             }).tag(3)
-                .onTapGesture {
-                    self.viewModel.getCompletedInstallations()
-            }
             
         }.accentColor(Color.red)
             .onAppear(){

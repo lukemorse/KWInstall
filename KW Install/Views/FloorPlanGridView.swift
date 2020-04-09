@@ -19,7 +19,7 @@ struct FloorPlanGridView: View {
         
         return GeometryReader { geometry in
             
-            ScrollView {
+            List {
                 ForEach(0..<chunked.count) { row in // create number of rows
                     HStack {
                         ForEach(0..<chunked[row].count) { column in // create 3 columns

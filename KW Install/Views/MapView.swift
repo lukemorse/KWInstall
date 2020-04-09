@@ -10,11 +10,12 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-    @Binding var centerCoordinate: CLLocationCoordinate2D
+    var centerCoordinate: CLLocationCoordinate2D
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
+        centerToLocation(mapView: mapView, CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude))
         return mapView
     }
 
@@ -36,6 +37,19 @@ struct MapView: UIViewRepresentable {
             parent.centerCoordinate = mapView.centerCoordinate
         }
     }
+    
+    func centerToLocation(
+      mapView: MKMapView,
+      _ location: CLLocation,
+      regionRadius: CLLocationDistance = 1000
+    ) {
+      let coordinateRegion = MKCoordinateRegion(
+        center: location.coordinate,
+        latitudinalMeters: regionRadius,
+        longitudinalMeters: regionRadius)
+      
+      mapView.setRegion(coordinateRegion, animated: true)
+    }
 }
 
 extension MKPointAnnotation {
@@ -48,8 +62,9 @@ extension MKPointAnnotation {
     }
 }
 
+
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(centerCoordinate: .constant(MKPointAnnotation.example.coordinate))
+        MapView(centerCoordinate: CLLocationCoordinate2D(latitude: 41.881832, longitude: -87.623177))
     }
 }
