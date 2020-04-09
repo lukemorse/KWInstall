@@ -23,6 +23,7 @@
 		A3B381672436635B0030582B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3B381662436635B0030582B /* Assets.xcassets */; };
 		A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3B381692436635B0030582B /* Preview Assets.xcassets */; };
 		A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3B3816B2436635B0030582B /* LaunchScreen.storyboard */; };
+		A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C35863243F810900C39162 /* FloorPlanDetailView.swift */; };
 		A3C587532436A4FD00780909 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874C2436A4FD00780909 /* RKMonth.swift */; };
 		A3C587542436A4FD00780909 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874D2436A4FD00780909 /* RKViewController.swift */; };
 		A3C587552436A4FD00780909 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874E2436A4FD00780909 /* RKCell.swift */; };
@@ -71,6 +72,7 @@
 		A3B381792436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3B381822436635B0030582B /* KW_InstallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KW_InstallUITests.swift; sourceTree = "<group>"; };
 		A3B381842436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A3C35863243F810900C39162 /* FloorPlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanDetailView.swift; sourceTree = "<group>"; };
 		A3C5874C2436A4FD00780909 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
 		A3C5874D2436A4FD00780909 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
 		A3C5874E2436A4FD00780909 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */,
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
+				A3C35863243F810900C39162 /* FloorPlanDetailView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
 				A3F605DA243CFCFE00780235 /* MailView.swift */,
 				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
@@ -379,6 +382,7 @@
 				A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */,
 				A3C587532436A4FD00780909 /* RKMonth.swift in Sources */,
 				A3C587592436A4FD00780909 /* RKWeekdayHeader.swift in Sources */,
+				A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				A33AFF10243BA7E50027C216 /* DataFetcher.swift in Sources */,
 				A3C587572436A4FD00780909 /* RKDate.swift in Sources */,
