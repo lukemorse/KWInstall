@@ -14,22 +14,45 @@ struct CalendarView : View {
     @ObservedObject var viewModel: CalendarViewModel
     @State var isPresented = true
     
-    var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+//    @State var selectedDate: Date
     
     var body: some View {
-            VStack {
-                if viewModel.installList.isEmpty {
-                    emptySection
-                } else {
-                    installListView
-                }
-                
+            Group {
+                installationListView
                 RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
             }
                 .onAppear() {
                     self.viewModel.fetchInstalls()
+//                    self.rkManager.
             }
         
+    }
+    
+    var installationListView : some View {
+//        print(self.rkManager.selectedDate)
+        if let arr = viewModel.installationDictionary[dateToString(self.rkManager.selectedDate)] {
+            print(arr)
+            if arr.count > 0 {
+                return AnyView(List {
+                    ForEach(0..<arr.count, id: \.self) {index in
+                        VStack {
+                            NavigationLink(destination: InstallationView(installation: arr[index])) {
+                                Text(arr[index].schoolName)
+                            }
+                        }
+                    }
+                })
+            }
+        }
+        return AnyView(List {Text("No Installations")})
+    }
+    
+    func dateToString(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        return dateFormatter.string(from: date)
     }
     
     
@@ -58,20 +81,6 @@ struct CalendarView : View {
         }
     }
 }
-
-// Update UI
-extension CalendarView {
-    var installListView: some View {
-        List(0..<self.viewModel.installList.count) { row in
-            VStack {
-                NavigationLink(destination: InstallationView(installation: self.viewModel.installList[row])) {
-                    Text(self.viewModel.installList[row].schoolName)
-                }
-            }
-        }
-    }
-}
-
 
 
 #if DEBUG

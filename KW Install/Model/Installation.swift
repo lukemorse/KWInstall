@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import CodableFirebase
 
-struct Installation: Encodable {
+struct Installation: Encodable, Hashable {
     let address: GeoPoint
     let completed: Bool
     let districtContact: String

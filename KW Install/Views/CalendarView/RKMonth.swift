@@ -65,13 +65,13 @@ struct RKMonth: View {
         if self.isEnabled(date: date) {
             switch self.rkManager.mode {
             case 0:
-                if self.rkManager.selectedDate != nil &&
-                    self.rkManager.calendar.isDate(self.rkManager.selectedDate, inSameDayAs: date) {
-                    self.rkManager.selectedDate = nil
-                } else {
+//                if self.rkManager.selectedDate != nil &&
+//                    self.rkManager.calendar.isDate(self.rkManager.selectedDate, inSameDayAs: date) {
+//                    self.rkManager.selectedDate = nil
+//                } else {
                     self.rkManager.selectedDate = date
-                }
-                self.isPresented = false
+//                }
+//                self.isPresented = false
             case 1:
                 self.rkManager.startDate = date
                 self.rkManager.endDate = nil

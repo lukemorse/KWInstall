@@ -25,18 +25,15 @@ class MainViewModel: ObservableObject {
         Firestore.firestore().collection("teams").document("2YRtIFLhYdTe7UNCvoVz").getDocument { document, error in
             if let document = document {
                 let teamDoc = try! FirestoreDecoder().decode(Team.self, from: document.data() ?? [:])
-                
                 self.teamData = teamDoc
-                if let teamData = self.teamData {
-                    print("Teamdata: \(teamData)")
-                    self.getInstallations()
-                }
+                self.getInstallations()
             } else {
                 print("Document does not exist")
             }
         }
-        
     }
+    
+    
     
     private func getInstallations() {
         if let teamData = teamData {
@@ -48,7 +45,7 @@ class MainViewModel: ObservableObject {
                         if install.completed {
                             self.completedInstallations.append(install)
                         } else {
-                            self.calendarViewModel.installList.append(install)
+                            self.addToFutureInstallations(install)
                         }
                         
                     } else {
@@ -58,4 +55,20 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    
+    fileprivate func addToFutureInstallations(_ install: Installation) {
+        self.calendarViewModel.installList.append(install)
+        //add to installation dictionary under appropriate key ...
+        let dateDesc = timeStampToDateString(install.timeStamp)
+        print("date value: " + dateDesc)
+        if self.calendarViewModel.installationDictionary[dateDesc] == nil {
+            self.calendarViewModel.installationDictionary.updateValue([install], forKey: dateDesc)
+        } else {
+//            ... or add that key if it doesn't exist
+            self.calendarViewModel.installationDictionary[dateDesc]?.append(install)
+        }
+//        print("Dictionary: " + self.calendarViewModel.installationDictionary.description)
+    }
 }
+
+

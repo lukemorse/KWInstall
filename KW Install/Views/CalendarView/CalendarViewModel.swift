@@ -15,6 +15,7 @@ class CalendarViewModel: ObservableObject {
     // 2
     @Published var installList: [Installation] = []
     @Published var installRefs: [DocumentReference] = []
+    @Published var installationDictionary: [String: [Installation]] = [:]
     
     func fetchInstalls() -> Void {
         print("Fetch instlls")

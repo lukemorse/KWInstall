@@ -34,6 +34,7 @@
 		A3D7653A243B684B00C772AF /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D76539243B684B00C772AF /* CompletedView.swift */; };
 		A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653B243B68D100C772AF /* ContactsView.swift */; };
 		A3D7653E243B68DB00C772AF /* ReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653D243B68DB00C772AF /* ReferencesView.swift */; };
+		A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCA244002D6005494EE /* HelperFunctions.swift */; };
 		A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
 		A3F605DB243CFCFE00780235 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F605DA243CFCFE00780235 /* MailView.swift */; };
 		A3F61D11243D3F98003E6B32 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D10243D3F98003E6B32 /* User.swift */; };
@@ -83,6 +84,7 @@
 		A3D76539243B684B00C772AF /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
 		A3D7653B243B68D100C772AF /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		A3D7653D243B68DB00C772AF /* ReferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesView.swift; sourceTree = "<group>"; };
+		A3F1DFCA244002D6005494EE /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		A3F1FDD124368B310008C7F0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */,
 				A3B381682436635B0030582B /* Preview Content */,
 				A344190B243676AB0038ACD3 /* Constants.swift */,
+				A3F1DFCA244002D6005494EE /* HelperFunctions.swift */,
 				A33AFF0F243BA7E50027C216 /* DataFetcher.swift */,
 				A36F2D1C243BB48F00E1674A /* Utilities.swift */,
 			);
@@ -376,6 +379,7 @@
 				A3F61D15243D47E0003E6B32 /* ContactsViewModel.swift in Sources */,
 				A36F2D1D243BB48F00E1674A /* Utilities.swift in Sources */,
 				A3C587552436A4FD00780909 /* RKCell.swift in Sources */,
+				A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */,
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,
 				A39498652437805E00C0B358 /* MapView.swift in Sources */,
 				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,

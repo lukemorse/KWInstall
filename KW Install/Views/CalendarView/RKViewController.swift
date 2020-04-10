@@ -19,7 +19,7 @@ struct RKViewController: View {
             RKWeekdayHeader(rkManager: self.rkManager)
             Divider()
             List {
-                ForEach(0..<numberOfMonths()) { index in
+                ForEach(0..<numberOfMonths(), id: \.self) { index in
                     RKMonth(isPresented: self.$isPresented, rkManager: self.rkManager, monthOffset: index)
                 }
                 Divider()
