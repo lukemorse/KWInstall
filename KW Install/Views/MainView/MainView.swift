@@ -10,7 +10,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    @EnvironmentObject var globalData: GlobalData
     @ObservedObject var viewModel: MainViewModel
     @State var selected = 0
     
@@ -91,6 +90,6 @@ struct MainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environmentObject(GlobalData())
+        MainView()
     }
 }

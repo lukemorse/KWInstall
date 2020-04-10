@@ -37,12 +37,13 @@
 		A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCA244002D6005494EE /* HelperFunctions.swift */; };
 		A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */; };
 		A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCE2440BF7C005494EE /* StartView.swift */; };
+		A3F1DFD12440DE39005494EE /* PinchZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFD02440DE39005494EE /* PinchZoomView.swift */; };
+		A3F1DFD32440F88B005494EE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFD22440F88B005494EE /* ImagePicker.swift */; };
 		A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
 		A3F605DB243CFCFE00780235 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F605DA243CFCFE00780235 /* MailView.swift */; };
 		A3F61D11243D3F98003E6B32 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D10243D3F98003E6B32 /* User.swift */; };
 		A3F61D13243D41C7003E6B32 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D12243D41C7003E6B32 /* Team.swift */; };
 		A3F61D15243D47E0003E6B32 /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */; };
-		A3F61D17243D6DF4003E6B32 /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D16243D6DF4003E6B32 /* GlobalData.swift */; };
 		A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D18243E130B003E6B32 /* MainViewModel.swift */; };
 		C421D8DA391899005E19BB29 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19030538E7CBE4179E897444 /* Pods_KW_Install.framework */; };
 /* End PBXBuildFile section */
@@ -89,12 +90,13 @@
 		A3F1DFCA244002D6005494EE /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLogo.swift; sourceTree = "<group>"; };
 		A3F1DFCE2440BF7C005494EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		A3F1DFD02440DE39005494EE /* PinchZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinchZoomView.swift; sourceTree = "<group>"; };
+		A3F1DFD22440F88B005494EE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A3F1FDD124368B310008C7F0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D14243D47E0003E6B32 /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
-		A3F61D16243D6DF4003E6B32 /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -126,7 +128,6 @@
 				A31C8C80243BE0CE00C6084D /* Installation.swift */,
 				A3F61D10243D3F98003E6B32 /* User.swift */,
 				A3F61D12243D41C7003E6B32 /* Team.swift */,
-				A3F61D16243D6DF4003E6B32 /* GlobalData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,10 +144,12 @@
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A3C35863243F810900C39162 /* FloorPlanDetailView.swift */,
+				A3F1DFD22440F88B005494EE /* ImagePicker.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
 				A3F605DA243CFCFE00780235 /* MailView.swift */,
 				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
 				A3F1DFCE2440BF7C005494EE /* StartView.swift */,
+				A3F1DFD02440DE39005494EE /* PinchZoomView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				A36F2D1D243BB48F00E1674A /* Utilities.swift in Sources */,
 				A3C587552436A4FD00780909 /* RKCell.swift in Sources */,
 				A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */,
+				A3F1DFD32440F88B005494EE /* ImagePicker.swift in Sources */,
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,
 				A39498652437805E00C0B358 /* MapView.swift in Sources */,
 				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,
@@ -398,9 +402,9 @@
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				A33AFF10243BA7E50027C216 /* DataFetcher.swift in Sources */,
 				A3C587572436A4FD00780909 /* RKDate.swift in Sources */,
+				A3F1DFD12440DE39005494EE /* PinchZoomView.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,
-				A3F61D17243D6DF4003E6B32 /* GlobalData.swift in Sources */,
 				A3C587542436A4FD00780909 /* RKViewController.swift in Sources */,
 				A3C587582436A4FD00780909 /* RKColorSettings.swift in Sources */,
 			);

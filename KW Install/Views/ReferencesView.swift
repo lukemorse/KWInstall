@@ -11,16 +11,7 @@ import SwiftUI
 struct ReferencesView: View {
     
     var body: some View {
-        VStack {
-            HStack {
-                Image("Logo")
-                Text("REFERENCES")
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-            }
-            Spacer()
-        }
+        Spacer()
     }
 }
 

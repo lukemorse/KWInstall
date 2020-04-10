@@ -16,7 +16,6 @@ struct InstallationView: View {
     
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
-    //    @State private var centerCoordinate = CLLocationCoordinate2D()
     
     var body: some View {
         VStack() {
