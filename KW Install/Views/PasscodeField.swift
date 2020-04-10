@@ -7,11 +7,12 @@
 //
 
 import SwiftUI
-// import Introspect
+import Introspect
+
 public struct PasscodeField: View {
     
     var maxDigits: Int = 4
-    var label = "Enter One Time Password"
+    var label = "Enter Passcode"
     
     @State var pin: String = ""
     @State var showPin = false
@@ -53,18 +54,18 @@ public struct PasscodeField: View {
       // Introspect library can used to make the textField become first resonder on appearing
       // if you decide to add the pod 'Introspect' and import it, comment #50 to #53 and uncomment #55 to #61
       
-           .accentColor(.clear)
-           .foregroundColor(.clear)
-           .keyboardType(.numberPad)
-           .disabled(isDisabled)
+//           .accentColor(.clear)
+//           .foregroundColor(.clear)
+//           .keyboardType(.numberPad)
+//           .disabled(isDisabled)
       
-//             .introspectTextField { textField in
-//                 textField.tintColor = .clear
-//                 textField.textColor = .clear
-//                 textField.keyboardType = .numberPad
-//                 textField.becomeFirstResponder()
-//                 textField.isEnabled = !self.isDisabled
-//         }
+             .introspectTextField { textField in
+                 textField.tintColor = .clear
+                 textField.textColor = .clear
+                 textField.keyboardType = .numberPad
+                 textField.becomeFirstResponder()
+                 textField.isEnabled = !self.isDisabled
+         }
     }
     
     private var showPinStack: some View {
@@ -100,6 +101,7 @@ public struct PasscodeField: View {
             handler(pin) { isSuccess in
                 if isSuccess {
                     print("pin matched, go to next page, no action to perfrom here")
+                    
                 } else {
                     pin = ""
                     isDisabled = false

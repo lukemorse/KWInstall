@@ -1,5 +1,5 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+platform :ios, '13.0'
 use_frameworks!
 
 target 'KW Install' do
@@ -9,4 +9,5 @@ target 'KW Install' do
     pod 'Firebase/Storage'
     pod 'Firebase/Firestore'
     pod 'CodableFirebase'
+    pod "Introspect"
 end

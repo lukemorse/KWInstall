@@ -28,7 +28,8 @@ struct MainView: View {
                     Text("Today's Installations"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")
-                        .fixedSize()
+                        .frame(height: nil)
+                        
                         )
             }
             .tabItem({

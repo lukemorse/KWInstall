@@ -48,13 +48,11 @@ struct FloorPlanGridView: View {
             }
             .frame(height: 300)
             .padding()
-            NavigationLink("Show detail", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushActive)
+            NavigationLink("", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushActive).hidden()
+        
         }
     }
 }
-
-
-
 
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
