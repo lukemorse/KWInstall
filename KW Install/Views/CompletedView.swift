@@ -25,7 +25,6 @@ struct CompletedView: View {
                     }
                 }
             }
-            
             Spacer()
         }
     }

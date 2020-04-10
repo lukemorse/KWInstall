@@ -67,7 +67,6 @@ class MainViewModel: ObservableObject {
 //            ... or add that key if it doesn't exist
             self.calendarViewModel.installationDictionary[dateDesc]?.append(install)
         }
-//        print("Dictionary: " + self.calendarViewModel.installationDictionary.description)
     }
 }
 

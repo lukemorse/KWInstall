@@ -27,9 +27,7 @@ struct MainView: View {
                     Text("Today's Installations"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")
-                        .frame(height: nil)
-                        
-                        )
+                        .frame(height: nil))
             }
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar0)
@@ -82,8 +80,6 @@ struct MainView: View {
         }.accentColor(Color.red)
             .onAppear(){
                 self.viewModel.fetchTeamData()
-//                self.viewModel.getCompletedInstallations()
-//                self.viewModel.getInstallations()
         }
     }
 }
