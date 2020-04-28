@@ -32,6 +32,9 @@
 		A3D7653A243B684B00C772AF /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D76539243B684B00C772AF /* CompletedView.swift */; };
 		A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653B243B68D100C772AF /* ContactsView.swift */; };
 		A3D7653E243B68DB00C772AF /* ReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653D243B68DB00C772AF /* ReferencesView.swift */; };
+		A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD49245891840099A53C /* SchoolType.swift */; };
+		A3DFBD4D245891840099A53C /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4A245891840099A53C /* District.swift */; };
+		A3DFBD4E245891840099A53C /* PodMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4B245891840099A53C /* PodMapModel.swift */; };
 		A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCA244002D6005494EE /* HelperFunctions.swift */; };
 		A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */; };
 		A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCE2440BF7C005494EE /* StartView.swift */; };
@@ -81,6 +84,9 @@
 		A3D76539243B684B00C772AF /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
 		A3D7653B243B68D100C772AF /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		A3D7653D243B68DB00C772AF /* ReferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesView.swift; sourceTree = "<group>"; };
+		A3DFBD49245891840099A53C /* SchoolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
+		A3DFBD4A245891840099A53C /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		A3DFBD4B245891840099A53C /* PodMapModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodMapModel.swift; sourceTree = "<group>"; };
 		A3F1DFCA244002D6005494EE /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLogo.swift; sourceTree = "<group>"; };
 		A3F1DFCE2440BF7C005494EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -117,7 +123,10 @@
 		A31C8C7F243BE0C000C6084D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A3DFBD4A245891840099A53C /* District.swift */,
 				A31C8C80243BE0CE00C6084D /* Installation.swift */,
+				A3DFBD4B245891840099A53C /* PodMapModel.swift */,
+				A3DFBD49245891840099A53C /* SchoolType.swift */,
 				A3F61D10243D3F98003E6B32 /* User.swift */,
 				A3F61D12243D41C7003E6B32 /* Team.swift */,
 			);
@@ -382,6 +391,7 @@
 				A3B38161243663590030582B /* AppDelegate.swift in Sources */,
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
 				A3C587562436A4FD00780909 /* RKManager.swift in Sources */,
+				A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */,
 				A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */,
 				A394986324377F8E00C0B358 /* InstallationView.swift in Sources */,
 				A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */,
@@ -391,6 +401,7 @@
 				A31C8C81243BE0CE00C6084D /* Installation.swift in Sources */,
 				A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */,
 				A3C587552436A4FD00780909 /* RKCell.swift in Sources */,
+				A3DFBD4D245891840099A53C /* District.swift in Sources */,
 				A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */,
 				A3F1DFD32440F88B005494EE /* ImagePicker.swift in Sources */,
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,
@@ -403,6 +414,7 @@
 				A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				A3C587572436A4FD00780909 /* RKDate.swift in Sources */,
+				A3DFBD4E245891840099A53C /* PodMapModel.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,
 				A3C587542436A4FD00780909 /* RKViewController.swift in Sources */,

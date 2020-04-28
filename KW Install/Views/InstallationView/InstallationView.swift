@@ -89,6 +89,6 @@ struct InstallationView: View {
 
 struct InstallationView_Previews: PreviewProvider {
     static var previews: some View {
-        InstallationView(installation: Installation(address: GeoPoint(latitude: 42.009650, longitude: -87.669270), completed: false, districtContact: "hi", districtName: "hi", schoolContact: "hi", schoolName: "Hi", email: "hi", numFloors: 5, numRooms: 5, numPods: 5, timeStamp: Timestamp(date: Date())))
+        InstallationView(installation: Installation())
     }
 }

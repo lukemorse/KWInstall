@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+import Firebase
 
 struct Constants {
     
@@ -24,6 +24,15 @@ struct Constants {
         static let tabBar2 = "Completed"
         static let tabBar3 = "References"
     }
+    
+    static let kFloorPlanCollection = "floorPlansCollection"
+    static let kFloorPlanFolder = "floorPlansFolder"
+    static let kDistrictCollection = "districts"
+    static let kTeamCollection = "teams"
+    static let kImplementationPlanCollection = "implementationPlans"
+    
+    static let chicagoGeoPoint = GeoPoint(latitude: 41.8781, longitude: -87.6298)
 }
+
 
 

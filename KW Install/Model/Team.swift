@@ -10,11 +10,30 @@ import Foundation
 import Firebase
 import CodableFirebase
 
-struct Team: Encodable {
+struct Team: Encodable, Hashable, Identifiable {
+    var id: Int { hashValue }
+    
     let name: String
     let leader: String
     let members: [String]
-    var installations: [DocumentReference]
+    var installations: [Installation]
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(leader)
+        hasher.combine(members)
+        hasher.combine(installations)
+    }
+    
+    init(name: String = "",
+         leader: String = "",
+         members: [String] = [],
+         installations: [Installation] = []) {
+        self.name = name
+        self.leader = leader
+        self.members = members
+        self.installations = installations
+    }
     
     private enum CodingKeys: String, CodingKey {
         case name
@@ -30,7 +49,6 @@ struct Team: Encodable {
         try container.encode(members, forKey: .members)
         try container.encode(installations, forKey: .installations)
     }
-    
 }
 
 extension Team: Decodable {
@@ -39,6 +57,6 @@ extension Team: Decodable {
         name = try container.decode(String.self, forKey: .name)
         leader = try container.decode(String.self, forKey: .leader)
         members = try container.decode([String].self, forKey: .members)
-        installations = try container.decode([DocumentReference].self, forKey: .installations)
+        installations = try container.decode([Installation].self, forKey: .installations)
     }
 }

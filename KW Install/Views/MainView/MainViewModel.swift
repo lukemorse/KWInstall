@@ -11,9 +11,12 @@ import Combine
 import Firebase
 import CodableFirebase
 
+//testing
+let teamDocID = "GadFQUZuxl2gxsh40R9o"
+
 class MainViewModel: ObservableObject {
     // 2
-    @Published var teamData: Team?
+    @Published var team: Team?
     @Published var calendarViewModel: CalendarViewModel
     @Published var completedInstallations: [Installation] = []
     
@@ -22,10 +25,13 @@ class MainViewModel: ObservableObject {
     }
     
     func fetchTeamData() {
-        Firestore.firestore().collection("teams").document("2YRtIFLhYdTe7UNCvoVz").getDocument { document, error in
+        Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
             if let document = document {
                 let teamDoc = try! FirestoreDecoder().decode(Team.self, from: document.data() ?? [:])
-                self.teamData = teamDoc
+                self.team = teamDoc
                 self.getInstallations()
             } else {
                 print("Document does not exist")
@@ -33,28 +39,49 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    
-    
-    private func getInstallations() {
-        if let teamData = teamData {
-            let docRefs = teamData.installations
-            for ref in docRefs {
-                ref.getDocument { document, error in
-                    if let document = document {
-                        let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
-                        if install.completed {
-                            self.completedInstallations.append(install)
-                        } else {
-                            self.addToFutureInstallations(install)
+    func getInstallations() {
+        Firestore.firestore().collection(Constants.kDistrictCollection).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in snapshot!.documents {
+                    let district = try! FirestoreDecoder().decode(District.self, from: document.data())
+                    if district.team == self.team {
+                        for install in district.implementationPlan {
+                            if install.status == .complete {
+                                self.completedInstallations.append(install)
+                            } else {
+                                self.addToFutureInstallations(install)
+                            }
                         }
-                        
-                    } else {
-                        print("Document does not exist")
                     }
                 }
             }
         }
     }
+    
+//
+//
+//    private func getInstallations() {
+//        if let team = team {
+//            let installs = teamData.installations
+//            for ref in docRefs {
+//                ref.getDocument { document, error in
+//                    if let document = document {
+//                        let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
+//                        if install.completed {
+//                            self.completedInstallations.append(install)
+//                        } else {
+//                            self.addToFutureInstallations(install)
+//                        }
+//
+//                    } else {
+//                        print("Document does not exist")
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     fileprivate func addToFutureInstallations(_ install: Installation) {
         self.calendarViewModel.installList.append(install)

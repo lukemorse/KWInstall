@@ -37,7 +37,7 @@ struct MainView: View {
             
             //Team Contacts
             NavigationView {
-                ContactsView(team: viewModel.teamData).navigationBarTitle(
+                ContactsView(team: viewModel.team).navigationBarTitle(
                     Text("Team"), displayMode: .inline)
                 .navigationBarItems(leading:
                     Image("Logo")

@@ -12,7 +12,7 @@ let items: [String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
 let chunked = items.chunked(into: 3)
 
 struct FloorPlanGridView: View {
-    @State var pushActive = false
+    @State var pushDetailView = false
     @State var selectedImageIndex = 0
     
     var body : some View {
@@ -28,7 +28,7 @@ struct FloorPlanGridView: View {
                                     
                                     .resizable()
                                     .scaledToFill()
-                                    .frame(width: geometry.size.width / 3)
+                                    .frame(width: geometry.size.width / 3.5)
                                     .onTapGesture {
 //                                        AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeLeft
 //
@@ -37,7 +37,7 @@ struct FloorPlanGridView: View {
                                         
                                         let index = row * 3 + column
                                         print(index)
-                                        self.pushActive = true
+                                        self.pushDetailView = true
                                         
                                         
                                 }
@@ -48,7 +48,7 @@ struct FloorPlanGridView: View {
             }
             .frame(height: 300)
             .padding()
-            NavigationLink("", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushActive).hidden()
+            NavigationLink("", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushDetailView).hidden()
         
         }
     }

@@ -22,11 +22,6 @@ struct CalendarView : View {
                 installationListView
                 RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
             }
-                .onAppear() {
-                    self.viewModel.fetchInstalls()
-//                    self.rkManager.
-            }
-        
     }
     
     var installationListView : some View {
