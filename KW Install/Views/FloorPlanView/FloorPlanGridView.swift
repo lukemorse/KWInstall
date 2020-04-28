@@ -27,11 +27,12 @@ struct FloorPlanGridView: View {
                             HStack {
                                 ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count) { column in // create 3 columns
                                     //                                Image("floorPlan")
-                                    Image(uiImage: self.viewModel.floorPlanThumbnails[column] ?? UIImage())
-                                        
+                                    NavigationLink(destination: FloorPlanDetailView(floorPlanImage: Image(uiImage: self.viewModel.floorPlanThumbnails[column])), isActive: self.$pushDetailView) {
+                                        Image(uiImage: self.viewModel.floorPlanThumbnails[column])
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: geometry.size.width / 3.5)
+                                    }
                                 }
                             }
                         }

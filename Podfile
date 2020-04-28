@@ -9,5 +9,6 @@ target 'KW Install' do
     pod 'Firebase/Storage'
     pod 'Firebase/Firestore'
     pod 'CodableFirebase'
-    pod "Introspect"
+    pod 'Introspect'
+    pod 'Kingfisher'
 end
