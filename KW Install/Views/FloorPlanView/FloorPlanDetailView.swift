@@ -29,13 +29,11 @@ struct FloorPlanDetailView: View {
                     .resizable()
                 
                 Button(action: {
-                    print("button clicked")
                     self.showImagePicker.toggle()
                 }) {
                     Circle().fill(Color.red)
                 }
                 .onTapGesture {
-                    print("button clicked")
                     self.showImagePicker.toggle()
                 }
                 .frame(width: 10.0, height: 10.0)

@@ -8,48 +8,47 @@
 
 import SwiftUI
 
+
 let items: [String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
 let chunked = items.chunked(into: 3)
 
 struct FloorPlanGridView: View {
     @State var pushDetailView = false
     @State var selectedImageIndex = 0
+    @ObservedObject var viewModel = FloorPlanViewModel(docID: "-6684770634346624996")
     
     var body : some View {
         
         VStack {
             GeometryReader { geometry in
-                
                 List {
-                    ForEach(0..<chunked.count) { row in // create number of rows
-                        HStack {
-                            ForEach(0..<chunked[row].count) { column in // create 3 columns
-                                Image("floorPlan")
-                                    
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: geometry.size.width / 3.5)
-                                    .onTapGesture {
-//                                        AppDelegate.orientationLock = UIInterfaceOrientationMask.landscapeLeft
-//
-//                                        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft, forKey: "orientation")
-//                                        UINavigationController.attemptRotationToDeviceOrientation()
+                    if self.viewModel.floorPlanThumbnails.count > 0 {
+                        ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3).count) { row in // create number of rows
+                            HStack {
+                                ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count) { column in // create 3 columns
+                                    //                                Image("floorPlan")
+                                    Image(uiImage: self.viewModel.floorPlanThumbnails[column] ?? UIImage())
                                         
-                                        let index = row * 3 + column
-                                        print(index)
-                                        self.pushDetailView = true
-                                        
-                                        
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: geometry.size.width / 3.5)
                                 }
                             }
                         }
                     }
+                    else {
+                        EmptyView()
+                    }
+                    
                 }
             }
             .frame(height: 300)
             .padding()
             NavigationLink("", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushDetailView).hidden()
-        
+            
+        }
+        .onAppear() {
+            self.viewModel.getFloorPlans()
         }
     }
 }
