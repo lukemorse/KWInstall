@@ -20,7 +20,6 @@ struct InstallationView: View {
     var body: some View {
         VStack() {
             ScrollView {
-                
                 makeMap(geoPoint: installation.address)
                     .onTapGesture {
                         self.openMapsAppWithDirections(to: CLLocationCoordinate2D(latitude: self.installation.address.latitude, longitude: self.installation.address.longitude))
@@ -63,7 +62,7 @@ struct InstallationView: View {
                 }
                 
                 Text("Floorplans:")
-                FloorPlanGridView()
+                FloorPlanGridView(viewModel: FloorPlanViewModel(installation: installation))
                 Spacer()
             }
         }

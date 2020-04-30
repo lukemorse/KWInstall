@@ -8,17 +8,13 @@
 
 import SwiftUI
 
-
-let items: [String] = ["1", "2", "3", "4", "5", "6", "7", "8"]
-let chunked = items.chunked(into: 3)
-
 struct FloorPlanGridView: View {
+    @ObservedObject var viewModel: FloorPlanViewModel
+    
     @State var pushDetailView = false
     @State var selectedImageIndex = 0
-    @ObservedObject var viewModel = FloorPlanViewModel(docID: "-6684770634346624996")
     
     var body : some View {
-        
         VStack {
             GeometryReader { geometry in
                 List {
@@ -26,12 +22,16 @@ struct FloorPlanGridView: View {
                         ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3).count) { row in // create number of rows
                             HStack {
                                 ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count) { column in // create 3 columns
-                                    //                                Image("floorPlan")
-                                    NavigationLink(destination: FloorPlanDetailView(floorPlanImage: Image(uiImage: self.viewModel.floorPlanThumbnails[column])), isActive: self.$pushDetailView) {
-                                        Image(uiImage: self.viewModel.floorPlanThumbnails[column])
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: geometry.size.width / 3.5)
+                                    
+                                    Image(uiImage: self.viewModel.floorPlanThumbnails[column])
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geometry.size.width / 3.5)
+                                        .onTapGesture {
+                                            self.selectedImageIndex = row * 3 + column
+                                            print(index)
+                                            self.pushDetailView = true
+                                            print(self.viewModel.pods)
                                     }
                                 }
                             }
@@ -40,16 +40,23 @@ struct FloorPlanGridView: View {
                     else {
                         EmptyView()
                     }
-                    
                 }
             }
             .frame(height: 300)
             .padding()
-            NavigationLink("", destination: FloorPlanDetailView(floorPlanImage: Image("floorPlan")), isActive: self.$pushDetailView).hidden()
+            navLink
             
         }
         .onAppear() {
             self.viewModel.getFloorPlans()
+        }
+    }
+    
+    var navLink : some View {
+        if self.viewModel.floorPlanThumbnails.count > 0 {
+            return AnyView(NavigationLink("", destination: FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), pods: self.viewModel.pods[self.selectedImageIndex]), isActive: self.$pushDetailView).hidden())
+        } else {
+            return AnyView(EmptyView())
         }
     }
 }
@@ -63,8 +70,11 @@ extension Array {
 }
 
 
-struct FloorPlanGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        FloorPlanGridView()
-    }
-}
+//struct FloorPlanGridView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FloorPlanGridView( pods: [])
+//    }
+//}
+
+
+

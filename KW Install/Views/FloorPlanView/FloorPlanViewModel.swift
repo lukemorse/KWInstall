@@ -14,37 +14,53 @@ import Kingfisher
 
 class FloorPlanViewModel: ObservableObject {
     
-    let docID: String
-    @Published var floorPlanThumbnails: [UIImage] = []
+    let installation: Installation
     
-    init(docID: String) {
-        self.docID = docID
+    @Published var floorPlanThumbnails: [UIImage] = []
+    @Published var pods: [[Pod]] = [[]]
+    
+    init(installation: Installation) {
+        self.installation = installation
     }
     
-    @Published var completedInstallations: [Installation] = []
-    
     func getFloorPlans() {
-        print("get floor plans")
-        Firestore.firestore().collection(Constants.kFloorPlanCollection).document(docID).getDocument { (document, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            if let document = document {
-                if let data = document.data() {
-                    let floorPlanModel = try! FirestoreDecoder().decode([String: FloorPlanModel].self, from: data)
-                    for (_, value) in floorPlanModel {
-                        //download image
-                        self.downloadImage(with: value.imageURL)
-                    }
-                    print(floorPlanModel)
-                } else {
-                    print("cant get data")
-                }
+        for url in installation.floorPlanUrls {
+            downloadImage(with: url)
+            print(pods.count)
+            if pods[0].isEmpty {
+                self.pods[0] = self.installation.pods[url] ?? []
             } else {
-                print("document does not exist")
+                self.pods.append(self.installation.pods[url] ?? [])
             }
-        }   
+        }
+        
+        
+        
+//        let storage = Storage.storage()
+//        let storageRef = storage.reference(forURL: self.storageUrl)
+//        storageRef.
+        
+//        Firestore.firestore().collection(Constants.kFloorPlanCollection).document(storageUrl).getDocument { (document, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+//            if let document = document {
+//                if let data = document.data() {
+//                    let floorPlanModel = try! FirestoreDecoder().decode([String: FloorPlanModel].self, from: data)
+//                    for (_, value) in floorPlanModel {
+//                        //download image
+//                        self.downloadImage(with: value.imageURL)
+////                        let pds = value.po
+//                    }
+//                    print(floorPlanModel)
+//                } else {
+//                    print("cant get data")
+//                }
+//            } else {
+//                print("document does not exist")
+//            }
+//        }
     }
     
 //    func downloadImage(urlString: String) {

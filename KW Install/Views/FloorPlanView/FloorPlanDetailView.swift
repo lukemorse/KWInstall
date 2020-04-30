@@ -10,6 +10,12 @@ import SwiftUI
 
 struct FloorPlanDetailView: View {
     
+    
+    var floorPlanImage: Image
+    var pods: [Pod]
+    var podNodeViews: [PodNodeView] = []
+    
+    @State var tappedPod: PodNodeView?
     @State var showImagePicker: Bool = false
     @State var image: Image? = nil
     
@@ -21,25 +27,21 @@ struct FloorPlanDetailView: View {
     @State var dragSize: CGSize = CGSize.zero
     @State var lastDrag: CGSize = CGSize.zero
     
-    var floorPlanImage: Image
+    init(with floorPlanImage: Image, pods: [Pod]) {
+        self.floorPlanImage = floorPlanImage
+        self.pods = pods
+        for pod in pods {
+            self.podNodeViews.append(PodNodeView(pod: pod))
+        }
+    }
+    
     var body: some View {
         VStack {
             ZStack {
                 floorPlanImage
                     .resizable()
                 
-                Button(action: {
-                    self.showImagePicker.toggle()
-                }) {
-                    Circle().fill(Color.red)
-                }
-                .onTapGesture {
-                    self.showImagePicker.toggle()
-                }
-                .frame(width: 10.0, height: 10.0)
-                .background(Color.red)
-                .mask(Circle())
-                .position(CGPoint(x: 200, y: 200))
+                podGroup
             }
             .scaledToFit()
             .animation(.linear)
@@ -68,15 +70,32 @@ struct FloorPlanDetailView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: .camera) { image in
                 self.image = Image(uiImage: image)
+                if let pod = self.tappedPod {
+                    pod.markComplete()
+                    self.tappedPod = nil
+                }
             }
         }
     }
     
+    var podGroup: some View {
+        Group {
+            ForEach (0..<podNodeViews.count, id: \.self) { index in
+                self.podNodeViews[index]
+                    .onTapGesture {
+                        self.tappedPod = self.podNodeViews[index]
+                        self.showImagePicker = true
+                }
+            }
+        }
+    }
 }
 
 struct FloorPlanDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FloorPlanDetailView(floorPlanImage: Image( "floorPlan"))
+        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .hallway, position: CGPoint(x: 100, y: 100))])
+            
+            
             .previewLayout(.fixed(width: 568, height: 320))
     }
 }
