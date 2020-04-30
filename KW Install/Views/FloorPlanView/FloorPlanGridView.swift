@@ -70,11 +70,8 @@ extension Array {
 }
 
 
-//struct FloorPlanGridView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FloorPlanGridView( pods: [])
-//    }
-//}
-
-
-
+struct FloorPlanGridView_Previews: PreviewProvider {
+    static var previews: some View {
+        FloorPlanGridView( viewModel: FloorPlanViewModel(installation: Installation()))
+    }
+}

@@ -72,9 +72,9 @@ struct FloorPlanDetailView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: .camera) { image in
                 self.image = Image(uiImage: image)
-                //TODO: upload image here
                 self.viewModel.uploadPodImage(image: image) { (url) in
-                    print(url)
+                    //store URL?
+//                    print(url)
                 }
                 if let pod = self.tappedPod {
                     pod.markComplete()

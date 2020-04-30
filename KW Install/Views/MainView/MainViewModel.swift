@@ -60,29 +60,6 @@ class MainViewModel: ObservableObject {
         }
     }
     
-//
-//
-//    private func getInstallations() {
-//        if let team = team {
-//            let installs = teamData.installations
-//            for ref in docRefs {
-//                ref.getDocument { document, error in
-//                    if let document = document {
-//                        let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
-//                        if install.completed {
-//                            self.completedInstallations.append(install)
-//                        } else {
-//                            self.addToFutureInstallations(install)
-//                        }
-//
-//                    } else {
-//                        print("Document does not exist")
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
     fileprivate func addToFutureInstallations(_ install: Installation) {
         self.calendarViewModel.installList.append(install)
         //add to installation dictionary under appropriate key ...

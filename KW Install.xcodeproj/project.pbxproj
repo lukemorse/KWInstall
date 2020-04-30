@@ -37,7 +37,6 @@
 		A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD49245891840099A53C /* SchoolType.swift */; };
 		A3DFBD4D245891840099A53C /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4A245891840099A53C /* District.swift */; };
 		A3DFBD50245894020099A53C /* FloorPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */; };
-		A3DFBD5224589E250099A53C /* FloorPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD5124589E250099A53C /* FloorPlanModel.swift */; };
 		A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCA244002D6005494EE /* HelperFunctions.swift */; };
 		A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */; };
 		A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCE2440BF7C005494EE /* StartView.swift */; };
@@ -92,7 +91,6 @@
 		A3DFBD49245891840099A53C /* SchoolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
 		A3DFBD4A245891840099A53C /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanViewModel.swift; sourceTree = "<group>"; };
-		A3DFBD5124589E250099A53C /* FloorPlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanModel.swift; sourceTree = "<group>"; };
 		A3F1DFCA244002D6005494EE /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLogo.swift; sourceTree = "<group>"; };
 		A3F1DFCE2440BF7C005494EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				A3DFBD49245891840099A53C /* SchoolType.swift */,
 				A3F61D10243D3F98003E6B32 /* User.swift */,
 				A3F61D12243D41C7003E6B32 /* Team.swift */,
-				A3DFBD5124589E250099A53C /* FloorPlanModel.swift */,
 				A30A7883245A17E700271993 /* Pod.swift */,
 			);
 			path = Model;
@@ -426,7 +423,6 @@
 				A3DFBD50245894020099A53C /* FloorPlanViewModel.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				A3C587572436A4FD00780909 /* RKDate.swift in Sources */,
-				A3DFBD5224589E250099A53C /* FloorPlanModel.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,
 				A3C587542436A4FD00780909 /* RKViewController.swift in Sources */,

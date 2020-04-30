@@ -50,22 +50,13 @@ public struct PasscodeField: View {
         })
         
         return TextField("", text: boundPin, onCommit: submitPin)
-      
-      // Introspect library can used to make the textField become first resonder on appearing
-      // if you decide to add the pod 'Introspect' and import it, comment #50 to #53 and uncomment #55 to #61
-      
-//           .accentColor(.clear)
-//           .foregroundColor(.clear)
-//           .keyboardType(.numberPad)
-//           .disabled(isDisabled)
-      
-             .introspectTextField { textField in
-                 textField.tintColor = .clear
-                 textField.textColor = .clear
-                 textField.keyboardType = .numberPad
-                 textField.becomeFirstResponder()
-                 textField.isEnabled = !self.isDisabled
-         }
+            .introspectTextField { textField in
+                textField.tintColor = .clear
+                textField.textColor = .clear
+                textField.keyboardType = .numberPad
+                textField.becomeFirstResponder()
+                textField.isEnabled = !self.isDisabled
+        }
     }
     
     private var showPinStack: some View {

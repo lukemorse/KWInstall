@@ -15,7 +15,6 @@ struct CalendarView : View {
     @State var isPresented = true
     
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
-//    @State var selectedDate: Date
     
     var body: some View {
             Group {
@@ -25,7 +24,6 @@ struct CalendarView : View {
     }
     
     var installationListView : some View {
-//        print(self.rkManager.selectedDate)
         if let arr = viewModel.installationDictionary[dateToString(self.rkManager.selectedDate)] {
             print(arr)
             if arr.count > 0 {
@@ -79,10 +77,10 @@ struct CalendarView : View {
 
 
 #if DEBUG
-//struct CalendarView_Previews : PreviewProvider {
-//    static var previews: some View {
-//        CalendarView()
-//    }
-//}
+struct CalendarView_Previews : PreviewProvider {
+    static var previews: some View {
+        CalendarView(viewModel: CalendarViewModel())
+    }
+}
 #endif
 

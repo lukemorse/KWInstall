@@ -10,12 +10,9 @@ import SwiftUI
 
 struct PodNodeView: Identifiable, Hashable, Equatable, View {
     
-//    var podType: PodType
-//    var pos: CGPoint
     let pod: Pod
     var id: Int { hashValue }
-    let complete = false
-//    var uuid = UUID()
+    let isComplete = false
     
     @State private var position = CGSize.zero
     @State private var color = Color.red
@@ -33,11 +30,7 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
             .resizable()
             .frame(width: 30, height: 30)
             .position(pod.position)
-//            .colorMultiply(self.color)
-    }
-    
-    func markComplete() {
-        self.color = Color.green
+//            .foregroundColor(isComplete ? Color.green : Color.red)
     }
 }
 
