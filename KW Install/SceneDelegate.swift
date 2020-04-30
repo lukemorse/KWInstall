@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         
-        let contentView = StartView(isLoggedIn: false)
+        let contentView = StartView(isLoggedIn: true)
         
         
 
