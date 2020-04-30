@@ -13,6 +13,7 @@ struct FloorPlanDetailView: View {
     
     var floorPlanImage: Image
     var pods: [Pod]
+    let viewModel: FloorPlanViewModel
     var podNodeViews: [PodNodeView] = []
     
     @State var tappedPod: PodNodeView?
@@ -27,9 +28,10 @@ struct FloorPlanDetailView: View {
     @State var dragSize: CGSize = CGSize.zero
     @State var lastDrag: CGSize = CGSize.zero
     
-    init(with floorPlanImage: Image, pods: [Pod]) {
+    init(with floorPlanImage: Image, pods: [Pod], viewModel: FloorPlanViewModel) {
         self.floorPlanImage = floorPlanImage
         self.pods = pods
+        self.viewModel = viewModel
         for pod in pods {
             self.podNodeViews.append(PodNodeView(pod: pod))
         }
@@ -70,6 +72,10 @@ struct FloorPlanDetailView: View {
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: .camera) { image in
                 self.image = Image(uiImage: image)
+                //TODO: upload image here
+                self.viewModel.uploadPodImage(image: image) { (url) in
+                    print(url)
+                }
                 if let pod = self.tappedPod {
                     pod.markComplete()
                     self.tappedPod = nil
@@ -93,7 +99,7 @@ struct FloorPlanDetailView: View {
 
 struct FloorPlanDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .hallway, position: CGPoint(x: 100, y: 100))])
+        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .hallway, position: CGPoint(x: 100, y: 100))], viewModel: FloorPlanViewModel(installation: Installation()))
             
             
             .previewLayout(.fixed(width: 568, height: 320))

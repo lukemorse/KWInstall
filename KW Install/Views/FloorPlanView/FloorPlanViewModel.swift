@@ -33,50 +33,14 @@ class FloorPlanViewModel: ObservableObject {
                 self.pods.append(self.installation.pods[url] ?? [])
             }
         }
-        
-        
-        
-//        let storage = Storage.storage()
-//        let storageRef = storage.reference(forURL: self.storageUrl)
-//        storageRef.
-        
-//        Firestore.firestore().collection(Constants.kFloorPlanCollection).document(storageUrl).getDocument { (document, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//            if let document = document {
-//                if let data = document.data() {
-//                    let floorPlanModel = try! FirestoreDecoder().decode([String: FloorPlanModel].self, from: data)
-//                    for (_, value) in floorPlanModel {
-//                        //download image
-//                        self.downloadImage(with: value.imageURL)
-////                        let pds = value.po
-//                    }
-//                    print(floorPlanModel)
-//                } else {
-//                    print("cant get data")
-//                }
-//            } else {
-//                print("document does not exist")
-//            }
-//        }
     }
-    
-//    func downloadImage(urlString: String) {
-//        let url = URL(string: urlString)
-//        let uiImageView = UIImageView()
-//        uiImageView.kf.setImage(with: url)
-//        self.floorPlanThumbnails.append(uiImageView)
-//
-//    }
     
     func downloadImage(with urlString : String){
         guard let url = URL.init(string: urlString) else {
             return
         }
         let resource = ImageResource(downloadURL: url)
-
+        
         KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
             switch result {
             case .success(let value):
@@ -87,19 +51,30 @@ class FloorPlanViewModel: ObservableObject {
             }
         }
     }
-//        let query = Firestore.firestore().collection(Constants.kFloorPlanCollection).whereField("uid", isEqualTo: uid)
-//        query.getDocuments { (snapshot, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            }
-//            guard let snapshot = snapshot,
-//                let data = snapshot.documents.first?.data(),
-//                let urlString = data["imageURL"]
-//            else {
-//                print("could not get document")
-//            }
-//
-//        }
-//    }
+    
+    func uploadPodImage(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
+
+        let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child("newPodImage")
+        
+        if let uploadData = image.jpegData(compressionQuality: 0.5) {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(nil)
+                } else {
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        completion(url?.absoluteString)
+                    })
+                }
+            }
+        }
+    }
+    
+    
+    
+    
     
 }

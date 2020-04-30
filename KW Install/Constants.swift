@@ -27,6 +27,7 @@ struct Constants {
     
     static let kFloorPlanCollection = "floorPlansCollection"
     static let kFloorPlanFolder = "floorPlansFolder"
+    static let kPodImageFolder = "podImages"
     static let kDistrictCollection = "districts"
     static let kTeamCollection = "teams"
     static let kImplementationPlanCollection = "implementationPlans"
