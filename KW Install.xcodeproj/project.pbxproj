@@ -17,7 +17,6 @@
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
 		A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */; };
-		A3AFBDEC245B25C7008C6239 /* FloorPlanDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AFBDEB245B25C7008C6239 /* FloorPlanDetailViewModel.swift */; };
 		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
 		A3B38163243663590030582B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38162243663590030582B /* SceneDelegate.swift */; };
 		A3B38165243663590030582B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38164243663590030582B /* MainView.swift */; };
@@ -67,7 +66,6 @@
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
-		A3AFBDEB245B25C7008C6239 /* FloorPlanDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanDetailViewModel.swift; sourceTree = "<group>"; };
 		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */,
 				A3C35863243F810900C39162 /* FloorPlanDetailView.swift */,
-				A3AFBDEB245B25C7008C6239 /* FloorPlanDetailViewModel.swift */,
 				A30A787F245A00F300271993 /* PodNodeView.swift */,
 				A3F1DFD22440F88B005494EE /* ImagePicker.swift */,
 			);
@@ -403,7 +400,6 @@
 				A3B38161243663590030582B /* AppDelegate.swift in Sources */,
 				A30A7884245A17E700271993 /* Pod.swift in Sources */,
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
-				A3AFBDEC245B25C7008C6239 /* FloorPlanDetailViewModel.swift in Sources */,
 				A3C587562436A4FD00780909 /* RKManager.swift in Sources */,
 				A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */,
 				A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */,
