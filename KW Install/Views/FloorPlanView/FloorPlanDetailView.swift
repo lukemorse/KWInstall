@@ -77,7 +77,7 @@ struct FloorPlanDetailView: View {
 //                    print(url)
                 }
                 if let pod = self.tappedPod {
-                    pod.markComplete()
+//                    pod.markComplete()
                     self.tappedPod = nil
                 }
             }

@@ -24,11 +24,12 @@ struct MainView: View {
             NavigationView {
                 CalendarView(viewModel: viewModel.calendarViewModel)
                     .navigationBarTitle(
-                    Text("Today's Installations"), displayMode: .inline)
-                .navigationBarItems(leading:
-                    Image("Logo")
-                        .frame(height: nil))
+                        Text("Today's Installations"), displayMode: .inline)
+                    .navigationBarItems(leading:
+                        Image("Logo")
+                            .frame(height: nil))
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar0)
                     .font(.title)
@@ -39,10 +40,11 @@ struct MainView: View {
             NavigationView {
                 ContactsView(team: viewModel.team).navigationBarTitle(
                     Text("Team"), displayMode: .inline)
-                .navigationBarItems(leading:
-                    Image("Logo")
-                        .fixedSize())
+                    .navigationBarItems(leading:
+                        Image("Logo")
+                            .fixedSize())
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar1)
                     .font(.title)
@@ -53,10 +55,11 @@ struct MainView: View {
             NavigationView {
                 CompletedView(completedInstallations: viewModel.completedInstallations  ).navigationBarTitle(
                     Text("Completed"), displayMode: .inline)
-                .navigationBarItems(leading:
-                    Image("Logo")
-                        .fixedSize())
+                    .navigationBarItems(leading:
+                        Image("Logo")
+                            .fixedSize())
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar2)
                     .font(.title)
@@ -67,10 +70,11 @@ struct MainView: View {
             NavigationView {
                 ReferencesView().navigationBarTitle(
                     Text("References"), displayMode: .inline)
-                .navigationBarItems(leading:
-                    Image("Logo")
-                        .fixedSize())
+                    .navigationBarItems(leading:
+                        Image("Logo")
+                            .fixedSize())
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
                 Image(systemName: Constants.TabBarImageName.tabBar3)
                     .font(.title)
