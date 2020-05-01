@@ -54,7 +54,8 @@ struct FloorPlanGridView: View {
     
     var navLink : some View {
         if self.viewModel.floorPlanThumbnails.count > 0 {
-            return AnyView(NavigationLink("", destination: FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), pods: self.viewModel.pods[self.selectedImageIndex], viewModel: self.viewModel), isActive: self.$pushDetailView).hidden())
+            return AnyView(NavigationLink("", destination:
+                FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex), isActive: self.$pushDetailView).hidden())
         } else {
             return AnyView(EmptyView())
         }

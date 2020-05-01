@@ -14,6 +14,7 @@ struct Pod: Encodable, Hashable, Identifiable {
     var id: Int { hashValue }
     let podType: PodType
     var position: CGPoint
+    var isComplete = false
 //    var imageRef: 
     
     func hash(into hasher: inout Hasher) {

@@ -11,12 +11,13 @@ import SwiftUI
 struct FloorPlanDetailView: View {
     
     
-    var floorPlanImage: Image
-    var pods: [Pod]
-    let viewModel: FloorPlanViewModel
-    var podNodeViews: [PodNodeView] = []
+    let floorPlanImage: Image
+    let floorPlanIndex: Int
+//    @State var pods: [Pod]
+    @ObservedObject var viewModel: FloorPlanViewModel
+//    @State var podNodeViews: [PodNodeView] = []
     
-    @State var tappedPod: PodNodeView?
+    @State var tappedPodIndex: Int?
     @State var showImagePicker: Bool = false
     @State var image: Image? = nil
     
@@ -28,13 +29,10 @@ struct FloorPlanDetailView: View {
     @State var dragSize: CGSize = CGSize.zero
     @State var lastDrag: CGSize = CGSize.zero
     
-    init(with floorPlanImage: Image, pods: [Pod], viewModel: FloorPlanViewModel) {
+    init(with floorPlanImage: Image, viewModel: FloorPlanViewModel, index: Int) {
         self.floorPlanImage = floorPlanImage
-        self.pods = pods
         self.viewModel = viewModel
-        for pod in pods {
-            self.podNodeViews.append(PodNodeView(pod: pod))
-        }
+        self.floorPlanIndex = index
     }
     
     var body: some View {
@@ -53,32 +51,32 @@ struct FloorPlanDetailView: View {
                 let delta = val / self.lastScaleValue
                 self.lastScaleValue = val
                 self.scale = self.scale * delta
-
+                
             }.onEnded { val in
                 // without this the next gesture will be broken
                 self.lastScaleValue = 1.0
                 }
-
+                
             )
                 .simultaneousGesture(DragGesture(minimumDistance: 0, coordinateSpace: .global).onChanged({ val in
-                self.tapPoint = val.startLocation
-                self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
-            })
-                .onEnded({ (val) in
+                    self.tapPoint = val.startLocation
                     self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
-                    self.lastDrag = self.dragSize
-                }))
+                })
+                    .onEnded({ (val) in
+                        self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
+                        self.lastDrag = self.dragSize
+                    }))
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePicker(sourceType: .camera) { image in
                 self.image = Image(uiImage: image)
                 self.viewModel.uploadPodImage(image: image) { (url) in
                     //store URL?
-//                    print(url)
+                    //                    print(url)
                 }
-                if let pod = self.tappedPod {
-//                    pod.markComplete()
-                    self.tappedPod = nil
+                if let podIndex = self.tappedPodIndex {
+                    self.viewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
+                    self.tappedPodIndex = nil
                 }
             }
         }
@@ -86,10 +84,10 @@ struct FloorPlanDetailView: View {
     
     var podGroup: some View {
         Group {
-            ForEach (0..<podNodeViews.count, id: \.self) { index in
-                self.podNodeViews[index]
+            ForEach (0..<self.viewModel.pods[self.floorPlanIndex].count, id: \.self) { idx in
+                PodNodeView(pod: self.viewModel.pods[self.floorPlanIndex][idx])
                     .onTapGesture {
-                        self.tappedPod = self.podNodeViews[index]
+                        self.tappedPodIndex = idx
                         self.showImagePicker = true
                 }
             }
@@ -99,9 +97,7 @@ struct FloorPlanDetailView: View {
 
 struct FloorPlanDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .hallway, position: CGPoint(x: 100, y: 100))], viewModel: FloorPlanViewModel(installation: Installation()))
-            
-            
+        FloorPlanDetailView(with: Image( "floorPlan"), viewModel: FloorPlanViewModel(installation: Installation()), index: 0)
             .previewLayout(.fixed(width: 568, height: 320))
     }
 }

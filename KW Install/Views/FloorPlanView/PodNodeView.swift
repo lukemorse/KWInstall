@@ -12,8 +12,7 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
     
     let pod: Pod
     var id: Int { hashValue }
-    let isComplete = false
-    
+    var isComplete: Bool { self.pod.isComplete }
     @State private var position = CGSize.zero
     @State private var color = Color.red
     
@@ -28,10 +27,14 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
     var body: some View {
         Image(podImageDict[self.pod.podType] ?? "")
             .resizable()
-            .frame(width: 30, height: 30)
+            .scaledToFit()
+            .frame(width: 40, height: 40)
             .position(pod.position)
+            .colorMultiply(self.isComplete ? Color.green : Color.red)
 //            .foregroundColor(isComplete ? Color.green : Color.red)
     }
+    
+
 }
 
 let podImageDict: [PodType : String] = [

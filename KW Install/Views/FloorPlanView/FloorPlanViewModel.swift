@@ -16,6 +16,7 @@ class FloorPlanViewModel: ObservableObject {
     
     let installation: Installation
     
+//    @Published var podNodeViews: [PodNodeView] = []
     @Published var floorPlanThumbnails: [UIImage] = []
     @Published var pods: [[Pod]] = [[]]
     
