@@ -31,7 +31,6 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
             .frame(width: 40, height: 40)
             .position(pod.position)
             .colorMultiply(self.isComplete ? Color.green : Color.red)
-//            .foregroundColor(isComplete ? Color.green : Color.red)
     }
     
 

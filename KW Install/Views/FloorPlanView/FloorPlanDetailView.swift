@@ -13,9 +13,7 @@ struct FloorPlanDetailView: View {
     
     let floorPlanImage: Image
     let floorPlanIndex: Int
-//    @State var pods: [Pod]
     @ObservedObject var viewModel: FloorPlanViewModel
-//    @State var podNodeViews: [PodNodeView] = []
     
     @State var tappedPodIndex: Int?
     @State var showImagePicker: Bool = false
