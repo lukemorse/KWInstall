@@ -42,7 +42,7 @@ struct MainView: View {
                     Text("Team"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
-                            .fixedSize())
+                            .frame(height: nil))
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -57,7 +57,7 @@ struct MainView: View {
                     Text("Completed"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
-                            .fixedSize())
+                            .frame(height: nil))
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -72,7 +72,7 @@ struct MainView: View {
                     Text("References"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
-                            .fixedSize())
+                            .frame(height: nil))
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -81,9 +81,10 @@ struct MainView: View {
                 Text("\(Constants.TabBarText.tabBar3)")
             }).tag(3)
             
-        }.accentColor(Color.red)
-            .onAppear(){
-                self.viewModel.fetchTeamData()
+        }
+        .accentColor(Color.red)
+        .onAppear(){
+            self.viewModel.fetchTeamData()
         }
     }
 }
