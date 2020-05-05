@@ -28,7 +28,9 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
         Image(podImageDict[self.pod.podType] ?? "")
             .resizable()
             .scaledToFit()
-            .frame(width: 40, height: 40)
+            .frame(
+                width: self.pod.podType == .hallway ? 25 : 15,
+                height: self.pod.podType == .ceiling ? 25 : 15)
             .position(pod.position)
             .colorMultiply(self.isComplete ? Color.green : Color.red)
     }

@@ -14,5 +14,5 @@ import CodableFirebase
 class CalendarViewModel: ObservableObject {
     // 2
     @Published var installList: [Installation] = []
-    @Published var installationDictionary: [String: [Installation]] = [:]
+    @Published var installationDictionary: [Date: [Installation]] = [:]
 }

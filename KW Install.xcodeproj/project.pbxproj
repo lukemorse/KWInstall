@@ -17,6 +17,7 @@
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
 		A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */; };
+		A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = A3B133A9246060000082A618 /* AppIcon.appiconset */; };
 		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
 		A3B38163243663590030582B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38162243663590030582B /* SceneDelegate.swift */; };
 		A3B38165243663590030582B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38164243663590030582B /* MainView.swift */; };
@@ -65,6 +66,7 @@
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
+		A3B133A9246060000082A618 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				A3B38160243663590030582B /* AppDelegate.swift */,
 				A3B38162243663590030582B /* SceneDelegate.swift */,
 				A3B381662436635B0030582B /* Assets.xcassets */,
+				A3B133A9246060000082A618 /* AppIcon.appiconset */,
 				A3B3816B2436635B0030582B /* LaunchScreen.storyboard */,
 				A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */,
 				A3B3816E2436635B0030582B /* Info.plist */,
@@ -339,6 +342,7 @@
 				A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */,
 				A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */,
 				A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */,
+				A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */,
 				A3B381672436635B0030582B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

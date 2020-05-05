@@ -24,7 +24,9 @@ struct CalendarView : View {
     }
     
     var installationListView : some View {
-        if let arr = viewModel.installationDictionary[dateToString(self.rkManager.selectedDate)] {
+        print(viewModel.installationDictionary.count)
+        print(viewModel.installationDictionary)
+        if let arr = viewModel.installationDictionary[self.rkManager.selectedDate] {
             print(arr)
             if arr.count > 0 {
                 return AnyView(List {
