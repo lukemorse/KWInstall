@@ -26,20 +26,23 @@ struct CalendarView : View {
     var installationListView : some View {
         print(viewModel.installationDictionary.count)
         print(viewModel.installationDictionary)
-        if let arr = viewModel.installationDictionary[self.rkManager.selectedDate] {
-            print(arr)
-            if arr.count > 0 {
-                return AnyView(List {
-                    ForEach(0..<arr.count, id: \.self) {index in
-                        VStack {
-                            NavigationLink(destination: InstallationView(installation: arr[index])) {
-                                Text(arr[index].schoolName)
+        if let selectedDate = self.rkManager.selectedDate {
+            if let arr = viewModel.installationDictionary[selectedDate] {
+                print(arr)
+                if arr.count > 0 {
+                    return AnyView(List {
+                        ForEach(0..<arr.count, id: \.self) {index in
+                            VStack {
+                                NavigationLink(destination: InstallationView(installation: arr[index])) {
+                                    Text(arr[index].schoolName)
+                                }
                             }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
+        
         return AnyView(List {Text("No Installations")})
     }
     
