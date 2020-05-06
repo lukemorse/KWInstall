@@ -15,7 +15,7 @@ public class RKManager : ObservableObject {
     @Published public var maximumDate: Date = Date()
     @Published public var disabledDates: [Date] = [Date]()
     @Published public var selectedDates: [Date] = [Date]()
-    @Published public var selectedDate: Date! = nil
+    @Published public var selectedDate: Date! = removeTimeStamp(fromDate: Date())
     @Published public var startDate: Date! = nil
     @Published public var endDate: Date! = nil
     @Published public var locale: Locale = .current
@@ -50,11 +50,10 @@ public class RKManager : ObservableObject {
     
     let calendarUnitYMD = Set<Calendar.Component>([.year, .month, .day])
     
-    public init(calendar: Calendar, minimumDate: Date, maximumDate: Date, selectedDate: Date = Date(), mode: Int) {
+    public init(calendar: Calendar, minimumDate: Date, maximumDate: Date, mode: Int) {
         self.calendar = calendar
         self.minimumDate = minimumDate
         self.maximumDate = maximumDate
-        self.selectedDate = selectedDate
         self.mode = mode
     }
     
@@ -66,7 +65,6 @@ public class RKManager : ObservableObject {
         self.mode = 0
         self.disabledDates = [Date]()
         self.selectedDates = [Date]()
-        self.selectedDate = Date()
         self.startDate = nil
         self.endDate = nil
         self.locale = .current

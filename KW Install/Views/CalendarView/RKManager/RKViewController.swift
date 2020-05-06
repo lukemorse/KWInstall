@@ -22,12 +22,12 @@ public struct RKViewController: View {
     public var body: some View {
         Group {
             // needed for Mac
-            Button(action: onDone) {
-                HStack {
-                    Text("Done")
-                    Spacer()
-                }.padding(15)
-            }
+//            Button(action: onDone) {
+//                HStack {
+//                    Text("Done")
+//                    Spacer()
+//                }.padding(15)
+//            }
             rkManager.isWeeklyView ? AnyView(weeklyBody) : AnyView(monthlyBody)
         }
     }

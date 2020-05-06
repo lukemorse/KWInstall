@@ -61,8 +61,6 @@ class MainViewModel: ObservableObject {
     }
     
     fileprivate func addToFutureInstallations(_ install: Installation) {
-        self.calendarViewModel.installList.append(install)
-        
         let date = removeTimeStamp(fromDate: install.date)
         //add to installation dictionary under appropriate key ...
         if self.calendarViewModel.installationDictionary[date] == nil {
@@ -73,12 +71,7 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    public func removeTimeStamp(fromDate: Date) -> Date {
-        guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
-            fatalError("Failed to strip time from Date object")
-        }
-        return date
-    }
+    
 }
 
 

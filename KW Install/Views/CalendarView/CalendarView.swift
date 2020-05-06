@@ -12,34 +12,29 @@ import Firebase
 struct CalendarView : View {
     
     @ObservedObject var viewModel: CalendarViewModel
-    @State var isPresented = true
+    @State var calendarIsPresented = true
     
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
-            Group {
-                installationListView
-                RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
-            }
+        Group {
+            installationListView
+            RKViewController(isPresented: $calendarIsPresented, rkManager: self.rkManager)
+        }
     }
     
     var installationListView : some View {
-        print(viewModel.installationDictionary.count)
-        print(viewModel.installationDictionary)
-        if let selectedDate = self.rkManager.selectedDate {
-            if let arr = viewModel.installationDictionary[selectedDate] {
-                print(arr)
-                if arr.count > 0 {
-                    return AnyView(List {
-                        ForEach(0..<arr.count, id: \.self) {index in
-                            VStack {
-                                NavigationLink(destination: InstallationView(installation: arr[index])) {
-                                    Text(arr[index].schoolName)
-                                }
+        if let arr = viewModel.installationDictionary[self.rkManager.selectedDate] {
+            if arr.count > 0 {
+                return AnyView(List {
+                    ForEach(0..<arr.count, id: \.self) {index in
+                        VStack {
+                            NavigationLink(destination: InstallationView(installation: arr[index])) {
+                                Text(arr[index].schoolName)
                             }
                         }
-                    })
-                }
+                    }
+                })
             }
         }
         
