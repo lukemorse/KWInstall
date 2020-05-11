@@ -19,24 +19,31 @@ struct CalendarView : View {
         Group {
             installationListView
             RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
-//            self.mainViewModel.
+            //            self.mainViewModel.
         }
     }
     
     var installationListView : some View {
         if let arr = mainViewModel.installationDictionary[self.rkManager.selectedDate] {
             if arr.count > 0 {
-                return AnyView(List {
-                    ForEach(0..<arr.count, id: \.self) {index in
-                        VStack {
-                            self.getNavLink(index: index, label: arr[index].schoolName)
+                return AnyView(
+                    List {
+                        ForEach(0..<arr.count, id: \.self) {index in
+                            VStack {
+                                self.getNavLink(index: index, label: arr[index].schoolName)
+                            }
+                            .padding()
                         }
                     }
-                })
+                )
             }
         }
         
-        return AnyView(List {Text("No Installations")})
+        return AnyView(List {
+            Text("No Installations")
+                .padding()
+            
+        })
     }
     
     func getNavLink(index: Int, label: String) -> some View {

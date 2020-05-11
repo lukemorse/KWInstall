@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 struct Constants {
     
@@ -33,6 +34,10 @@ struct Constants {
     static let kImplementationPlanCollection = "implementationPlans"
     
     static let chicagoGeoPoint = GeoPoint(latitude: 41.8781, longitude: -87.6298)
+    
+    static var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
+    
+    static var rowHeight: Int { idiom == UIUserInterfaceIdiom.phone ? 10 : 20}
 }
 
 
