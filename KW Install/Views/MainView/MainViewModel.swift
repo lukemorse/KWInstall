@@ -19,6 +19,7 @@ class MainViewModel: ObservableObject {
     @Published var team: Team?
     @Published var calendarViewModel: CalendarViewModel
     @Published var completedInstallations: [Installation] = []
+    @Published var districts: [District] = []
     
     init(calendarViewModel: CalendarViewModel) {
         self.calendarViewModel = calendarViewModel
@@ -39,19 +40,36 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    func updateStatus(path: String, status: InstallationStatus) {
+        var implementationPlan = districts[0].implementationPlan
+        implementationPlan[0].status = status
+        let data = try! FirestoreEncoder().encode(implementationPlan)
+        
+        Firestore.firestore().collection(Constants.kDistrictCollection).document(path).setData(data, merge: true) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func getInstallations() {
         Firestore.firestore().collection(Constants.kDistrictCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
                 for document in snapshot!.documents {
-                    let district = try! FirestoreDecoder().decode(District.self, from: document.data())
+                    var district = try! FirestoreDecoder().decode(District.self, from: document.data())
                     if district.team == self.team {
-                        for install in district.implementationPlan {
+                        self.districts.append(district)
+                        for (index, install) in district.implementationPlan.enumerated() {
                             if install.status == .complete {
                                 self.completedInstallations.append(install)
                             } else {
-                                self.addToFutureInstallations(install)
+                                self.addToFutureInstallations(
+                                    Binding(
+                                        get: {return install},
+                                        set: {district.implementationPlan[index] = $0}
+                                    ))
                             }
                         }
                     }
@@ -60,8 +78,8 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    fileprivate func addToFutureInstallations(_ install: Installation) {
-        let date = removeTimeStamp(fromDate: install.date)
+    fileprivate func addToFutureInstallations(_ install: Binding<Installation>) {
+        let date = removeTimeStamp(fromDate: install.wrappedValue.date)
         //add to installation dictionary under appropriate key ...
         if self.calendarViewModel.installationDictionary[date] == nil {
             self.calendarViewModel.installationDictionary.updateValue([install], forKey: date)

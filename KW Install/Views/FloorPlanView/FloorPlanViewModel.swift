@@ -34,7 +34,7 @@ class FloorPlanViewModel: ObservableObject {
         }
     }
     
-    func downloadImage(with urlString : String){
+    func downloadImage(with urlString : String) {
         guard let url = URL.init(string: urlString) else {
             return
         }
