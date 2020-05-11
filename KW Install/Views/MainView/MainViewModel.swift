@@ -17,12 +17,8 @@ let teamDocID = "GadFQUZuxl2gxsh40R9o"
 class MainViewModel: ObservableObject {
     // 2
     @Published var team: Team?
-    @Published var calendarViewModel: CalendarViewModel
     @Published var completedInstallations: [Installation] = []
-    
-    init(calendarViewModel: CalendarViewModel) {
-        self.calendarViewModel = calendarViewModel
-    }
+    @Published var installationDictionary: [Date: [Installation]] = [:]
     
     func fetchTeamData() {
         Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
@@ -60,14 +56,23 @@ class MainViewModel: ObservableObject {
         }
     }
     
+    func getInstallation(date: Date, index: Int) -> Binding<Installation> {
+        return Binding(get: {
+            return self.installationDictionary[date]![index]
+        }, set: {
+            self.installationDictionary[date]![index] = $0
+        })
+        
+    }
+    
     fileprivate func addToFutureInstallations(_ install: Installation) {
         let date = removeTimeStamp(fromDate: install.date)
         //add to installation dictionary under appropriate key ...
-        if self.calendarViewModel.installationDictionary[date] == nil {
-            self.calendarViewModel.installationDictionary.updateValue([install], forKey: date)
+        if self.installationDictionary[date] == nil {
+            self.installationDictionary.updateValue([install], forKey: date)
         } else {
             //            ... or add that key if it doesn't exist
-            self.calendarViewModel.installationDictionary[date]?.append(install)
+            self.installationDictionary[date]?.append(install)
         }
     }
     

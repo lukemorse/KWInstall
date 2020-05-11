@@ -12,8 +12,8 @@ import Firebase
 import MessageUI
 
 struct InstallationView: View {
-    var installation: Installation
-    
+    @Binding var installation: Installation
+    @EnvironmentObject var mainViewModel: MainViewModel
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
@@ -24,7 +24,7 @@ struct InstallationView: View {
                     .onTapGesture {
                         self.openMapsAppWithDirections(to: CLLocationCoordinate2D(latitude: self.installation.address.latitude, longitude: self.installation.address.longitude))
                 }
-                
+                statusPicker
                 Text(installation.districtName + ": " + installation.schoolName)
                     .font(.title)
                     .multilineTextAlignment(.center)
@@ -45,21 +45,7 @@ struct InstallationView: View {
                 }
                 .padding(.vertical, 10.0)
                 
-                Button(action: {
-                    self.isShowingMailView.toggle()
-                })
-                {
-                    Text("Send En-Route Message")
-                        .font(.headline)
-                        .padding(10.0)
-                        .foregroundColor(Color.black)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
-                .disabled(!MFMailComposeViewController.canSendMail())
-                .sheet(isPresented: $isShowingMailView) {
-                    MailView(result: self.$mailResult)
-                }
+                sendEMailButton.padding()
                 
                 Text("Floorplans:")
                 FloorPlanGridView(viewModel: FloorPlanViewModel(installation: installation))
@@ -67,6 +53,33 @@ struct InstallationView: View {
             }
         }
         .padding()
+    }
+    
+    var statusPicker: some View {
+        Picker(selection: self.$installation.status, label: Text("Status")) {
+            ForEach(InstallationStatus.allCases) { status in
+                Text(status.description).tag(status)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
+    }
+    
+    var sendEMailButton: some View {
+        Button(action: {
+            self.isShowingMailView.toggle()
+        })
+        {
+            Text("Send En-Route Message")
+                .font(.headline)
+                .padding(10.0)
+                .foregroundColor(Color.black)
+                .background(Color.blue)
+                .cornerRadius(5)
+        }
+        .disabled(!MFMailComposeViewController.canSendMail())
+        .sheet(isPresented: $isShowingMailView) {
+            MailView(result: self.$mailResult)
+        }
     }
     
     func makeMap(geoPoint: GeoPoint) -> some View {
@@ -86,8 +99,8 @@ struct InstallationView: View {
     
 }
 
-struct InstallationView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstallationView(installation: Installation())
-    }
-}
+//struct InstallationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InstallationView(installation: .constant(Installation()))
+//    }
+//}

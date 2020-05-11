@@ -10,19 +10,15 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @EnvironmentObject var viewModel: MainViewModel
     @State var selected = 0
-    
-    init() {
-        viewModel = MainViewModel(calendarViewModel: CalendarViewModel())
-    }
     
     var body: some View {
         TabView(selection: $selected) {
             
             //Calendar
             NavigationView {
-                CalendarView(viewModel: viewModel.calendarViewModel)
+                CalendarView()
                     .navigationBarTitle(
                         Text("Today's Installations"), displayMode: .inline)
                     .navigationBarItems(leading:

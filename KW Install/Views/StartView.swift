@@ -12,7 +12,7 @@ struct StartView: View {
     @State var isLoggedIn: Bool
     var body: some View {
         Group {
-            isLoggedIn ? AnyView(MainView()) : AnyView(PasscodeField { (str, callBack: (Bool) -> Void) in
+            isLoggedIn ? AnyView(MainView().environmentObject(MainViewModel())) : AnyView(PasscodeField { (str, callBack: (Bool) -> Void) in
                 self.setLoggedIn(newVal: str == "1234")
             })
         }
