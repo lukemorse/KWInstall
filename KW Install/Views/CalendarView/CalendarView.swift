@@ -14,7 +14,7 @@ struct CalendarView : View {
     @ObservedObject var viewModel: CalendarViewModel
     @State var calendarIsPresented = true
     
-    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
         Group {
@@ -24,19 +24,29 @@ struct CalendarView : View {
     }
     
     var installationListView : some View {
-        if let arr = viewModel.installationDictionary[self.rkManager.selectedDate] {
-            if arr.count > 0 {
+        let arr = $viewModel.installationDictionary[self.rkManager.selectedDate]
+        if let wrappedVal = arr.wrappedValue {
+            
+            if wrappedVal.count > 0 {
                 return AnyView(List {
-                    ForEach(0..<arr.count, id: \.self) {index in
+                    ForEach(0..<wrappedVal.count, id: \.self) {index in
                         VStack {
-                            NavigationLink(destination: InstallationView(installation: arr[index])) {
-                                Text(arr[index].schoolName)
+                            NavigationLink(destination: InstallationView(installation:
+//                                Binding(
+//                                    get: {return arr.wrappedValue?[index] ?? Installation()},
+//                                    set: {arr[index] = $0}
+//                                )
+                                wrappedVal[index]
+                                )
+                            ) {
+                                Text(wrappedVal[0].wrappedValue.schoolName)
                             }
                         }
                     }
                 })
             }
         }
+        
         
         return AnyView(List {Text("No Installations")})
     }
