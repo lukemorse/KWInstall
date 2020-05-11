@@ -12,13 +12,14 @@ import Firebase
 import MessageUI
 
 struct InstallationView: View {
-    @Binding var installation: Installation
     @EnvironmentObject var mainViewModel: MainViewModel
+    @Binding var installation: Installation
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
     var body: some View {
-        VStack() {
+        
+        return VStack() {
             ScrollView {
                 makeMap(geoPoint: installation.address)
                     .onTapGesture {
@@ -56,7 +57,14 @@ struct InstallationView: View {
     }
     
     var statusPicker: some View {
-        Picker(selection: self.$installation.status, label: Text("Status")) {
+        let stati = Binding<InstallationStatus>(
+            get: {return self.installation.status},
+            set: {
+                self.installation.status = $0
+                self.mainViewModel.updateInstallationStatus(for: self.installation)
+        })
+        
+        return Picker(selection: stati, label: Text("Status")) {
             ForEach(InstallationStatus.allCases) { status in
                 Text(status.description).tag(status)
             }
@@ -99,8 +107,8 @@ struct InstallationView: View {
     
 }
 
-//struct InstallationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InstallationView(installation: .constant(Installation()))
-//    }
-//}
+struct InstallationView_Previews: PreviewProvider {
+    static var previews: some View {
+        InstallationView(installation: .constant(Installation()))
+    }
+}
