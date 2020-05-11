@@ -10,7 +10,6 @@
 		A30A7880245A00F300271993 /* PodNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A787F245A00F300271993 /* PodNodeView.swift */; };
 		A30A7884245A17E700271993 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A7883245A17E700271993 /* Pod.swift */; };
 		A31C8C81243BE0CE00C6084D /* Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C8C80243BE0CE00C6084D /* Installation.swift */; };
-		A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C8C82243CB99200C6084D /* CalendarViewModel.swift */; };
 		A33A66712463169D000CFED1 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66632463169D000CFED1 /* RKViewController.swift */; };
 		A33A66722463169D000CFED1 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66642463169D000CFED1 /* RKManager.swift */; };
 		A33A66732463169D000CFED1 /* RKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66662463169D000CFED1 /* RKPage.swift */; };
@@ -64,7 +63,6 @@
 		A30A787F245A00F300271993 /* PodNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodNodeView.swift; sourceTree = "<group>"; };
 		A30A7883245A17E700271993 /* Pod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		A31C8C80243BE0CE00C6084D /* Installation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
-		A31C8C82243CB99200C6084D /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		A33A66632463169D000CFED1 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
 		A33A66642463169D000CFED1 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
 		A33A66662463169D000CFED1 /* RKPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKPage.swift; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				A3F1FDD124368B310008C7F0 /* CalendarView.swift */,
-				A31C8C82243CB99200C6084D /* CalendarViewModel.swift */,
 				A33A66622463169D000CFED1 /* RKManager */,
 			);
 			path = CalendarView;
@@ -434,7 +431,6 @@
 				A30A7884245A17E700271993 /* Pod.swift in Sources */,
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
 				A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */,
-				A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */,
 				A394986324377F8E00C0B358 /* InstallationView.swift in Sources */,
 				A33A66762463169D000CFED1 /* ScrollableView.swift in Sources */,
 				A33A66792463169D000CFED1 /* RKMonthHeader.swift in Sources */,

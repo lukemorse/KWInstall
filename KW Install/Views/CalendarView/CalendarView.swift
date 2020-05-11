@@ -11,27 +11,25 @@ import Firebase
 
 struct CalendarView : View {
     
-    @ObservedObject var viewModel: CalendarViewModel
-    @State var calendarIsPresented = true
+    @EnvironmentObject var mainViewModel: MainViewModel
     
-    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
         Group {
             installationListView
-            RKViewController(isPresented: $calendarIsPresented, rkManager: self.rkManager)
+            RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
+//            self.mainViewModel.
         }
     }
     
     var installationListView : some View {
-        if let arr = viewModel.installationDictionary[self.rkManager.selectedDate] {
+        if let arr = mainViewModel.installationDictionary[self.rkManager.selectedDate] {
             if arr.count > 0 {
                 return AnyView(List {
                     ForEach(0..<arr.count, id: \.self) {index in
                         VStack {
-                            NavigationLink(destination: InstallationView(installation: arr[index])) {
-                                Text(arr[index].schoolName)
-                            }
+                            self.getNavLink(index: index, label: arr[index].schoolName)
                         }
                     }
                 })
@@ -39,6 +37,14 @@ struct CalendarView : View {
         }
         
         return AnyView(List {Text("No Installations")})
+    }
+    
+    func getNavLink(index: Int, label: String) -> some View {
+        return NavigationLink(destination: InstallationView(
+            installation: self.mainViewModel.getInstallation(date: self.rkManager.selectedDate, index: index)
+        )) {
+            Text(label)
+        }
     }
     
     func dateToString(_ date: Date) -> String {
@@ -79,7 +85,7 @@ struct CalendarView : View {
 #if DEBUG
 struct CalendarView_Previews : PreviewProvider {
     static var previews: some View {
-        CalendarView(viewModel: CalendarViewModel())
+        CalendarView()
     }
 }
 #endif

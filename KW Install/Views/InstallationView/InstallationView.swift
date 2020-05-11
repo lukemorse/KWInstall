@@ -13,6 +13,7 @@ import MessageUI
 
 struct InstallationView: View {
     @Binding var installation: Installation
+    @EnvironmentObject var mainViewModel: MainViewModel
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
@@ -98,8 +99,8 @@ struct InstallationView: View {
     
 }
 
-struct InstallationView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstallationView(installation: .constant(Installation()))
-    }
-}
+//struct InstallationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InstallationView(installation: .constant(Installation()))
+//    }
+//}
