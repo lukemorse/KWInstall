@@ -47,7 +47,7 @@ extension Pod: Decodable {
 enum PodType: Int, Codable, CaseIterable, Hashable, Identifiable {
     var id: Int { hashValue }
     
-    case outdoor, corner, hallway, ceiling
+    case outdoor, corner, horizontal_hallway, vertical_hallway
     
     var description: String {
         switch self {
@@ -55,10 +55,10 @@ enum PodType: Int, Codable, CaseIterable, Hashable, Identifiable {
             return "outdoor"
         case .corner:
             return "corner"
-        case .hallway:
+        case .horizontal_hallway:
             return "hallway"
-        case .ceiling:
-            return "ceiling"
+        case .vertical_hallway:
+            return "vertical hallway"
         }
     }
 }

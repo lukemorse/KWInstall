@@ -29,8 +29,8 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
             .resizable()
             .scaledToFit()
             .frame(
-                width: self.pod.podType == .hallway ? 25 : 15,
-                height: self.pod.podType == .ceiling ? 25 : 15)
+                width: self.pod.podType == .horizontal_hallway ? 25 : 15,
+                height: self.pod.podType == .vertical_hallway ? 25 : 15)
             .position(pod.position)
             .colorMultiply(self.isComplete ? Color.green : Color.red)
     }
@@ -41,12 +41,12 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
 let podImageDict: [PodType : String] = [
     .outdoor : "outdoor pod",
     .corner : "corner pod",
-    .hallway : "hallway pod",
-    .ceiling : "ceiling pod"
+    .horizontal_hallway : "horizontal hallway pod",
+    .vertical_hallway : "vertical hallway pod"
 ]
 
 struct PodNodeView_Previews: PreviewProvider {
     static var previews: some View {
-        PodNodeView(pod: Pod(podType: .ceiling, position: CGPoint(x: 100, y: 100)))
+        PodNodeView(pod: Pod(podType: .vertical_hallway, position: CGPoint(x: 100, y: 100)))
     }
 }
