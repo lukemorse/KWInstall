@@ -6,6 +6,7 @@
 //  Copyright © 2020 Luke Morse. All rights reserved.
 //
 
+
 import SwiftUI
 
 struct FloorPlanGridView: View {
@@ -13,6 +14,7 @@ struct FloorPlanGridView: View {
     
     @State var pushDetailView = false
     @State var selectedImageIndex = 0
+    @State var selection: Int?
     
     var body : some View {
         VStack {
@@ -24,11 +26,12 @@ struct FloorPlanGridView: View {
                                 ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count, id: \.self) { column in // create 3 columns
                                     
                                     Image(uiImage: self.viewModel.floorPlanThumbnails[column])
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: geometry.size.width / 3.5)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: geometry.size.width / 3.5)
                                         .onTapGesture {
                                             self.selectedImageIndex = row * 3 + column
+                                            self.selection = row * 3 + column
                                             self.pushDetailView = true
                                     }
                                 }
@@ -45,27 +48,26 @@ struct FloorPlanGridView: View {
             getNavLink()
         }
         .onAppear() {
+            self.selection = nil
             self.viewModel.getFloorPlans()
-            print("\(self.viewModel.floorPlanThumbnails.count) flooorplan images")
         }
     }
     
-//    func getNavLink() -> some View {
-//        return NavigationLink("", destination:
-//            self.viewModel.floorPlanThumbnails.count > 0 ? Text("hi") : Text("ho"), isActive: self.$pushDetailView)
-//    }
     
     func getNavLink() -> some View {
-        return AnyView(NavigationLink("", destination:
-            self.viewModel.floorPlanThumbnails.count > 0 ?
-            AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex))
-                : AnyView(Text("error")), isActive: self.$pushDetailView).hidden())
+        
+        return NavigationLink(destination: self.viewModel.floorPlanThumbnails.count > 0 ? AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex)) : AnyView(Text("error")), tag: self.selectedImageIndex, selection: self.$selection) {
+            Text("link").hidden()
+        }
     }
     
 }
 
-struct FloorPlanGridView_Previews: PreviewProvider {
-    static var previews: some View {
-        FloorPlanGridView( viewModel: FloorPlanViewModel(installation: Installation()))
-    }
-}
+
+
+//struct FloorPlanGridView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FloorPlanGridView( viewModel: FloorPlanViewModel(installation: Installation()))
+//    }
+//}
+

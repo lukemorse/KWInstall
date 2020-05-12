@@ -606,7 +606,7 @@
 				DEVELOPMENT_TEAM = 4Z8CKPY35P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "KW Install/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,7 +630,7 @@
 				DEVELOPMENT_TEAM = 4Z8CKPY35P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "KW Install/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

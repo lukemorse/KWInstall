@@ -14,8 +14,14 @@ import MessageUI
 struct InstallationView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
     @Binding var installation: Installation
+    @ObservedObject var floorPlanViewModel: FloorPlanViewModel
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
+    
+    init(installation: Binding<Installation>) {
+        self.floorPlanViewModel = FloorPlanViewModel(installation: installation.wrappedValue)
+        self._installation = installation
+    }
     
     var body: some View {
         
@@ -49,7 +55,8 @@ struct InstallationView: View {
                 sendEMailButton.padding()
                 
                 Text("Floorplans:")
-                FloorPlanGridView(viewModel: FloorPlanViewModel(installation: installation))
+                FloorPlanGridView(viewModel: floorPlanViewModel)
+//                NavLinkTest(viewModel: navLinkTestViewModel)
                 Spacer()
             }
         }
@@ -107,8 +114,8 @@ struct InstallationView: View {
     
 }
 
-struct InstallationView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstallationView(installation: .constant(Installation()))
-    }
-}
+//struct InstallationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InstallationView(installation: .constant(Installation()))
+//    }
+//}
