@@ -21,7 +21,7 @@ struct FloorPlanGridView: View {
                     if self.viewModel.floorPlanThumbnails.count > 0 {
                         ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3).count) { row in // create number of rows
                             HStack {
-                                ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count) { column in // create 3 columns
+                                ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count, id: \.self) { column in // create 3 columns
                                     
                                     Image(uiImage: self.viewModel.floorPlanThumbnails[column])
                                     .resizable()
@@ -29,9 +29,7 @@ struct FloorPlanGridView: View {
                                     .frame(width: geometry.size.width / 3.5)
                                         .onTapGesture {
                                             self.selectedImageIndex = row * 3 + column
-                                            print(index)
                                             self.pushDetailView = true
-                                            print(self.viewModel.pods)
                                     }
                                 }
                             }
@@ -44,32 +42,27 @@ struct FloorPlanGridView: View {
             }
             .frame(height: 300)
             .padding()
-            navLink
-            
+            getNavLink()
         }
         .onAppear() {
             self.viewModel.getFloorPlans()
+            print("\(self.viewModel.floorPlanThumbnails.count) flooorplan images")
         }
     }
     
-    var navLink : some View {
-        if self.viewModel.floorPlanThumbnails.count > 0 {
-            return AnyView(NavigationLink("", destination:
-                FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex), isActive: self.$pushDetailView).hidden())
-        } else {
-            return AnyView(EmptyView())
-        }
+//    func getNavLink() -> some View {
+//        return NavigationLink("", destination:
+//            self.viewModel.floorPlanThumbnails.count > 0 ? Text("hi") : Text("ho"), isActive: self.$pushDetailView)
+//    }
+    
+    func getNavLink() -> some View {
+        return AnyView(NavigationLink("", destination:
+            self.viewModel.floorPlanThumbnails.count > 0 ?
+            AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex))
+                : AnyView(Text("error")), isActive: self.$pushDetailView).hidden())
     }
+    
 }
-
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: size).map {
-            Array(self[$0 ..< Swift.min($0 + size, count)])
-        }
-    }
-}
-
 
 struct FloorPlanGridView_Previews: PreviewProvider {
     static var previews: some View {
