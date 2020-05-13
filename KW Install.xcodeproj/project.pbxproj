@@ -28,6 +28,7 @@
 		A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */; };
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
+		A39878DA246C56B5000F99AC /* SendGroupMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */; };
 		A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */; };
 		A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = A3B133A9246060000082A618 /* AppIcon.appiconset */; };
 		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
@@ -81,6 +82,7 @@
 		A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGroupMessageButton.swift; sourceTree = "<group>"; };
 		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
 		A3B133A9246060000082A618 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +108,7 @@
 		A3F1DFCE2440BF7C005494EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A3F1DFD22440F88B005494EE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A3F1FDD124368B310008C7F0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = "KW Install/Views/MailView.swift"; sourceTree = SOURCE_ROOT; };
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -182,11 +184,12 @@
 				A38FC23624377E7600F1DF05 /* CalendarView */,
 				A3F1DFD5244115DC005494EE /* InstallationView */,
 				A3F1DFD42441155D005494EE /* FloorPlanView */,
-				A3D7653B243B68D100C772AF /* ContactsView.swift */,
+				A39878D6246C5656000F99AC /* ContactsView */,
 				A3D76539243B684B00C772AF /* CompletedView.swift */,
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
 				A3F1DFCE2440BF7C005494EE /* StartView.swift */,
+				A3F605DA243CFCFE00780235 /* MailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +201,15 @@
 				A33A66622463169D000CFED1 /* RKManager */,
 			);
 			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		A39878D6246C5656000F99AC /* ContactsView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D7653B243B68D100C772AF /* ContactsView.swift */,
+				A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */,
+			);
+			path = ContactsView;
 			sourceTree = "<group>";
 		};
 		A3B38154243663590030582B = {
@@ -282,7 +294,6 @@
 			children = (
 				A394986224377F8E00C0B358 /* InstallationView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
-				A3F605DA243CFCFE00780235 /* MailView.swift */,
 			);
 			path = InstallationView;
 			sourceTree = "<group>";
@@ -459,6 +470,7 @@
 				A33A667A2463169D000CFED1 /* RKMonth.swift in Sources */,
 				A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */,
 				A3DFBD50245894020099A53C /* FloorPlanViewModel.swift in Sources */,
+				A39878DA246C56B5000F99AC /* SendGroupMessageButton.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,

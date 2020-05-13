@@ -93,7 +93,7 @@ struct InstallationView: View {
         }
         .disabled(!MFMailComposeViewController.canSendMail())
         .sheet(isPresented: $isShowingMailView) {
-            MailView(result: self.$mailResult)
+            MailView(emails: [self.installation.email], result: self.$mailResult)
         }
     }
     

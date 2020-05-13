@@ -38,9 +38,7 @@ struct MainView: View {
                     Text("Team"), displayMode: .inline)
                     .navigationBarItems(
                         leading: Image("Logo").frame(height: nil),
-                        trailing: Button(action: {
-                            //do stuff
-                        }) {Image(systemName: "envelope.fill")}
+                        trailing: SendGroupMessageButton(emails: self.getTeamEmails())
                             )
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -85,6 +83,16 @@ struct MainView: View {
         .onAppear(){
             self.viewModel.fetchTeamData()
         }
+    }
+    
+    func getTeamEmails() -> [String] {
+        var result: [String] = []
+        if let team = viewModel.team {
+            for member in team.members {
+                result.append(member.email)
+            }
+        }
+        return result
     }
 }
 
