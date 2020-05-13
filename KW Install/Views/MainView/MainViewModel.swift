@@ -12,7 +12,7 @@ import Firebase
 import CodableFirebase
 
 //testing
-let teamDocID = "GadFQUZuxl2gxsh40R9o"
+let teamDocID = "8xFzS68oeyo34DSDvJHj"
 
 class MainViewModel: ObservableObject {
     
@@ -37,6 +37,8 @@ class MainViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
             if let document = document {
+                print("here:")
+                print(document.data() ?? [:])
                 let teamDoc = try! FirestoreDecoder().decode(Team.self, from: document.data() ?? [:])
                 self.team = teamDoc
                 self.fetchInstallations()
@@ -53,8 +55,9 @@ class MainViewModel: ObservableObject {
             } else {
                 for document in snapshot!.documents {
                     let district = try! FirestoreDecoder().decode(District.self, from: document.data())
-                    if district.team == self.team {
-                        for install in district.implementationPlan {
+                    
+                    for install in district.implementationPlan {
+                        if install.team.name == self.team?.name {
                             if install.status == .complete {
                                 self.completedInstallations.append(install)
                             } else {
@@ -93,7 +96,6 @@ class MainViewModel: ObservableObject {
                             index = testIndex
                         }
                     }
-                    
                     //update implementation plan
                     district.implementationPlan[index].status = installation.status
                     
@@ -110,11 +112,8 @@ class MainViewModel: ObservableObject {
                 } catch let error {
                     print(error.localizedDescription)
                 }
-                
             }
         }
-        
-        
     }
     
     

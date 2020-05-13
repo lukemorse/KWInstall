@@ -36,9 +36,12 @@ struct MainView: View {
             NavigationView {
                 ContactsView(team: viewModel.team).navigationBarTitle(
                     Text("Team"), displayMode: .inline)
-                    .navigationBarItems(leading:
-                        Image("Logo")
-                            .frame(height: nil))
+                    .navigationBarItems(
+                        leading: Image("Logo").frame(height: nil),
+                        trailing: Button(action: {
+                            //do stuff
+                        }) {Image(systemName: "envelope.fill")}
+                            )
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
