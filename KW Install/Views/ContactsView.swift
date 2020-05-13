@@ -22,7 +22,7 @@ struct ContactsView: View {
                     
                     if team!.members.count > 0 {
                             ForEach(0..<team!.members.count, id: \.self) {
-                                Text(self.team!.members[$0])
+                                Text(self.team!.members[$0].name)
                                     .font(.headline)
                                     .padding(10)
                             }
