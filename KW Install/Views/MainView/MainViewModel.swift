@@ -53,15 +53,18 @@ class MainViewModel: ObservableObject {
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                //get district
                 for document in snapshot!.documents {
                     let district = try! FirestoreDecoder().decode(District.self, from: document.data())
-                    
-                    for install in district.implementationPlan {
-                        if install.team.name == self.team?.name {
-                            if install.status == .complete {
-                                self.completedInstallations.append(install)
-                            } else {
-                                self.addToFutureInstallations(install)
+                    //only continue to add if ready to install
+                    if district.readyToInstall {
+                        for install in district.implementationPlan {
+                            if install.team.name == self.team?.name {
+                                if install.status == .complete {
+                                    self.completedInstallations.append(install)
+                                } else {
+                                    self.addToFutureInstallations(install)
+                                }
                             }
                         }
                     }
@@ -115,8 +118,6 @@ class MainViewModel: ObservableObject {
             }
         }
     }
-    
-    
 }
 
 
