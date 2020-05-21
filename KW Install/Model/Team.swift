@@ -7,15 +7,15 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 import CodableFirebase
 
 struct Team: Encodable, Hashable, Identifiable {
     var id: Int { hashValue }
     
     let name: String
-    let leader: String
-    let members: [String]
+    let leader: User
+    let members: [User]
     var installations: [Installation]
     
     func hash(into hasher: inout Hasher) {
@@ -26,8 +26,8 @@ struct Team: Encodable, Hashable, Identifiable {
     }
     
     init(name: String = "",
-         leader: String = "",
-         members: [String] = [],
+         leader: User = User(uid: "", name: "", email: "", phone: ""),
+         members: [User] = [],
          installations: [Installation] = []) {
         self.name = name
         self.leader = leader
@@ -55,8 +55,8 @@ extension Team: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        leader = try container.decode(String.self, forKey: .leader)
-        members = try container.decode([String].self, forKey: .members)
+        leader = try container.decode(User.self, forKey: .leader)
+        members = try container.decode([User].self, forKey: .members)
         installations = try container.decode([Installation].self, forKey: .installations)
     }
 }

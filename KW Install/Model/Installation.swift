@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 import CodableFirebase
 
 struct Installation: Encodable, Identifiable, Hashable  {
@@ -16,9 +16,10 @@ struct Installation: Encodable, Identifiable, Hashable  {
     }
     
     var id: Int {hashValue}
+    var team: Team
     var status: InstallationStatus
     var schoolType: SchoolType
-    var address: GeoPoint
+    var address: String
     var districtContact: String
     var districtName: String
     var schoolContact: String
@@ -27,14 +28,15 @@ struct Installation: Encodable, Identifiable, Hashable  {
     var numFloors: Int
     var numRooms: Int
     var numPods: Int
-    var timeStamp: Timestamp
+    var date: Date
     var floorPlanUrls: [String]
     var pods: [String:[Pod]]
     
     init() {
         self.status = .notStarted
+        self.team = Team()
         self.schoolType = .elementary
-        self.address = Constants.chicagoGeoPoint
+        self.address = ""
         self.districtContact = ""
         self.districtName = ""
         self.schoolContact = ""
@@ -43,7 +45,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
         self.numFloors = 0
         self.numRooms = 0
         self.numPods = 0
-        self.timeStamp = Timestamp()
+        self.date = Date()
         self.floorPlanUrls = []
         self.pods = [:]
     }
@@ -51,6 +53,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     private enum CodingKeys: String, CodingKey {
         
         case status
+        case team
         case schoolType
         case address
         case districtContact
@@ -61,13 +64,14 @@ struct Installation: Encodable, Identifiable, Hashable  {
         case numFloors
         case numRooms
         case numPods
-        case timeStamp
+        case date
         case floorPlanURLs
         case pods
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(team, forKey: .team)
         try container.encode(status, forKey: .status)
         try container.encode(schoolType.description, forKey: .schoolType)
         try container.encode(address, forKey: .address)
@@ -79,7 +83,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
         try container.encode(numFloors, forKey: .numFloors)
         try container.encode(numRooms, forKey: .numRooms)
         try container.encode(numPods, forKey: .numPods)
-        try container.encode(timeStamp, forKey: .timeStamp)
+        try container.encode(Timestamp(date: date), forKey: .date)
         try container.encode(floorPlanUrls, forKey: .floorPlanURLs)
         try container.encode(pods, forKey: .pods)
     }
@@ -89,7 +93,8 @@ extension Installation: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         status = try container.decode(InstallationStatus.self, forKey: .status)
-        address = try container.decode(GeoPoint.self, forKey: .address)
+        team = try container.decode(Team.self, forKey: .team)
+        address = try container.decode(String.self, forKey: .address)
         districtContact = try container.decode(String.self, forKey: .districtContact)
         districtName = try container.decode(String.self, forKey: .districtName)
         schoolContact = try container.decode(String.self, forKey: .schoolContact)
@@ -98,9 +103,11 @@ extension Installation: Decodable {
         numFloors = try container.decode(Int.self, forKey: .numFloors)
         numRooms = try container.decode(Int.self, forKey: .numRooms)
         numPods = try container.decode(Int.self, forKey: .numPods)
-        timeStamp = try container.decode(Timestamp.self, forKey: .timeStamp)
         floorPlanUrls = try container.decode([String].self, forKey: .floorPlanURLs)
         pods = try container.decode([String:[Pod]].self, forKey: .pods)
+        
+        let timeStamp: Timestamp = try container.decode(Timestamp.self, forKey: .date)
+        date = timeStamp.dateValue()
         
         if let schoolTypeValue = try? container.decode(Int.self, forKey: .schoolType) {
             schoolType = SchoolType(rawValue: schoolTypeValue) ?? SchoolType.unknown
@@ -109,6 +116,11 @@ extension Installation: Decodable {
         }
     }
 }
+
+extension DocumentReference: DocumentReferenceType {}
+extension GeoPoint: GeoPointType {}
+extension FieldValue: FieldValueType {}
+extension Timestamp: TimestampType {}
 
 enum InstallationStatus: Int, Codable, CaseIterable, Hashable, Identifiable {
     var id: Int { hashValue }
@@ -125,8 +137,3 @@ enum InstallationStatus: Int, Codable, CaseIterable, Hashable, Identifiable {
         }
     }
 }
-
-extension DocumentReference: DocumentReferenceType {}
-extension GeoPoint: GeoPointType {}
-extension FieldValue: FieldValueType {}
-extension Timestamp: TimestampType {}
