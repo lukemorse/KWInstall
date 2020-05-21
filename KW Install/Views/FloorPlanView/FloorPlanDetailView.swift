@@ -99,7 +99,7 @@ struct FloorPlanDetailView: View {
 
 struct FloorPlanDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .hallway, position: CGPoint(x: 100, y: 100))], viewModel: FloorPlanViewModel(installation: Installation()))
+        FloorPlanDetailView(with: Image( "floorPlan"), pods: [ Pod(podType: .vertical_hallway, position: CGPoint(x: 100, y: 100))], viewModel: FloorPlanViewModel(installation: Installation()))
             
             
             .previewLayout(.fixed(width: 568, height: 320))

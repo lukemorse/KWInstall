@@ -42,12 +42,12 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
 let podImageDict: [PodType : String] = [
     .outdoor : "outdoor pod",
     .corner : "corner pod",
-    .hallway : "hallway pod",
-    .ceiling : "ceiling pod"
+    .horizontal_hallway : "horizontal hallway pod",
+    .vertical_hallway : "vertical hallway pod"
 ]
 
 struct PodNodeView_Previews: PreviewProvider {
     static var previews: some View {
-        PodNodeView(pod: Pod(podType: .ceiling, position: CGPoint(x: 100, y: 100)))
+        PodNodeView(pod: Pod(podType: .vertical_hallway, position: CGPoint(x: 100, y: 100)))
     }
 }
