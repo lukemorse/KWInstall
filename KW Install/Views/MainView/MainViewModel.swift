@@ -35,8 +35,6 @@ class MainViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
             if let document = document {
-                print("here:")
-                print(document.data() ?? [:])
                 let teamDoc = try! FirestoreDecoder().decode(Team.self, from: document.data() ?? [:])
                 self.team = teamDoc
                 self.fetchInstallations()
@@ -77,6 +75,44 @@ class MainViewModel: ObservableObject {
         }, set: {
             self.installationDictionary[date]![index] = $0
         })
+    }
+    
+    public func updatePods(for installation: Installation, url: String, pods: [Pod]) {
+        let docRef = Firestore.firestore().collection(Constants.kDistrictCollection).document(installation.districtName)
+        
+        docRef.getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let document = snapshot, document.exists {
+                do {
+                    var district = try FirestoreDecoder().decode(District.self, from: document.data() ?? [:])
+                    
+                    //find index of installation
+                    var index = 0
+                    for (testIndex, testInstall) in district.implementationPlan.enumerated() {
+                        if testInstall.schoolName == installation.schoolName {
+                            index = testIndex
+                        }
+                    }
+                    //update implementation plan
+                    district.implementationPlan[index].pods = [url: pods]
+                    
+                    //send district file to database
+                    let districtData = try! FirestoreEncoder().encode(district)
+                    docRef.setData(districtData) { error in
+                        if let error = error {
+                            print("Error writing document: \(error)")
+                            
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
     
     public func updateInstallationStatus(for installation: Installation) {

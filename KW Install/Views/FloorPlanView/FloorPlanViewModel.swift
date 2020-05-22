@@ -34,7 +34,6 @@ class FloorPlanViewModel: ObservableObject {
         if let installation = installation {
             for (index, url) in installation.floorPlanUrls.enumerated() {
                 downloadImage(with: url)
-                print(pods.count)
                 if pods[index].isEmpty {
                     self.pods[index] = installation.pods[url] ?? []
                 } else {
@@ -54,7 +53,7 @@ class FloorPlanViewModel: ObservableObject {
             switch result {
             case .success(let value):
                 self.floorPlanThumbnails.append(value.image)
-                print("Image: \(value.image). Got from: \(value.cacheType)")
+//                print("Image: \(value.image). Got from: \(value.cacheType)")
             case .failure(let error):
                 print("Error: \(error)")
             }

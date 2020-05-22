@@ -13,7 +13,8 @@ struct FloorPlanDetailView: View {
     
     let floorPlanImage: Image
     let floorPlanIndex: Int
-    @EnvironmentObject var viewModel: FloorPlanViewModel
+    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
+    @EnvironmentObject var mainViewModel: MainViewModel
     
     @State var tappedPodIndex: Int?
     @State var showImagePicker: Bool = false
@@ -45,8 +46,6 @@ struct FloorPlanDetailView: View {
                 .animation(.linear)
                 .scaleEffect(self.scale)
                 .offset(self.dragSize)
-//                .offset(self.dragSize)
-//                .scaleEffect(self.scale, anchor: UnitPoint(x: self.tapPoint.x / geometry.frame(in: .global).maxX, y: self.tapPoint.y / geometry.frame(in: .global).maxY))
                 .gesture(MagnificationGesture().onChanged { val in
                     let delta = val / self.lastScaleValue
                     self.lastScaleValue = val
@@ -71,23 +70,35 @@ struct FloorPlanDetailView: View {
             .sheet(isPresented: self.$showImagePicker) {
                 ImagePicker(sourceType: .camera) { image in
                     self.image = Image(uiImage: image)
-                    self.viewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.viewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
+                    self.floorPlanViewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.floorPlanViewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
                         //store URL?
                         //                    print(url)
                     }
                     if let podIndex = self.tappedPodIndex {
-                        self.viewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
+                        self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
                         self.tappedPodIndex = nil
                     }
                 }
             }
         }
+        .navigationBarItems(trailing: saveButton)
+    }
+    
+    var saveButton: some View {
+        Button(action: {
+            if let installation = self.floorPlanViewModel.installation {
+                self.mainViewModel.updatePods(for: installation, url: installation.floorPlanUrls[self.floorPlanIndex], pods: self.floorPlanViewModel.pods[self.floorPlanIndex])
+            }
+        }) {
+            Text("Save")
+                .foregroundColor(Color.blue)
+        }
     }
     
     var podGroup: some View {
         Group {
-            ForEach (0..<self.viewModel.pods[self.floorPlanIndex].count, id: \.self) { idx in
-                PodNodeView(pod: self.viewModel.pods[self.floorPlanIndex][idx])
+            ForEach (0..<self.floorPlanViewModel.pods[self.floorPlanIndex].count, id: \.self) { idx in
+                PodNodeView(pod: self.floorPlanViewModel.pods[self.floorPlanIndex][idx])
                     .onTapGesture {
                         self.tappedPodIndex = idx
                         self.showImagePicker = true

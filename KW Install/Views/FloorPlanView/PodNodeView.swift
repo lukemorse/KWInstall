@@ -12,9 +12,7 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
     
     let pod: Pod
     var id: Int { hashValue }
-    var isComplete: Bool { self.pod.isComplete }
     @State private var position = CGSize.zero
-    @State private var color = Color.red
     
     static func == (lhs: PodNodeView, rhs: PodNodeView) -> Bool {
         return lhs.pod == rhs.pod
@@ -32,7 +30,7 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
                 width: self.pod.podType == .horizontal_hallway ? 25 : 15,
                 height: self.pod.podType == .vertical_hallway ? 25 : 15)
             .position(pod.position)
-            .colorMultiply(self.isComplete ? Color.green : Color.red)
+            .colorMultiply(self.pod.isComplete ? Color.green : Color.red)
     }
     
 
