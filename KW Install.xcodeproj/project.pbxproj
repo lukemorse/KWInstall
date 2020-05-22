@@ -10,13 +10,27 @@
 		A30A7880245A00F300271993 /* PodNodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A787F245A00F300271993 /* PodNodeView.swift */; };
 		A30A7884245A17E700271993 /* Pod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30A7883245A17E700271993 /* Pod.swift */; };
 		A31C8C81243BE0CE00C6084D /* Installation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C8C80243BE0CE00C6084D /* Installation.swift */; };
-		A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31C8C82243CB99200C6084D /* CalendarViewModel.swift */; };
+		A33A66712463169D000CFED1 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66632463169D000CFED1 /* RKViewController.swift */; };
+		A33A66722463169D000CFED1 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66642463169D000CFED1 /* RKManager.swift */; };
+		A33A66732463169D000CFED1 /* RKPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66662463169D000CFED1 /* RKPage.swift */; };
+		A33A66742463169D000CFED1 /* RKWeeklyPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66672463169D000CFED1 /* RKWeeklyPage.swift */; };
+		A33A66752463169D000CFED1 /* RKPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66682463169D000CFED1 /* RKPageView.swift */; };
+		A33A66762463169D000CFED1 /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66692463169D000CFED1 /* ScrollableView.swift */; };
+		A33A66772463169D000CFED1 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666A2463169D000CFED1 /* RKWeekdayHeader.swift */; };
+		A33A66782463169D000CFED1 /* RKTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666B2463169D000CFED1 /* RKTimeView.swift */; };
+		A33A66792463169D000CFED1 /* RKMonthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666C2463169D000CFED1 /* RKMonthHeader.swift */; };
+		A33A667A2463169D000CFED1 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666D2463169D000CFED1 /* RKMonth.swift */; };
+		A33A667B2463169D000CFED1 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666E2463169D000CFED1 /* RKCell.swift */; };
+		A33A667C2463169D000CFED1 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A666F2463169D000CFED1 /* RKColorSettings.swift */; };
+		A33A667D2463169D000CFED1 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66702463169D000CFED1 /* RKDate.swift */; };
 		A344190C243676AB0038ACD3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344190B243676AB0038ACD3 /* Constants.swift */; };
 		A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348CFD8243EB56800AF56D8 /* PasscodeField.swift */; };
 		A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */; };
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
+		A39878DA246C56B5000F99AC /* SendGroupMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */; };
 		A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */; };
+		A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = A3B133A9246060000082A618 /* AppIcon.appiconset */; };
 		A3B38161243663590030582B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38160243663590030582B /* AppDelegate.swift */; };
 		A3B38163243663590030582B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38162243663590030582B /* SceneDelegate.swift */; };
 		A3B38165243663590030582B /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B38164243663590030582B /* MainView.swift */; };
@@ -24,22 +38,13 @@
 		A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3B381692436635B0030582B /* Preview Assets.xcassets */; };
 		A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3B3816B2436635B0030582B /* LaunchScreen.storyboard */; };
 		A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C35863243F810900C39162 /* FloorPlanDetailView.swift */; };
-		A3C587532436A4FD00780909 /* RKMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874C2436A4FD00780909 /* RKMonth.swift */; };
-		A3C587542436A4FD00780909 /* RKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874D2436A4FD00780909 /* RKViewController.swift */; };
-		A3C587552436A4FD00780909 /* RKCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874E2436A4FD00780909 /* RKCell.swift */; };
-		A3C587562436A4FD00780909 /* RKManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C5874F2436A4FD00780909 /* RKManager.swift */; };
-		A3C587572436A4FD00780909 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C587502436A4FD00780909 /* RKDate.swift */; };
-		A3C587582436A4FD00780909 /* RKColorSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C587512436A4FD00780909 /* RKColorSettings.swift */; };
-		A3C587592436A4FD00780909 /* RKWeekdayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C587522436A4FD00780909 /* RKWeekdayHeader.swift */; };
 		A3D7653A243B684B00C772AF /* CompletedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D76539243B684B00C772AF /* CompletedView.swift */; };
 		A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653B243B68D100C772AF /* ContactsView.swift */; };
 		A3D7653E243B68DB00C772AF /* ReferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7653D243B68DB00C772AF /* ReferencesView.swift */; };
 		A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD49245891840099A53C /* SchoolType.swift */; };
 		A3DFBD4D245891840099A53C /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4A245891840099A53C /* District.swift */; };
 		A3DFBD50245894020099A53C /* FloorPlanViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */; };
-		A3DFBD5224589E250099A53C /* FloorPlanModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DFBD5124589E250099A53C /* FloorPlanModel.swift */; };
 		A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCA244002D6005494EE /* HelperFunctions.swift */; };
-		A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */; };
 		A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFCE2440BF7C005494EE /* StartView.swift */; };
 		A3F1DFD32440F88B005494EE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1DFD22440F88B005494EE /* ImagePicker.swift */; };
 		A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F1FDD124368B310008C7F0 /* CalendarView.swift */; };
@@ -59,13 +64,27 @@
 		A30A787F245A00F300271993 /* PodNodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodNodeView.swift; sourceTree = "<group>"; };
 		A30A7883245A17E700271993 /* Pod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pod.swift; sourceTree = "<group>"; };
 		A31C8C80243BE0CE00C6084D /* Installation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Installation.swift; sourceTree = "<group>"; };
-		A31C8C82243CB99200C6084D /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		A33A66632463169D000CFED1 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
+		A33A66642463169D000CFED1 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
+		A33A66662463169D000CFED1 /* RKPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKPage.swift; sourceTree = "<group>"; };
+		A33A66672463169D000CFED1 /* RKWeeklyPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeeklyPage.swift; sourceTree = "<group>"; };
+		A33A66682463169D000CFED1 /* RKPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKPageView.swift; sourceTree = "<group>"; };
+		A33A66692463169D000CFED1 /* ScrollableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
+		A33A666A2463169D000CFED1 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeekdayHeader.swift; sourceTree = "<group>"; };
+		A33A666B2463169D000CFED1 /* RKTimeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKTimeView.swift; sourceTree = "<group>"; };
+		A33A666C2463169D000CFED1 /* RKMonthHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonthHeader.swift; sourceTree = "<group>"; };
+		A33A666D2463169D000CFED1 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
+		A33A666E2463169D000CFED1 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
+		A33A666F2463169D000CFED1 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
+		A33A66702463169D000CFED1 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
 		A344190B243676AB0038ACD3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A348CFD8243EB56800AF56D8 /* PasscodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeField.swift; sourceTree = "<group>"; };
 		A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGroupMessageButton.swift; sourceTree = "<group>"; };
 		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
+		A3B133A9246060000082A618 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
 		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,26 +98,17 @@
 		A3B381822436635B0030582B /* KW_InstallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KW_InstallUITests.swift; sourceTree = "<group>"; };
 		A3B381842436635B0030582B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C35863243F810900C39162 /* FloorPlanDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanDetailView.swift; sourceTree = "<group>"; };
-		A3C5874C2436A4FD00780909 /* RKMonth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKMonth.swift; sourceTree = "<group>"; };
-		A3C5874D2436A4FD00780909 /* RKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKViewController.swift; sourceTree = "<group>"; };
-		A3C5874E2436A4FD00780909 /* RKCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKCell.swift; sourceTree = "<group>"; };
-		A3C5874F2436A4FD00780909 /* RKManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKManager.swift; sourceTree = "<group>"; };
-		A3C587502436A4FD00780909 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
-		A3C587512436A4FD00780909 /* RKColorSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKColorSettings.swift; sourceTree = "<group>"; };
-		A3C587522436A4FD00780909 /* RKWeekdayHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKWeekdayHeader.swift; sourceTree = "<group>"; };
 		A3D76539243B684B00C772AF /* CompletedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedView.swift; sourceTree = "<group>"; };
 		A3D7653B243B68D100C772AF /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		A3D7653D243B68DB00C772AF /* ReferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferencesView.swift; sourceTree = "<group>"; };
 		A3DFBD49245891840099A53C /* SchoolType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchoolType.swift; sourceTree = "<group>"; };
 		A3DFBD4A245891840099A53C /* District.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanViewModel.swift; sourceTree = "<group>"; };
-		A3DFBD5124589E250099A53C /* FloorPlanModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanModel.swift; sourceTree = "<group>"; };
 		A3F1DFCA244002D6005494EE /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
-		A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchLogo.swift; sourceTree = "<group>"; };
 		A3F1DFCE2440BF7C005494EE /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		A3F1DFD22440F88B005494EE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A3F1FDD124368B310008C7F0 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
+		A3F605DA243CFCFE00780235 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MailView.swift; path = "KW Install/Views/MailView.swift"; sourceTree = SOURCE_ROOT; };
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -134,10 +144,37 @@
 				A3DFBD49245891840099A53C /* SchoolType.swift */,
 				A3F61D10243D3F98003E6B32 /* User.swift */,
 				A3F61D12243D41C7003E6B32 /* Team.swift */,
-				A3DFBD5124589E250099A53C /* FloorPlanModel.swift */,
 				A30A7883245A17E700271993 /* Pod.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A33A66622463169D000CFED1 /* RKManager */ = {
+			isa = PBXGroup;
+			children = (
+				A33A66632463169D000CFED1 /* RKViewController.swift */,
+				A33A66642463169D000CFED1 /* RKManager.swift */,
+				A33A66652463169D000CFED1 /* RKScroll */,
+				A33A666A2463169D000CFED1 /* RKWeekdayHeader.swift */,
+				A33A666B2463169D000CFED1 /* RKTimeView.swift */,
+				A33A666C2463169D000CFED1 /* RKMonthHeader.swift */,
+				A33A666D2463169D000CFED1 /* RKMonth.swift */,
+				A33A666E2463169D000CFED1 /* RKCell.swift */,
+				A33A666F2463169D000CFED1 /* RKColorSettings.swift */,
+				A33A66702463169D000CFED1 /* RKDate.swift */,
+			);
+			path = RKManager;
+			sourceTree = "<group>";
+		};
+		A33A66652463169D000CFED1 /* RKScroll */ = {
+			isa = PBXGroup;
+			children = (
+				A33A66662463169D000CFED1 /* RKPage.swift */,
+				A33A66672463169D000CFED1 /* RKWeeklyPage.swift */,
+				A33A66682463169D000CFED1 /* RKPageView.swift */,
+				A33A66692463169D000CFED1 /* ScrollableView.swift */,
+			);
+			path = RKScroll;
 			sourceTree = "<group>";
 		};
 		A344190D243688020038ACD3 /* Views */ = {
@@ -147,11 +184,12 @@
 				A38FC23624377E7600F1DF05 /* CalendarView */,
 				A3F1DFD5244115DC005494EE /* InstallationView */,
 				A3F1DFD42441155D005494EE /* FloorPlanView */,
-				A3D7653B243B68D100C772AF /* ContactsView.swift */,
+				A39878D6246C5656000F99AC /* ContactsView */,
 				A3D76539243B684B00C772AF /* CompletedView.swift */,
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
 				A3F1DFCE2440BF7C005494EE /* StartView.swift */,
+				A3F605DA243CFCFE00780235 /* MailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,16 +198,18 @@
 			isa = PBXGroup;
 			children = (
 				A3F1FDD124368B310008C7F0 /* CalendarView.swift */,
-				A31C8C82243CB99200C6084D /* CalendarViewModel.swift */,
-				A3C5874D2436A4FD00780909 /* RKViewController.swift */,
-				A3C5874E2436A4FD00780909 /* RKCell.swift */,
-				A3C587512436A4FD00780909 /* RKColorSettings.swift */,
-				A3C587502436A4FD00780909 /* RKDate.swift */,
-				A3C5874F2436A4FD00780909 /* RKManager.swift */,
-				A3C5874C2436A4FD00780909 /* RKMonth.swift */,
-				A3C587522436A4FD00780909 /* RKWeekdayHeader.swift */,
+				A33A66622463169D000CFED1 /* RKManager */,
 			);
 			path = CalendarView;
+			sourceTree = "<group>";
+		};
+		A39878D6246C5656000F99AC /* ContactsView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D7653B243B68D100C772AF /* ContactsView.swift */,
+				A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */,
+			);
+			path = ContactsView;
 			sourceTree = "<group>";
 		};
 		A3B38154243663590030582B = {
@@ -200,8 +240,8 @@
 				A3B38160243663590030582B /* AppDelegate.swift */,
 				A3B38162243663590030582B /* SceneDelegate.swift */,
 				A3B381662436635B0030582B /* Assets.xcassets */,
+				A3B133A9246060000082A618 /* AppIcon.appiconset */,
 				A3B3816B2436635B0030582B /* LaunchScreen.storyboard */,
-				A3F1DFCC2440AE80005494EE /* LaunchLogo.swift */,
 				A3B3816E2436635B0030582B /* Info.plist */,
 				A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */,
 				A3B381682436635B0030582B /* Preview Content */,
@@ -254,7 +294,6 @@
 			children = (
 				A394986224377F8E00C0B358 /* InstallationView.swift */,
 				A39498642437805E00C0B358 /* MapView.swift */,
-				A3F605DA243CFCFE00780235 /* MailView.swift */,
 			);
 			path = InstallationView;
 			sourceTree = "<group>";
@@ -342,6 +381,7 @@
 				A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */,
 				A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */,
 				A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */,
+				A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */,
 				A3B381672436635B0030582B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -395,42 +435,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A33A66732463169D000CFED1 /* RKPage.swift in Sources */,
 				A39B28D624379EE7003046C5 /* FloorPlanGridView.swift in Sources */,
 				A3F1FDD224368B310008C7F0 /* CalendarView.swift in Sources */,
 				A3B38161243663590030582B /* AppDelegate.swift in Sources */,
 				A30A7884245A17E700271993 /* Pod.swift in Sources */,
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
-				A3C587562436A4FD00780909 /* RKManager.swift in Sources */,
 				A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */,
-				A31C8C83243CB99200C6084D /* CalendarViewModel.swift in Sources */,
 				A394986324377F8E00C0B358 /* InstallationView.swift in Sources */,
+				A33A66762463169D000CFED1 /* ScrollableView.swift in Sources */,
+				A33A66792463169D000CFED1 /* RKMonthHeader.swift in Sources */,
+				A33A66772463169D000CFED1 /* RKWeekdayHeader.swift in Sources */,
 				A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */,
+				A33A667C2463169D000CFED1 /* RKColorSettings.swift in Sources */,
+				A33A667B2463169D000CFED1 /* RKCell.swift in Sources */,
 				A3D7653A243B684B00C772AF /* CompletedView.swift in Sources */,
+				A33A66752463169D000CFED1 /* RKPageView.swift in Sources */,
+				A33A66782463169D000CFED1 /* RKTimeView.swift in Sources */,
 				A3B38165243663590030582B /* MainView.swift in Sources */,
 				A3D7653E243B68DB00C772AF /* ReferencesView.swift in Sources */,
+				A33A66722463169D000CFED1 /* RKManager.swift in Sources */,
 				A30A7880245A00F300271993 /* PodNodeView.swift in Sources */,
 				A31C8C81243BE0CE00C6084D /* Installation.swift in Sources */,
 				A3F1DFCF2440BF7C005494EE /* StartView.swift in Sources */,
-				A3C587552436A4FD00780909 /* RKCell.swift in Sources */,
 				A3DFBD4D245891840099A53C /* District.swift in Sources */,
 				A3F1DFCB244002D6005494EE /* HelperFunctions.swift in Sources */,
 				A3F1DFD32440F88B005494EE /* ImagePicker.swift in Sources */,
 				A3F61D13243D41C7003E6B32 /* Team.swift in Sources */,
 				A39498652437805E00C0B358 /* MapView.swift in Sources */,
 				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,
+				A33A66712463169D000CFED1 /* RKViewController.swift in Sources */,
+				A33A66742463169D000CFED1 /* RKWeeklyPage.swift in Sources */,
 				A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */,
-				A3C587532436A4FD00780909 /* RKMonth.swift in Sources */,
-				A3C587592436A4FD00780909 /* RKWeekdayHeader.swift in Sources */,
+				A33A667A2463169D000CFED1 /* RKMonth.swift in Sources */,
 				A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */,
-				A3F1DFCD2440AE80005494EE /* LaunchLogo.swift in Sources */,
 				A3DFBD50245894020099A53C /* FloorPlanViewModel.swift in Sources */,
+				A39878DA246C56B5000F99AC /* SendGroupMessageButton.swift in Sources */,
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
-				A3C587572436A4FD00780909 /* RKDate.swift in Sources */,
-				A3DFBD5224589E250099A53C /* FloorPlanModel.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,
-				A3C587542436A4FD00780909 /* RKViewController.swift in Sources */,
-				A3C587582436A4FD00780909 /* RKColorSettings.swift in Sources */,
+				A33A667D2463169D000CFED1 /* RKDate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,7 +618,7 @@
 				DEVELOPMENT_TEAM = 4Z8CKPY35P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "KW Install/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -598,7 +642,7 @@
 				DEVELOPMENT_TEAM = 4Z8CKPY35P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "KW Install/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

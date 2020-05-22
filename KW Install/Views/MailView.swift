@@ -11,6 +11,7 @@ import MessageUI
 
 struct MailView: UIViewControllerRepresentable {
 
+    let emails: [String]
     @Environment(\.presentationMode) var presentation
     @Binding var result: Result<MFMailComposeResult, Error>?
 
@@ -46,6 +47,7 @@ struct MailView: UIViewControllerRepresentable {
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<MailView>) -> MFMailComposeViewController {
         let vc = MFMailComposeViewController()
+        vc.setToRecipients(self.emails)
         vc.mailComposeDelegate = context.coordinator
         return vc
     }

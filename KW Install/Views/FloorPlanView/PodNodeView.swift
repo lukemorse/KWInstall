@@ -10,11 +10,9 @@ import SwiftUI
 
 struct PodNodeView: Identifiable, Hashable, Equatable, View {
     
+    let pod: Pod
     var id: Int { hashValue }
-    let complete = false
-    var pod: Pod
-//    var uuid = UUID()
-    
+    var isComplete: Bool { self.pod.isComplete }
     @State private var position = CGSize.zero
     @State private var color = Color.red
     
@@ -29,14 +27,15 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
     var body: some View {
         Image(podImageDict[self.pod.podType] ?? "")
             .resizable()
-            .frame(width: 30, height: 30)
+            .scaledToFit()
+            .frame(
+                width: self.pod.podType == .horizontal_hallway ? 25 : 15,
+                height: self.pod.podType == .vertical_hallway ? 25 : 15)
             .position(pod.position)
-            .colorMultiply(self.color)
+            .colorMultiply(self.isComplete ? Color.green : Color.red)
     }
     
-    func markComplete() {
-        self.color = Color.green
-    }
+
 }
 
 let podImageDict: [PodType : String] = [

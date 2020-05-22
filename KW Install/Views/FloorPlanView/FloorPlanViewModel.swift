@@ -15,7 +15,6 @@ import Kingfisher
 class FloorPlanViewModel: ObservableObject {
     
     let installation: Installation
-    
     @Published var floorPlanThumbnails: [UIImage] = []
     @Published var pods: [[Pod]] = [[]]
     
@@ -35,7 +34,7 @@ class FloorPlanViewModel: ObservableObject {
         }
     }
     
-    func downloadImage(with urlString : String){
+    func downloadImage(with urlString : String) {
         guard let url = URL.init(string: urlString) else {
             return
         }
@@ -72,9 +71,5 @@ class FloorPlanViewModel: ObservableObject {
             }
         }
     }
-    
-    
-    
-    
     
 }

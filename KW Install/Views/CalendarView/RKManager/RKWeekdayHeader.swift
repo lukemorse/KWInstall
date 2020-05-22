@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-struct RKWeekdayHeader : View {
+public struct RKWeekdayHeader : View {
     
     var rkManager: RKManager
      
-    var body: some View {
+    public var body: some View {
         HStack(alignment: .center) {
             ForEach(self.getWeekdayHeaders(calendar: self.rkManager.calendar), id: \.self) { weekday in
                 Text(weekday)
@@ -21,12 +21,14 @@ struct RKWeekdayHeader : View {
                     .foregroundColor(self.rkManager.colors.weekdayHeaderColor)
             }
         }.background(rkManager.colors.weekdayHeaderBackColor)
+        .padding()
     }
     
     func getWeekdayHeaders(calendar: Calendar) -> [String] {
         
         let formatter = DateFormatter()
-        
+        formatter.locale = rkManager.locale
+
         var weekdaySymbols = formatter.shortStandaloneWeekdaySymbols
         let weekdaySymbolsCount = weekdaySymbols?.count ?? 0
         

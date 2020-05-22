@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct ContactsView: View {
-    
     var team: Team?
     
     var body: some View {

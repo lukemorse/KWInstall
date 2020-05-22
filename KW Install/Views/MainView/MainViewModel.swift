@@ -12,99 +12,112 @@ import Firebase
 import CodableFirebase
 
 //testing
-let teamDocID = "HtCkclIRoAtNXUkbxl9y"
+let teamDocID = "8xFzS68oeyo34DSDvJHj"
 
 class MainViewModel: ObservableObject {
-    // 2
-    @Published var team: Team?
-    @Published var calendarViewModel: CalendarViewModel
-    @Published var completedInstallations: [Installation] = []
     
-    init(calendarViewModel: CalendarViewModel) {
-        self.calendarViewModel = calendarViewModel
+    @Published var team: Team?
+    @Published var completedInstallations: [Installation] = []
+    @Published var installationDictionary: [Date: [Installation]] = [:]
+    
+    private func addToFutureInstallations(_ install: Installation) {
+        let date = removeTimeStamp(fromDate: install.date)
+        //add to installation dictionary under appropriate key ...
+        if self.installationDictionary[date] == nil {
+            self.installationDictionary.updateValue([install], forKey: date)
+        } else {
+            //            ... or add that key if it doesn't exist
+            self.installationDictionary[date]?.append(install)
+        }
     }
     
-    func fetchTeamData() {
+    public func fetchTeamData() {
         Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             if let document = document {
+                print("here:")
+                print(document.data() ?? [:])
                 let teamDoc = try! FirestoreDecoder().decode(Team.self, from: document.data() ?? [:])
                 self.team = teamDoc
-                self.getInstallations()
+                self.fetchInstallations()
             } else {
                 print("Document does not exist")
             }
         }
     }
     
-    func getInstallations() {
+    public func fetchInstallations() {
         Firestore.firestore().collection(Constants.kDistrictCollection).getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                //get district
                 for document in snapshot!.documents {
                     let district = try! FirestoreDecoder().decode(District.self, from: document.data())
-                    for install in district.implementationPlan {
-                        if install.team.name
-                        == self.team?.name {
-                            if install.status == .complete {
-                                self.completedInstallations.append(install)
-                            } else {
-                                self.addToFutureInstallations(install)
+                    //only continue to add if ready to install
+                    if district.readyToInstall {
+                        for install in district.implementationPlan {
+                            if install.team.name == self.team?.name {
+                                if install.status == .complete {
+                                    self.completedInstallations.append(install)
+                                } else {
+                                    self.addToFutureInstallations(install)
+                                }
                             }
                         }
-                        
                     }
                 }
             }
         }
     }
     
-    //
-    //
-    //    private func getInstallations() {
-    //        if let team = team {
-    //            let installs = teamData.installations
-    //            for ref in docRefs {
-    //                ref.getDocument { document, error in
-    //                    if let document = document {
-    //                        let install = try! FirestoreDecoder().decode(Installation.self, from: document.data() ?? [:])
-    //                        if install.completed {
-    //                            self.completedInstallations.append(install)
-    //                        } else {
-    //                            self.addToFutureInstallations(install)
-    //                        }
-    //
-    //                    } else {
-    //                        print("Document does not exist")
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
+    public func getInstallation(date: Date, index: Int) -> Binding<Installation> {
+        return Binding(get: {
+            return self.installationDictionary[date]![index]
+        }, set: {
+            self.installationDictionary[date]![index] = $0
+        })
+    }
     
-    fileprivate func addToFutureInstallations(_ install: Installation) {
-        self.calendarViewModel.installList.append(install)
-        //add to installation dictionary under appropriate key ...
-        let timeStamp = Timestamp(date: install.date)
-        let dateDesc = timeStampToDateString(timeStamp)
-//        let dateDesc = removeTimeStamp(fromDate: install.date).de
+    public func updateInstallationStatus(for installation: Installation) {
+        let docRef = Firestore.firestore().collection(Constants.kDistrictCollection).document(installation.districtName)
         
-        print("date value: " + dateDesc)
-        if self.calendarViewModel.installationDictionary[dateDesc] == nil {
-            self.calendarViewModel.installationDictionary.updateValue([install], forKey: dateDesc)
-        } else {
-            //            ... or add that key if it doesn't exist
-            self.calendarViewModel.installationDictionary[dateDesc]?.append(install)
+        docRef.getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let document = snapshot, document.exists {
+                do {
+                    var district = try FirestoreDecoder().decode(District.self, from: document.data() ?? [:])
+                    
+                    //find index of installation
+                    var index = 0
+                    for (testIndex, testInstall) in district.implementationPlan.enumerated() {
+                        if testInstall.schoolName == installation.schoolName {
+                            index = testIndex
+                        }
+                    }
+                    //update implementation plan
+                    district.implementationPlan[index].status = installation.status
+                    
+                    //send district file to database
+                    let districtData = try! FirestoreEncoder().encode(district)
+                    docRef.setData(districtData) { error in
+                        if let error = error {
+                            print("Error writing document: \(error)")
+                            
+                        } else {
+                            print("Document successfully written!")
+                        }
+                    }
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
 
-public func removeTimeStamp(fromDate: Date) -> Date {
-    guard let date = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month, .day], from: fromDate)) else {
-        fatalError("Failed to strip time from Date object")
-    }
-    return date
-}
+

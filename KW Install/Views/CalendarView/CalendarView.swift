@@ -11,36 +11,47 @@ import Firebase
 
 struct CalendarView : View {
     
-    @ObservedObject var viewModel: CalendarViewModel
-    @State var isPresented = true
+    @EnvironmentObject var mainViewModel: MainViewModel
     
-    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date(), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
-//    @State var selectedDate: Date
+    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
-            Group {
-                installationListView
-                RKViewController(isPresented: $isPresented, rkManager: self.rkManager)
-            }
+        Group {
+            installationListView
+            RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
+            //            self.mainViewModel.
+        }
     }
     
     var installationListView : some View {
-//        print(self.rkManager.selectedDate)
-        if let arr = viewModel.installationDictionary[dateToString(self.rkManager.selectedDate)] {
-            print(arr)
+        if let arr = mainViewModel.installationDictionary[self.rkManager.selectedDate] {
             if arr.count > 0 {
-                return AnyView(List {
-                    ForEach(0..<arr.count, id: \.self) {index in
-                        VStack {
-                            NavigationLink(destination: InstallationView(installation: arr[index])) {
-                                Text(arr[index].schoolName)
+                return AnyView(
+                    List {
+                        ForEach(0..<arr.count, id: \.self) {index in
+                            VStack {
+                                self.getNavLink(index: index, label: arr[index].schoolName)
                             }
+                            .padding()
                         }
                     }
-                })
+                )
             }
         }
-        return AnyView(List {Text("No Installations")})
+        
+        return AnyView(List {
+            Text("No Installations")
+                .padding()
+            
+        })
+    }
+    
+    func getNavLink(index: Int, label: String) -> some View {
+        return NavigationLink(destination: InstallationView(
+            installation: self.mainViewModel.getInstallation(date: self.rkManager.selectedDate, index: index)
+        )) {
+            Text(label)
+        }
     }
     
     func dateToString(_ date: Date) -> String {
@@ -79,10 +90,10 @@ struct CalendarView : View {
 
 
 #if DEBUG
-//struct CalendarView_Previews : PreviewProvider {
-//    static var previews: some View {
-//        CalendarView()
-//    }
-//}
+struct CalendarView_Previews : PreviewProvider {
+    static var previews: some View {
+        CalendarView()
+    }
+}
 #endif
 

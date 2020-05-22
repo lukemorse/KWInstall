@@ -18,18 +18,49 @@ struct RKDate {
     var isSelected: Bool = false
     var isBetweenStartAndEnd: Bool = false
     
-    init(date: Date, rkManager: RKManager, isDisabled: Bool, isToday: Bool, isSelected: Bool, isBetweenStartAndEnd: Bool) {
+
+    init(date: Date, rkManager: RKManager) {
         self.date = date
         self.rkManager = rkManager
-        self.isDisabled = isDisabled
-        self.isToday = isToday
-        self.isSelected = isSelected
-        self.isBetweenStartAndEnd = isBetweenStartAndEnd
+        self.isDisabled = !rkManager.isEnabled(date: date)
+        self.isToday = rkManager.isToday(date: date)
+        self.isSelected = rkManager.isSpecialDate(date: date)
+        self.isBetweenStartAndEnd = rkManager.isBetweenStartAndEnd(date: date)
     }
     
     func getText() -> String {
         let day = formatDate(date: date, calendar: self.rkManager.calendar)
         return day
+    }
+     
+    func getTimeText() -> String {
+        var txt = ""
+        var hours = 0
+        var minutes = 0
+
+        switch rkManager.mode {
+        case 0:
+            hours = rkManager.calendar.component(.hour, from: rkManager.selectedDate)
+            minutes = rkManager.calendar.component(.minute, from: rkManager.selectedDate)
+        case 1, 2:
+            if rkManager.startDate != nil && rkManager.calendar.isDate(rkManager.startDate, inSameDayAs: date) {
+                hours = rkManager.calendar.component(.hour, from: rkManager.startDate)
+                minutes = rkManager.calendar.component(.minute, from: rkManager.startDate)
+            }
+             if rkManager.endDate != nil && rkManager.calendar.isDate(rkManager.endDate, inSameDayAs: date) {
+                hours = rkManager.calendar.component(.hour, from: rkManager.endDate)
+                minutes = rkManager.calendar.component(.minute, from: rkManager.endDate)
+            }
+        case 3:
+            if let theDate = rkManager.selectedDates.first(where: {rkManager.calendar.isDate($0, inSameDayAs: date)}) {
+                hours = rkManager.calendar.component(.hour, from: theDate)
+                minutes = rkManager.calendar.component(.minute, from: theDate)
+            }
+        default:
+            break
+        }
+        txt = (hours <= 9 ? "0" : "") + String(hours) + ":" + (minutes <= 9 ? "0" : "") + String(minutes)
+        return txt
     }
     
     func getTextColor() -> Color {

@@ -449,12 +449,12 @@ extension AnimatedImageView {
             self.preloadQueue = preloadQueue
         }
 
-        func frame(at index: Int) -> KFCrossPlatformImage? {
-            return animatedFrames[index]?.image
+        func frame(at floorPlanIndex: Int) -> KFCrossPlatformImage? {
+            return animatedFrames[floorPlanIndex]?.image
         }
 
-        func duration(at index: Int) -> TimeInterval {
-            return animatedFrames[index]?.duration  ?? .infinity
+        func duration(at floorPlanIndex: Int) -> TimeInterval {
+            return animatedFrames[floorPlanIndex]?.duration  ?? .infinity
         }
 
         func prepareFramesAsynchronously() {
@@ -482,13 +482,13 @@ extension AnimatedImageView {
 
             var duration: TimeInterval = 0
 
-            (0..<frameCount).forEach { index in
-                let frameDuration = GIFAnimatedImage.getFrameDuration(from: imageSource, at: index)
+            (0..<frameCount).forEach { floorPlanIndex in
+                let frameDuration = GIFAnimatedImage.getFrameDuration(from: imageSource, at: floorPlanIndex)
                 duration += min(frameDuration, maxTimeStep)
                 animatedFrames.append(AnimatedFrame(image: nil, duration: frameDuration))
 
-                if index > maxFrameCount { return }
-                animatedFrames[index] = animatedFrames[index]?.makeAnimatedFrame(image: loadFrame(at: index))
+                if floorPlanIndex > maxFrameCount { return }
+                animatedFrames[floorPlanIndex] = animatedFrames[floorPlanIndex]?.makeAnimatedFrame(image: loadFrame(at: floorPlanIndex))
             }
 
             self.loopDuration = duration
@@ -498,7 +498,7 @@ extension AnimatedImageView {
             animatedFrames.removeAll()
         }
 
-        private func loadFrame(at index: Int) -> UIImage? {
+        private func loadFrame(at floorPlanIndex: Int) -> UIImage? {
             let options: [CFString: Any] = [
                 kCGImageSourceCreateThumbnailFromImageIfAbsent: true,
                 kCGImageSourceCreateThumbnailWithTransform: true,
@@ -508,7 +508,7 @@ extension AnimatedImageView {
 
             let resize = needsPrescaling && size != .zero
             guard let cgImage = CGImageSourceCreateImageAtIndex(imageSource,
-                                                                index,
+                                                                floorPlanIndex,
                                                                 resize ? options as CFDictionary : nil) else {
                 return nil
             }
@@ -524,10 +524,10 @@ extension AnimatedImageView {
 
             animatedFrames[previousFrameIndex] = animatedFrames[previousFrameIndex]?.placeholderFrame
 
-            preloadIndexes(start: currentFrameIndex).forEach { index in
-                guard let currentAnimatedFrame = animatedFrames[index] else { return }
+            preloadIndexes(start: currentFrameIndex).forEach { floorPlanIndex in
+                guard let currentAnimatedFrame = animatedFrames[floorPlanIndex] else { return }
                 if !currentAnimatedFrame.isPlaceholder { return }
-                animatedFrames[index] = currentAnimatedFrame.makeAnimatedFrame(image: loadFrame(at: index))
+                animatedFrames[floorPlanIndex] = currentAnimatedFrame.makeAnimatedFrame(image: loadFrame(at: floorPlanIndex))
             }
         }
 
@@ -554,9 +554,9 @@ extension AnimatedImageView {
             return (frameIndex + value) % frameCount
         }
 
-        private func preloadIndexes(start index: Int) -> [Int] {
-            let nextIndex = increment(frameIndex: index)
-            let lastIndex = increment(frameIndex: index, by: maxFrameCount)
+        private func preloadIndexes(start floorPlanIndex: Int) -> [Int] {
+            let nextIndex = increment(frameIndex: floorPlanIndex)
+            let lastIndex = increment(frameIndex: floorPlanIndex, by: maxFrameCount)
 
             if lastIndex >= nextIndex {
                 return [Int](nextIndex...lastIndex)
@@ -571,18 +571,18 @@ class SafeArray<Element> {
     private var array: Array<Element> = []
     private let lock = NSLock()
     
-    subscript(index: Int) -> Element? {
+    subscript(floorPlanIndex: Int) -> Element? {
         get {
             lock.lock()
             defer { lock.unlock() }
-            return array.indices ~= index ? array[index] : nil
+            return array.indices ~= floorPlanIndex ? array[floorPlanIndex] : nil
         }
         
         set {
             lock.lock()
             defer { lock.unlock() }
-            if let newValue = newValue, array.indices ~= index {
-                array[index] = newValue
+            if let newValue = newValue, array.indices ~= floorPlanIndex {
+                array[floorPlanIndex] = newValue
             }
         }
     }

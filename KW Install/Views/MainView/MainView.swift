@@ -10,19 +10,15 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var viewModel: MainViewModel
+    @EnvironmentObject var viewModel: MainViewModel
     @State var selected = 0
-    
-    init() {
-        viewModel = MainViewModel(calendarViewModel: CalendarViewModel())
-    }
     
     var body: some View {
         TabView(selection: $selected) {
             
             //Calendar
             NavigationView {
-                CalendarView(viewModel: viewModel.calendarViewModel)
+                CalendarView()
                     .navigationBarTitle(
                         Text("Today's Installations"), displayMode: .inline)
                     .navigationBarItems(leading:
@@ -40,9 +36,10 @@ struct MainView: View {
             NavigationView {
                 ContactsView(team: viewModel.team).navigationBarTitle(
                     Text("Team"), displayMode: .inline)
-                    .navigationBarItems(leading:
-                        Image("Logo")
-                            .fixedSize())
+                    .navigationBarItems(
+                        leading: Image("Logo").frame(height: nil),
+                        trailing: SendGroupMessageButton(emails: self.getTeamEmails())
+                            )
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -57,7 +54,7 @@ struct MainView: View {
                     Text("Completed"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
-                            .fixedSize())
+                            .frame(height: nil))
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -72,7 +69,7 @@ struct MainView: View {
                     Text("References"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
-                            .fixedSize())
+                            .frame(height: nil))
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tabItem({
@@ -81,10 +78,21 @@ struct MainView: View {
                 Text("\(Constants.TabBarText.tabBar3)")
             }).tag(3)
             
-        }.accentColor(Color.red)
-            .onAppear(){
-                self.viewModel.fetchTeamData()
         }
+        .accentColor(Color.red)
+        .onAppear(){
+            self.viewModel.fetchTeamData()
+        }
+    }
+    
+    func getTeamEmails() -> [String] {
+        var result: [String] = []
+        if let team = viewModel.team {
+            for member in team.members {
+                result.append(member.email)
+            }
+        }
+        return result
     }
 }
 
