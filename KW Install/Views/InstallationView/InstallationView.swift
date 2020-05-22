@@ -12,8 +12,8 @@ import Firebase
 import MessageUI
 
 struct InstallationView: View {
+    @EnvironmentObject var floorplanViewModel: FloorPlanViewModel
     @Binding var installation: Installation
-    
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
@@ -67,6 +67,9 @@ struct InstallationView: View {
             }
         }
         .padding()
+        .onAppear() {
+            self.floorplanViewModel.installation = self.installation
+        }
     }
     
 //    func makeMap(geoPoint: GeoPoint) -> some View {
