@@ -72,6 +72,22 @@ struct InstallationView: View {
         }
     }
     
+    var statusPicker: some View {
+        let stati = Binding<InstallationStatus>(
+            get: {return self.installation.status},
+            set: {
+                self.installation.status = $0
+                self.mainViewModel.updateInstallationStatus(for: self.installation)
+        })
+        
+        return Picker(selection: stati, label: Text("Status")) {
+            ForEach(InstallationStatus.allCases) { status in
+                Text(status.description).tag(status)
+            }
+        }
+        .pickerStyle(SegmentedPickerStyle())
+    }
+    
 //    func makeMap(geoPoint: GeoPoint) -> some View {
 //        return MapView(centerCoordinate: CLLocationCoordinate2D(latitude: installation.address.latitude, longitude: installation.address.longitude))
 //            .frame(height: 200)
