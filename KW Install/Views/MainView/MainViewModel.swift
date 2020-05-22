@@ -11,14 +11,12 @@ import Combine
 import Firebase
 import CodableFirebase
 
-//testing
-let teamDocID = "XoMcqiOVpOYCJeDuAGZ9"
-
 class MainViewModel: ObservableObject {
     
     @Published var team: Team?
     @Published var completedInstallations: [Installation] = []
     @Published var installationDictionary: [Date: [Installation]] = [:]
+    var teamDocID = ""
     
     private func addToFutureInstallations(_ install: Installation) {
         let date = removeTimeStamp(fromDate: install.date)

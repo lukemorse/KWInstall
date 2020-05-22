@@ -12,6 +12,7 @@ import Firebase
 struct CalendarView : View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
+    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
     
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
@@ -20,6 +21,9 @@ struct CalendarView : View {
             installationListView
             RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
             //            self.mainViewModel.
+        }
+        .onAppear() {
+            self.floorPlanViewModel.reset()
         }
     }
     

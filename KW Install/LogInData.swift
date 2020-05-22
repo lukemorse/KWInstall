@@ -9,14 +9,23 @@
 import Foundation
 
 class LogInData {
-    class LogInData {
-        static let data = [
-            "brandonz" : "0022",
-            "johne" : "0011",
-            "alizairs" : "0033",
-            "rienr" : "0055",
-            "jessev" : "0044",
-            "nickn" : "0066"
-        ]
-    }
+    
+    static let data = [
+        "brandonz"  : "0022",
+        "johne"     : "0011",
+        "alizairs"  : "0033",
+        "rienr"     : "0055",
+        "jessev"    : "0044",
+        "nickn"     : "0066"
+    ]
+    
+    //username: teamDocID
+    static let teamDocIdDict = [
+        "brandonz"  : "HtCkclIRoAtNXUkbxl9y",
+        "johne"     : "XoMcqiOVpOYCJeDuAGZ9",
+        "alizairs"  : "HTi0zcQfHpkasW89JnOx",
+        "rienr"     : "V2ZaMrVtgsJJNPn7Ou74",
+        "jessev"    : "JWDH5gpVb7b8JE2PMPVY",
+        "nickn"     : "JivBc1gyVwMZFolGplHH"
+    ]
 }

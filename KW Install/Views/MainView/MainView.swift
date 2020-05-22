@@ -11,6 +11,7 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var viewModel: MainViewModel
+    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
     @State var selected = 0
     
     var body: some View {
@@ -81,7 +82,9 @@ struct MainView: View {
         }
         .accentColor(Color.red)
         .onAppear(){
-            self.viewModel.fetchTeamData()
+            if self.viewModel.team == nil {
+                self.viewModel.fetchTeamData()
+            }
         }
     }
     

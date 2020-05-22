@@ -24,6 +24,12 @@ class FloorPlanViewModel: ObservableObject {
 //        self.installation = installation
 //    }
     
+    func reset() {
+        self.installation = nil
+        self.floorPlanThumbnails = []
+        self.pods = [[]]
+    }
+    
     func getFloorPlans() {
         if let installation = installation {
             for (index, url) in installation.floorPlanUrls.enumerated() {
