@@ -12,6 +12,7 @@ import Firebase
 import MessageUI
 
 struct InstallationView: View {
+    @EnvironmentObject var mainViewModel: MainViewModel
     @EnvironmentObject var floorplanViewModel: FloorPlanViewModel
     @Binding var installation: Installation
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
@@ -34,6 +35,8 @@ struct InstallationView: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 10.0)
+                
+                statusPicker
                 
                 Group {
                     Text("School Contact Person: " + installation.schoolContact)
@@ -107,6 +110,6 @@ struct InstallationView: View {
 
 struct InstallationView_Previews: PreviewProvider {
     static var previews: some View {
-        InstallationView(installation: .constant(Installation()))
+        InstallationView(installation: .constant(Installation())).environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
     }
 }
