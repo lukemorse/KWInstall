@@ -12,7 +12,7 @@ import Firebase
 import MessageUI
 
 struct InstallationView: View {
-    var installation: Installation
+    @Binding var installation: Installation
     
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
@@ -58,11 +58,11 @@ struct InstallationView: View {
                 }
                 .disabled(!MFMailComposeViewController.canSendMail())
                 .sheet(isPresented: $isShowingMailView) {
-                    MailView(result: self.$mailResult)
+                    MailView(emails: [self.installation.email], result: self.$mailResult)
                 }
                 
                 Text("Floorplans:")
-                FloorPlanGridView(viewModel: FloorPlanViewModel(installation: installation))
+                FloorPlanGridView()
                 Spacer()
             }
         }
@@ -88,6 +88,6 @@ struct InstallationView: View {
 
 struct InstallationView_Previews: PreviewProvider {
     static var previews: some View {
-        InstallationView(installation: Installation())
+        InstallationView(installation: .constant(Installation()))
     }
 }

@@ -23,11 +23,11 @@ class FloorPlanViewModel: ObservableObject {
     }
     
     func getFloorPlans() {
-        for url in installation.floorPlanUrls {
+        for (index, url) in installation.floorPlanUrls.enumerated() {
             downloadImage(with: url)
             print(pods.count)
-            if pods[0].isEmpty {
-                self.pods[0] = self.installation.pods[url] ?? []
+            if pods[index].isEmpty {
+                self.pods[index] = self.installation.pods[url] ?? []
             } else {
                 self.pods.append(self.installation.pods[url] ?? [])
             }
@@ -51,9 +51,9 @@ class FloorPlanViewModel: ObservableObject {
         }
     }
     
-    func uploadPodImage(image: UIImage, completion: @escaping (_ url: String?) -> Void) {
+    func uploadPodImage(image: UIImage, floorNumber: Int, podType: String, completion: @escaping (_ url: String?) -> Void) {
 
-        let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child("newPodImage")
+        let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child(installation.districtName).child(installation.schoolName).child(podType).child(UUID().uuidString)
         
         if let uploadData = image.jpegData(compressionQuality: 0.5) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in

@@ -10,8 +10,7 @@
 import SwiftUI
 
 struct FloorPlanGridView: View {
-    @ObservedObject var viewModel: FloorPlanViewModel
-    
+    @EnvironmentObject var viewModel: FloorPlanViewModel
     @State var pushDetailView = false
     @State var selectedImageIndex = 0
     @State var selection: Int?
@@ -45,19 +44,32 @@ struct FloorPlanGridView: View {
             }
             .frame(height: 300)
             .padding()
-            getNavLink()
+//            getNavLink()
+            navLink
         }
         .onAppear() {
             self.selection = nil
-            self.viewModel.getFloorPlans()
+            if self.viewModel.floorPlanThumbnails.isEmpty {
+                self.viewModel.getFloorPlans()
+            }
         }
     }
     
     
-    func getNavLink() -> some View {
-        
-        return NavigationLink(destination: self.viewModel.floorPlanThumbnails.count > 0 ? AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex)) : AnyView(Text("error")), tag: self.selectedImageIndex, selection: self.$selection) {
-            Text("link").hidden()
+//    func getNavLink() -> some View {
+//        
+//        return NavigationLink(destination: self.viewModel.floorPlanThumbnails.count > 0 ? AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex)) : AnyView(Text("error")), tag: self.selectedImageIndex, selection: self.$selection) {
+//            Text("link").hidden()
+//        }
+//    }
+    
+    var navLink : some View {
+        if self.viewModel.floorPlanThumbnails.count > 0 {
+            return AnyView(NavigationLink("", destination: FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), index: self.selectedImageIndex)
+//                .environmentObject(self.viewModel)
+                , isActive: self.$pushDetailView).hidden())
+        } else {
+            return AnyView(EmptyView())
         }
     }
     

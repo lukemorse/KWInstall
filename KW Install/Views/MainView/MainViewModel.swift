@@ -12,7 +12,7 @@ import Firebase
 import CodableFirebase
 
 //testing
-let teamDocID = "8xFzS68oeyo34DSDvJHj"
+let teamDocID = "XoMcqiOVpOYCJeDuAGZ9"
 
 class MainViewModel: ObservableObject {
     

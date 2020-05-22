@@ -52,6 +52,7 @@
 		A3F61D11243D3F98003E6B32 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D10243D3F98003E6B32 /* User.swift */; };
 		A3F61D13243D41C7003E6B32 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D12243D41C7003E6B32 /* Team.swift */; };
 		A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D18243E130B003E6B32 /* MainViewModel.swift */; };
+		AFC83A8124782E3700C02C10 /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC83A8024782E3700C02C10 /* LogInData.swift */; };
 		C421D8DA391899005E19BB29 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19030538E7CBE4179E897444 /* Pods_KW_Install.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		A3F61D10243D3F98003E6B32 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		AFC83A8024782E3700C02C10 /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -246,6 +248,7 @@
 				A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */,
 				A3B381682436635B0030582B /* Preview Content */,
 				A344190B243676AB0038ACD3 /* Constants.swift */,
+				AFC83A8024782E3700C02C10 /* LogInData.swift */,
 				A3F1DFCA244002D6005494EE /* HelperFunctions.swift */,
 			);
 			path = "KW Install";
@@ -466,6 +469,7 @@
 				A344190C243676AB0038ACD3 /* Constants.swift in Sources */,
 				A33A66712463169D000CFED1 /* RKViewController.swift in Sources */,
 				A33A66742463169D000CFED1 /* RKWeeklyPage.swift in Sources */,
+				AFC83A8124782E3700C02C10 /* LogInData.swift in Sources */,
 				A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */,
 				A33A667A2463169D000CFED1 /* RKMonth.swift in Sources */,
 				A3C35864243F810900C39162 /* FloorPlanDetailView.swift in Sources */,

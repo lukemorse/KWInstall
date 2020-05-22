@@ -13,7 +13,7 @@ struct FloorPlanDetailView: View {
     
     let floorPlanImage: Image
     let floorPlanIndex: Int
-    @ObservedObject var viewModel: FloorPlanViewModel
+    @EnvironmentObject var viewModel: FloorPlanViewModel
     
     @State var tappedPodIndex: Int?
     @State var showImagePicker: Bool = false
@@ -27,9 +27,9 @@ struct FloorPlanDetailView: View {
     @State var dragSize: CGSize = CGSize.zero
     @State var lastDrag: CGSize = CGSize.zero
     
-    init(with floorPlanImage: Image, viewModel: FloorPlanViewModel, index: Int) {
+    init(with floorPlanImage: Image, index: Int) {
         self.floorPlanImage = floorPlanImage
-        self.viewModel = viewModel
+//        self.viewModel = viewModel
         self.floorPlanIndex = index
     }
     
@@ -43,33 +43,35 @@ struct FloorPlanDetailView: View {
                 }
                 .scaledToFit()
                 .animation(.linear)
+                .scaleEffect(self.scale)
                 .offset(self.dragSize)
-                .scaleEffect(self.scale, anchor: UnitPoint(x: self.tapPoint.x / geometry.frame(in: .global).maxX, y: self.tapPoint.y / geometry.frame(in: .global).maxY))
+//                .offset(self.dragSize)
+//                .scaleEffect(self.scale, anchor: UnitPoint(x: self.tapPoint.x / geometry.frame(in: .global).maxX, y: self.tapPoint.y / geometry.frame(in: .global).maxY))
                 .gesture(MagnificationGesture().onChanged { val in
                     let delta = val / self.lastScaleValue
                     self.lastScaleValue = val
                     self.scale = self.scale * delta
+                    if self.scale < 1 {self.scale = 1}
                     
                 }.onEnded { val in
                     // without this the next gesture will be broken
                     self.lastScaleValue = 1.0
                     if self.scale < 1 {self.scale = 1}
-                    }
-                    
-                )
-                    .simultaneousGesture(DragGesture(minimumDistance: 0, coordinateSpace: .global).onChanged({ val in
+                    })
+                    .simultaneousGesture(DragGesture(minimumDistance: 1, coordinateSpace: .local).onChanged({ val in
+                        
                         self.tapPoint = val.startLocation
                         self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
                     })
                         .onEnded({ (val) in
-                            self.dragSize = self.adjustPanForBoundaries(value: val, geoProxy: geometry)
+                            self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
                             self.lastDrag = self.dragSize
                         }))
             
             .sheet(isPresented: self.$showImagePicker) {
                 ImagePicker(sourceType: .camera) { image in
                     self.image = Image(uiImage: image)
-                    self.viewModel.uploadPodImage(image: image) { (url) in
+                    self.viewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.viewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
                         //store URL?
                         //                    print(url)
                     }
@@ -122,9 +124,9 @@ struct FloorPlanDetailView: View {
     }
 }
 
-struct FloorPlanDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        FloorPlanDetailView(with: Image( "floorPlan"), viewModel: FloorPlanViewModel(installation: Installation()), index: 0)
-            
-    }
-}
+//struct FloorPlanDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FloorPlanDetailView(with: Image( "floorPlan"), viewModel: FloorPlanViewModel(installation: Installation()), index: 0)
+//
+//    }
+//}
