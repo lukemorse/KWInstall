@@ -6,6 +6,10 @@
 //  Copyright © 2020 Luke Morse. All rights reserved.
 //
 
+enum ActiveSheet {
+   case camera, imageView
+}
+
 import SwiftUI
 
 struct FloorPlanDetailView: View {
@@ -17,8 +21,10 @@ struct FloorPlanDetailView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
     
     @State var tappedPodIndex: Int?
-    @State var showImagePicker: Bool = false
     @State var image: Image? = nil
+    @State var showPodUrl: String?
+    @State private var showSheet = false
+    @State private var activeSheet: ActiveSheet = .camera
     
     @State var scale: CGFloat = 1.0
     @State var newScaleValue: CGFloat = 1.0
@@ -30,7 +36,6 @@ struct FloorPlanDetailView: View {
     
     init(with floorPlanImage: Image, index: Int) {
         self.floorPlanImage = floorPlanImage
-//        self.viewModel = viewModel
         self.floorPlanIndex = index
     }
     
@@ -67,17 +72,24 @@ struct FloorPlanDetailView: View {
                             self.lastDrag = self.dragSize
                         }))
             
-            .sheet(isPresented: self.$showImagePicker) {
-                ImagePicker(sourceType: .camera) { image in
-                    self.image = Image(uiImage: image)
-                    self.floorPlanViewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.floorPlanViewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
-                        //store URL?
-                        //                    print(url)
+            .sheet(isPresented: self.$showSheet) {
+                if self.activeSheet == ActiveSheet.camera {
+                    ImagePicker(sourceType: .camera) { image in
+                        self.image = Image(uiImage: image)
+                        self.floorPlanViewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.floorPlanViewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
+                            //store URL in Pod model
+                            if let podIndex = self.tappedPodIndex {
+                                self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].imageUrl = url
+                                self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
+                                self.tappedPodIndex = nil
+                            }
+                        }
                     }
-                    if let podIndex = self.tappedPodIndex {
-                        self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
-                        self.tappedPodIndex = nil
-                    }
+                } else {
+                    AsyncImage(
+                        url: URL(string: self.showPodUrl!)!,
+                        placeholder: Text("Loading ...")
+                    )
                 }
             }
         }
@@ -100,8 +112,16 @@ struct FloorPlanDetailView: View {
             ForEach (0..<self.floorPlanViewModel.pods[self.floorPlanIndex].count, id: \.self) { idx in
                 PodNodeView(pod: self.floorPlanViewModel.pods[self.floorPlanIndex][idx])
                     .onTapGesture {
-                        self.tappedPodIndex = idx
-                        self.showImagePicker = true
+                        if (self.floorPlanViewModel.pods[self.floorPlanIndex][idx].isComplete) {
+                            self.showPodUrl = self.floorPlanViewModel.pods[self.floorPlanIndex][idx].imageUrl
+                            self.activeSheet = ActiveSheet.imageView
+                            self.showSheet = true
+                        } else {
+                            self.tappedPodIndex = idx
+                            self.activeSheet = ActiveSheet.camera
+                            self.showSheet = true
+                        }
+                        
                 }
             }
         }

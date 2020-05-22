@@ -65,7 +65,7 @@ class FloorPlanViewModel: ObservableObject {
         if let installation = installation {
             let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child(installation.districtName).child(installation.schoolName).child(podType).child(UUID().uuidString)
             
-            if let uploadData = image.jpegData(compressionQuality: 0.5) {
+            if let uploadData = image.jpegData(compressionQuality: 0.25) {
                 storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                     if let error = error {
                         print(error.localizedDescription)
