@@ -51,7 +51,7 @@ struct MainView: View {
             
             //Completed
             NavigationView {
-                CompletedView(completedInstallations: viewModel.completedInstallations  ).navigationBarTitle(
+                CompletedView().navigationBarTitle(
                     Text("Completed"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")
@@ -101,6 +101,6 @@ struct MainView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView().environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
     }
 }

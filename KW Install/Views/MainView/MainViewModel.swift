@@ -14,7 +14,7 @@ import CodableFirebase
 class MainViewModel: ObservableObject {
     
     @Published var team: Team?
-    @Published var completedInstallations: [Installation] = []
+//    @Published var completedInstallations: [Installation] = []
     @Published var installationDictionary: [Date: [Installation]] = [:]
     var teamDocID = ""
     
@@ -58,7 +58,7 @@ class MainViewModel: ObservableObject {
                             for install in district.implementationPlan {
                                 if install.team.name == self.team?.name {
                                     if install.status == .complete {
-                                        self.completedInstallations.append(install)
+//                                        self.completedInstallations.append(install)
                                     } else {
                                         self.addToFutureInstallations(install)
                                     }
@@ -80,6 +80,23 @@ class MainViewModel: ObservableObject {
         }, set: {
             self.installationDictionary[date]![index] = $0
         })
+    }
+    
+    public func getInstallation(installation: Installation) -> Binding<Installation>? {
+        let keys = Array(installationDictionary.keys)
+//        let array = Array(installationDictionary.values)
+        for key in keys {
+            for (index, install) in installationDictionary[key]!.enumerated() {
+                if install.districtName == installation.districtName && install.schoolName == installation.schoolName {
+                    return Binding(get: {
+                        return self.installationDictionary[key]![index]
+                    }, set: {
+                        self.installationDictionary[key]![index] = $0
+                    })
+                }
+            }
+        }
+        return nil
     }
     
     public func updatePods(for installation: Installation, url: String, pods: [Pod]) {

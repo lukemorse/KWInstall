@@ -10,22 +10,41 @@ import SwiftUI
 
 struct CompletedView: View {
     
-    var completedInstallations: [Installation] = []
+    @EnvironmentObject var mainViewModel: MainViewModel
     
     var body: some View {
-        VStack {
-            if completedInstallations.isEmpty {
+        var completedInstalls: [Installation] = []
+        let districtArrays = Array(mainViewModel.installationDictionary.values)
+        for schoolArrays in districtArrays {
+            for installation in schoolArrays {
+                if installation.status == InstallationStatus.complete {
+                    completedInstalls.append(installation)
+                }
+            }
+        }
+        
+        return VStack {
+            if completedInstalls.isEmpty {
                 emptySection
             } else {
                 List {
-                    ForEach(0..<self.completedInstallations.count, id: \.self) {
-                        Text(self.completedInstallations[$0].schoolName)
-                            .font(.headline)
-                            .padding(10)
+                    ForEach(0..<completedInstalls.count, id: \.self) {index in
+                        VStack {
+                            self.getNavLink(installation: completedInstalls[index])
+                        }
+                        .padding()
                     }
                 }
             }
             Spacer()
+        }
+    }
+    
+    func getNavLink(installation: Installation) -> some View {
+        return NavigationLink(destination: InstallationView(
+            installation: self.mainViewModel.getInstallation(installation: installation) ?? .constant(installation)))
+         {
+            Text(installation.schoolName)
         }
     }
     
@@ -39,6 +58,6 @@ struct CompletedView: View {
 
 struct CompletedView_Previews: PreviewProvider {
     static var previews: some View {
-        CompletedView()
+        return CompletedView().environmentObject(MainViewModel())
     }
 }
