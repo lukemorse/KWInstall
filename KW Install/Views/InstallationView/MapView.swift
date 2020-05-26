@@ -10,32 +10,64 @@ import SwiftUI
 import MapKit
 
 struct MapView: UIViewRepresentable {
-    var centerCoordinate: CLLocationCoordinate2D
+    var address: String
+    
+    var tapCallback: (UITapGestureRecognizer, CLLocationCoordinate2D) -> Void
     
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         mapView.delegate = context.coordinator
-        centerToLocation(mapView: mapView, CLLocation(latitude: centerCoordinate.latitude, longitude: centerCoordinate.longitude))
+        mapView.addGestureRecognizer(UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap(sender:))))
+        
+        var schoolCoordinate = CLLocationCoordinate2D()
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            if let placemarks = placemarks {
+                let placemark = placemarks.first?.location
+                schoolCoordinate = placemark?.coordinate ?? CLLocation().coordinate
+                context.coordinator.schoolCoordinate = schoolCoordinate
+            }
+            self.centerToLocation(mapView: mapView, CLLocation(latitude: schoolCoordinate.latitude, longitude: schoolCoordinate.longitude))
+        }
         return mapView
     }
 
     func updateUIView(_ view: MKMapView, context: Context) {
 
     }
+    
+//    func getCoordinate() -> CLLocationCoordinate2D {
+//        if let coord = self.coordinate {
+//            return coord
+//        } else {
+//            return CLLocationCoordinate2D()
+//        }
+//    }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, tapCallback: self.tapCallback)
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
         var parent: MapView
+        var schoolCoordinate = CLLocationCoordinate2D()
+        var tapCallback: (UITapGestureRecognizer, CLLocationCoordinate2D) -> Void
 
-        init(_ parent: MapView) {
+        init(_ parent: MapView, tapCallback: @escaping (UITapGestureRecognizer, CLLocationCoordinate2D) -> Void) {
+            self.tapCallback = tapCallback
             self.parent = parent
         }
-        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-            parent.centerCoordinate = mapView.centerCoordinate
+        
+        @objc func handleTap(sender: UITapGestureRecognizer)
+        {
+            self.tapCallback(sender, self.schoolCoordinate)
         }
+//        func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+//            parent.centerco = mapView.centerCoordinate
+//        }
     }
     
     func centerToLocation(
@@ -65,6 +97,6 @@ extension MKPointAnnotation {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView(centerCoordinate: CLLocationCoordinate2D(latitude: 41.881832, longitude: -87.623177))
+        MapView(address: "600 s michigan ave", tapCallback: {(gesture, location) in })
     }
 }

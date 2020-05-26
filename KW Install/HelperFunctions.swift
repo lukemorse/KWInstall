@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
 
 func timeStampToDateString(_ timeStamp: Timestamp) -> String {
     let dateFormatter = DateFormatter()

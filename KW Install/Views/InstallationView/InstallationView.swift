@@ -21,10 +21,7 @@ struct InstallationView: View {
     var body: some View {
         VStack() {
             ScrollView {
-//                makeMap(geoPoint: installation.address)
-//                    .onTapGesture {
-//                        self.openMapsAppWithDirections(to: CLLocationCoordinate2D(latitude: self.installation.address.latitude, longitude: self.installation.address.longitude))
-//                }
+                mapView
                 
                 Text(installation.districtName + ": " + installation.schoolName)
                     .font(.title)
@@ -91,12 +88,18 @@ struct InstallationView: View {
         .pickerStyle(SegmentedPickerStyle())
     }
     
-//    func makeMap(geoPoint: GeoPoint) -> some View {
-//        return MapView(centerCoordinate: CLLocationCoordinate2D(latitude: installation.address.latitude, longitude: installation.address.longitude))
-//            .frame(height: 200)
-//            .edgesIgnoringSafeArea(.top)
+//    func makeMap(address: String) -> some View {
 //
 //    }
+    
+    var mapView: some View {
+        return MapView(address: self.installation.address) {
+            (gesture, location) in
+            self.openMapsAppWithDirections(to: location)
+        }
+        .frame(height: 200)
+        .edgesIgnoringSafeArea(.top)
+    }
     
     func openMapsAppWithDirections(to coordinate: CLLocationCoordinate2D) {
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]

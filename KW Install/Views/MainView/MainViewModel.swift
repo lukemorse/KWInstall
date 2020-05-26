@@ -8,7 +8,7 @@
 
 import SwiftUI
 import Combine
-import Firebase
+import FirebaseFirestore
 import CodableFirebase
 
 class MainViewModel: ObservableObject {
