@@ -142,31 +142,36 @@ class MainViewModel: ObservableObject {
         
         docRef.getDocument { (snapshot, error) in
             if let error = error {
-                print(error.localizedDescription)
+                print(error)
             }
             if let document = snapshot, document.exists {
                 do {
                     var district = try FirestoreDecoder().decode(District.self, from: document.data() ?? [:])
                     
                     //find index of installation
-                    var index = 0
+                    var index: Int?
                     for (testIndex, testInstall) in district.implementationPlan.enumerated() {
                         if testInstall.schoolName == installation.schoolName {
                             index = testIndex
                         }
                     }
                     //update implementation plan
-                    district.implementationPlan[index].status = installation.status
-                    
-                    //send district file to database
-                    let districtData = try! FirestoreEncoder().encode(district)
-                    docRef.setData(districtData) { error in
-                        if let error = error {
-                            print("Error writing document: \(error)")
-                            
-                        } else {
-                            print("Document successfully written!")
+                    if let index = index {
+                        district.implementationPlan[index].status = installation.status
+                        
+                        //send district file to database
+                        let districtData = try! FirestoreEncoder().encode(district)
+                        docRef.setData(districtData) { error in
+                            if let error = error {
+                                print("Error writing document: \(error)")
+                                
+                            } else {
+                                print("Document successfully written!")
+                            }
                         }
+                    }
+                    else {
+                        print("Error: could not find ")
                     }
                 } catch let error {
                     print(error.localizedDescription)

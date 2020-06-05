@@ -53,7 +53,7 @@
 		A3F61D13243D41C7003E6B32 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D12243D41C7003E6B32 /* Team.swift */; };
 		A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D18243E130B003E6B32 /* MainViewModel.swift */; };
 		AF4E855E24785359002F8E6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E855D24785359002F8E6C /* LoginView.swift */; };
-		AFB0C13124787DED0023BB06 /* ShowPodImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0C13024787DED0023BB06 /* ShowPodImageView.swift */; };
+		AFB0C13124787DED0023BB06 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0C13024787DED0023BB06 /* AsyncImage.swift */; };
 		AFC83A8124782E3700C02C10 /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC83A8024782E3700C02C10 /* LogInData.swift */; };
 		C421D8DA391899005E19BB29 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19030538E7CBE4179E897444 /* Pods_KW_Install.framework */; };
 /* End PBXBuildFile section */
@@ -116,7 +116,7 @@
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		AF4E855D24785359002F8E6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		AFB0C13024787DED0023BB06 /* ShowPodImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPodImageView.swift; sourceTree = "<group>"; };
+		AFB0C13024787DED0023BB06 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		AFC83A8024782E3700C02C10 /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -291,7 +291,7 @@
 				A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */,
 				A3DFBD4F245894020099A53C /* FloorPlanViewModel.swift */,
 				A3C35863243F810900C39162 /* FloorPlanDetailView.swift */,
-				AFB0C13024787DED0023BB06 /* ShowPodImageView.swift */,
+				AFB0C13024787DED0023BB06 /* AsyncImage.swift */,
 				A30A787F245A00F300271993 /* PodNodeView.swift */,
 				A3F1DFD22440F88B005494EE /* ImagePicker.swift */,
 			);
@@ -452,7 +452,7 @@
 				A3B38163243663590030582B /* SceneDelegate.swift in Sources */,
 				A3DFBD4C245891840099A53C /* SchoolType.swift in Sources */,
 				A394986324377F8E00C0B358 /* InstallationView.swift in Sources */,
-				AFB0C13124787DED0023BB06 /* ShowPodImageView.swift in Sources */,
+				AFB0C13124787DED0023BB06 /* AsyncImage.swift in Sources */,
 				A33A66762463169D000CFED1 /* ScrollableView.swift in Sources */,
 				A33A66792463169D000CFED1 /* RKMonthHeader.swift in Sources */,
 				A33A66772463169D000CFED1 /* RKWeekdayHeader.swift in Sources */,
