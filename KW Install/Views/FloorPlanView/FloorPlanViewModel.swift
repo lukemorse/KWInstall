@@ -34,9 +34,14 @@ class FloorPlanViewModel: ObservableObject {
         if let installation = installation {
             for (index, url) in installation.floorPlanUrls.enumerated() {
                 downloadImage(with: url)
-                if pods[index].isEmpty {
-                    self.pods[index] = installation.pods[url] ?? []
-                } else {
+                if index < pods.count {
+                    if pods[index].isEmpty {
+                        self.pods[index] = installation.pods[url] ?? []
+                    } else {
+                        self.pods.append(installation.pods[url] ?? [])
+                    }
+                }
+                else {
                     self.pods.append(installation.pods[url] ?? [])
                 }
             }
