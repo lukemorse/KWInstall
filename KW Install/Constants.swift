@@ -26,20 +26,16 @@ struct Constants {
         static let tabBar3 = "References"
     }
     
-    static let kFloorPlanCollection = "floorPlansCollection"
     static let kFloorPlanFolder = "floorPlansFolder"
     static let kPodImageFolder = "podImages"
+    
     static let kDistrictCollection = "districts"
     static let kTeamCollection = "teams"
+    static let kInstallationCollection = "installations"
+    static let kFloorPlanCollection = "floorPlansCollection"
+    static let kPodCollection = "pods"
+    static let kSalesUserCollection = "salesUsers"
+    static let kInstallationUserCollection = "installationUsers"
     
     static let kMasterAccountName = "brigittec"
-    
-    static let chicagoGeoPoint = GeoPoint(latitude: 41.8781, longitude: -87.6298)
-    
-    static var idiom : UIUserInterfaceIdiom { UIDevice.current.userInterfaceIdiom }
-    
-    static var rowHeight: Int { idiom == UIUserInterfaceIdiom.phone ? 10 : 20}
 }
-
-
-

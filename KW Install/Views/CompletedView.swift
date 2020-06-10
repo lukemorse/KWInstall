@@ -13,24 +13,16 @@ struct CompletedView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
     
     var body: some View {
-        var completedInstalls: [Installation] = []
-        let districtArrays = Array(mainViewModel.installationDictionary.values)
-        for schoolArray in districtArrays {
-            for installation in schoolArray {
-                if installation.status == InstallationStatus.complete {
-                    completedInstalls.append(installation)
-                }
-            }
-        }
+        let completedInstallations = Array(arrayLiteral: mainViewModel.team?.completedInstallations.values)
         
         return VStack {
-            if completedInstalls.isEmpty {
+            if completedInstallations.isEmpty {
                 emptySection
             } else {
                 List {
-                    ForEach(0..<completedInstalls.count, id: \.self) {index in
+                    ForEach(0..<completedInstallations.count, id: \.self) {index in
                         VStack {
-                            self.getNavLink(installation: completedInstalls[index])
+                            self.getNavLink(installation: completedInstallations[index])
                         }
                         .padding()
                     }
