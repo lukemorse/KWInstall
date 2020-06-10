@@ -23,14 +23,14 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
     }
     
     var body: some View {
-        Image(podImageDict[self.pod.podType] ?? "")
+        Image(podImageDict[pod.podType] ?? "")
             .resizable()
             .scaledToFit()
             .frame(
-                width: self.pod.podType == .horizontal_hallway ? 7.5 : 5,
-                height: self.pod.podType == .vertical_hallway ? 7.5 : 5)
+                width: pod.podType == .horizontal_hallway ? 7.5 : 5,
+                height: pod.podType == .vertical_hallway ? 7.5 : 5)
             .position(pod.position)
-            .colorMultiply(self.pod.isComplete ? Color.green : Color.red)
+            .colorMultiply(pod.isComplete ? Color.green : Color.red)
     }
     
 
