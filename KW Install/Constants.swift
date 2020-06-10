@@ -31,7 +31,8 @@ struct Constants {
     static let kPodImageFolder = "podImages"
     static let kDistrictCollection = "districts"
     static let kTeamCollection = "teams"
-    static let kImplementationPlanCollection = "implementationPlans"
+    
+    static let kMasterAccountName = "brigittec"
     
     static let chicagoGeoPoint = GeoPoint(latitude: 41.8781, longitude: -87.6298)
     

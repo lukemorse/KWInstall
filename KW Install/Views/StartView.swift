@@ -25,6 +25,9 @@ struct StartView: View {
                         if let teamDocID = LogInData.teamDocIdDict[adjustedUsername] {
                             self.mainViewModel.teamDocID = teamDocID
                         }
+                        if adjustedUsername == Constants.kMasterAccountName {
+                            self.mainViewModel.isMasterAccount = true
+                        }
                     }
                 }
                 self.setLoggedIn(newVal: result)

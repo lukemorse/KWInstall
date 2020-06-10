@@ -15,8 +15,8 @@ struct CompletedView: View {
     var body: some View {
         var completedInstalls: [Installation] = []
         let districtArrays = Array(mainViewModel.installationDictionary.values)
-        for schoolArrays in districtArrays {
-            for installation in schoolArrays {
+        for schoolArray in districtArrays {
+            for installation in schoolArray {
                 if installation.status == InstallationStatus.complete {
                     completedInstalls.append(installation)
                 }

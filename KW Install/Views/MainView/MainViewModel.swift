@@ -14,11 +14,11 @@ import CodableFirebase
 class MainViewModel: ObservableObject {
     
     @Published var team: Team?
-//    @Published var completedInstallations: [Installation] = []
     @Published var installationDictionary: [Date: [Installation]] = [:]
     var teamDocID = ""
+    var isMasterAccount = false
     
-    private func addToFutureInstallations(_ install: Installation) {
+    private func addToInstallationDict(_ install: Installation) {
         let date = removeTimeStamp(fromDate: install.date)
         //add to installation dictionary under appropriate key ...
         if self.installationDictionary[date] == nil {
@@ -30,6 +30,10 @@ class MainViewModel: ObservableObject {
     }
     
     public func fetchTeamData() {
+        if isMasterAccount {
+            self.fetchInstallations()
+            return
+        }
         Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -56,12 +60,8 @@ class MainViewModel: ObservableObject {
                         //only continue to add if ready to install
                         if district.readyToInstall {
                             for install in district.implementationPlan {
-                                if install.team.name == self.team?.name {
-                                    if install.status == .complete {
-//                                        self.completedInstallations.append(install)
-                                    } else {
-                                        self.addToFutureInstallations(install)
-                                    }
+                                if install.team.name == self.team?.name || self.isMasterAccount {
+                                    self.addToInstallationDict(install)
                                 }
                             }
                         }

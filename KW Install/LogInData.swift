@@ -11,6 +11,7 @@ import Foundation
 class LogInData {
     
     static let data = [
+        "brigittec"  : "0404",
         "brandonz"  : "0022",
         "johne"     : "0011",
         "alizairs"  : "0033",

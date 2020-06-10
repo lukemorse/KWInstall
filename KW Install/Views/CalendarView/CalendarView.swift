@@ -20,7 +20,6 @@ struct CalendarView : View {
         Group {
             installationListView
             RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
-            //            self.mainViewModel.
         }
         .onAppear() {
             self.floorPlanViewModel.reset()
