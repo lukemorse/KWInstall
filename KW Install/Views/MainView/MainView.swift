@@ -11,7 +11,6 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var viewModel: MainViewModel
-    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
     @State var selected = 0
     
     var body: some View {
@@ -99,8 +98,8 @@ struct MainView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView().environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView().environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
+//    }
+//}

@@ -13,10 +13,15 @@ import MessageUI
 
 struct InstallationView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
-    @EnvironmentObject var floorplanViewModel: FloorPlanViewModel
+    @ObservedObject var viewModel: InstallationViewModel
     @Binding var installation: Installation
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
+    
+    init(schoolName: String, docID: String) {
+        let viewModel = InstallationViewModel(schoolName: schoolName, docID: docID)
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack() {
@@ -67,9 +72,6 @@ struct InstallationView: View {
             }
         }
         .padding()
-        .onAppear() {
-            self.floorplanViewModel.installation = self.installation
-        }
     }
     
     var statusPicker: some View {
@@ -77,7 +79,7 @@ struct InstallationView: View {
             get: {return self.installation.status},
             set: {
                 self.installation.status = $0
-                self.mainViewModel.updateInstallationStatus(for: self.installation)
+                self.mainViewModel.updateInstallationStatus(for: self.installation.uid, status: $0)
         })
         
         return Picker(selection: stati, label: Text("Status")) {
@@ -111,8 +113,8 @@ struct InstallationView: View {
     
 }
 
-struct InstallationView_Previews: PreviewProvider {
-    static var previews: some View {
-        InstallationView(installation: .constant(Installation())).environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
-    }
-}
+//struct InstallationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        InstallationView(installation: .constant(Installation())).environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
+//    }
+//}

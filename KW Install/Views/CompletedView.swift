@@ -13,30 +13,33 @@ struct CompletedView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
     
     var body: some View {
-        let completedInstallations = Array(arrayLiteral: mainViewModel.team?.completedInstallations.values)
+        if let completedInstallations = mainViewModel.team?.completedInstallations {
         
-        return VStack {
+        return AnyView(VStack {
             if completedInstallations.isEmpty {
                 emptySection
             } else {
                 List {
-                    ForEach(0..<completedInstallations.count, id: \.self) {index in
+                    ForEach(completedInstallations.keys.sorted(), id: \.self) {key in
                         VStack {
-                            self.getNavLink(installation: completedInstallations[index])
+                            self.getNavLink(schoolName: key, docID: completedInstallations[key] ?? "")
                         }
                         .padding()
                     }
                 }
             }
+            
             Spacer()
+            })
         }
+        return AnyView(emptySection)
     }
     
-    func getNavLink(installation: Installation) -> some View {
-        return NavigationLink(destination: InstallationView(
-            installation: self.mainViewModel.getInstallation(installation: installation) ?? .constant(installation)))
+    func getNavLink(schoolName: String, docID: String) -> some View {
+        return
+            NavigationLink(destination: InstallationView(schoolName: schoolName, docID: docID))
          {
-            Text(installation.schoolName)
+            Text(schoolName)
         }
     }
     

@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct FloorPlanGridView: View {
-    @EnvironmentObject var viewModel: FloorPlanViewModel
+    @ObservedObject var viewModel: FloorPlanViewModel
     @State var pushDetailView = false
     @State var selectedImageIndex = 0
     @State var selection: Int?

@@ -16,6 +16,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     }
     
     var id: Int {hashValue}
+    let uid: String
     var team: Team
     var status: InstallationStatus
     var schoolType: SchoolType
@@ -32,6 +33,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     var floorPlanUrls: [String]
     
     init() {
+        self.uid = UUID().uuidString
         self.status = .notStarted
         self.team = Team()
         self.schoolType = .elementary
@@ -49,7 +51,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     }
     
     private enum CodingKeys: String, CodingKey {
-        
+        case uid
         case status
         case team
         case schoolType
@@ -68,6 +70,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(uid, forKey: .uid)
         try container.encode(team, forKey: .team)
         try container.encode(status, forKey: .status)
         try container.encode(schoolType.description, forKey: .schoolType)
@@ -88,6 +91,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
 extension Installation: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        uid = try container.decode(String.self, forKey: .uid)
         status = try container.decode(InstallationStatus.self, forKey: .status)
         team = try container.decode(Team.self, forKey: .team)
         address = try container.decode(String.self, forKey: .address)

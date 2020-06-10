@@ -30,7 +30,7 @@ struct Team: Encodable, Hashable, Identifiable {
          leader: User = User(uid: "", name: "", email: "", phone: ""),
          members: [User] = [],
          installations: [Date: [String:String]] = [:],
-         completedInstallations: [String:String]) {
+         completedInstallations: [String:String] = [:]) {
         self.name = name
         self.leader = leader
         self.members = members

@@ -14,10 +14,9 @@ import SwiftUI
 
 struct FloorPlanDetailView: View {
     
-    
     let floorPlanImage: Image
     let floorPlanIndex: Int
-    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
+    @ObservedObject var floorPlanViewModel: FloorPlanViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     
     @State var tappedPodIndex: Int?
@@ -98,9 +97,8 @@ struct FloorPlanDetailView: View {
     
     var saveButton: some View {
         Button(action: {
-            if let installation = self.floorPlanViewModel.installation {
-                self.mainViewModel.updatePods(for: installation, url: installation.floorPlanUrls[self.floorPlanIndex], pods: self.floorPlanViewModel.pods[self.floorPlanIndex])
-            }
+            let installation = self.floorPlanViewModel.installation
+            self.mainViewModel.updatePods(for: installation.floorPlanUrls[self.floorPlanIndex], pods: self.floorPlanViewModel.pods[self.floorPlanIndex])
         }) {
             Text("Save")
                 .foregroundColor(Color.blue)
@@ -121,7 +119,6 @@ struct FloorPlanDetailView: View {
                             self.activeSheet = ActiveSheet.camera
                             self.showSheet = true
                         }
-                        
                 }
             }
         }

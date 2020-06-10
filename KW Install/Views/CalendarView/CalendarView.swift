@@ -12,8 +12,6 @@ import Firebase
 struct CalendarView : View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
-    @EnvironmentObject var floorPlanViewModel: FloorPlanViewModel
-    
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     
     var body: some View {
@@ -21,26 +19,24 @@ struct CalendarView : View {
             installationListView
             RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
         }
-        .onAppear() {
-            self.floorPlanViewModel.reset()
-        }
     }
     
     var installationListView : some View {
-        if let arr = mainViewModel.installationDictionary[self.rkManager.selectedDate] {
+        let arr = mainViewModel.getInstallationArray(date: self.rkManager.selectedDate)
             if arr.count > 0 {
                 return AnyView(
                     List {
                         ForEach(0..<arr.count, id: \.self) {index in
                             VStack {
-                                self.getNavLink(index: index, label: arr[index].schoolName)
+                                Text(arr[index])
+//                                self.getNavLink(index: index, label: arr[index].schoolName)
                             }
                             .padding()
                         }
                     }
                 )
             }
-        }
+        
         
         return AnyView(List {
             Text("No Installations")
@@ -49,11 +45,10 @@ struct CalendarView : View {
         })
     }
     
-    func getNavLink(index: Int, label: String) -> some View {
-        return NavigationLink(destination: InstallationView(
-            installation: self.mainViewModel.getInstallation(date: self.rkManager.selectedDate, index: index)
-        )) {
-            Text(label)
+    func getNavLink(schoolName: String, docID: String) -> some View {
+        return NavigationLink(destination: InstallationView(schoolName: schoolName, docID: docID)
+        ) {
+            Text(schoolName)
         }
     }
     

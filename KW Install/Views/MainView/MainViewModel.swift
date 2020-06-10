@@ -115,6 +115,25 @@ class MainViewModel: ObservableObject {
         let docRef = Firestore.firestore().collection(Constants.kInstallationCollection).document(docPath)
         docRef.setData(["status": status], merge: true)
     }
+    
+    public func getInstallationArray(date: Date) -> [String] {
+        var result: [String] = []
+        if let team = team {
+            if let arr = team.installations[date] {
+                result = Array(arr.values)
+            }
+        }
+        return result
+    }
+    
+    public func getCompletedInstallations() -> [String] {
+        var result: [String] = []
+        if let team = team {
+            for (schoolName, _) in team.completedInstallations {
+                result.append(schoolName)
+            }
+        }
+    }
 }
 
 
