@@ -133,6 +133,7 @@ class MainViewModel: ObservableObject {
                 result.append(schoolName)
             }
         }
+        return result
     }
 }
 

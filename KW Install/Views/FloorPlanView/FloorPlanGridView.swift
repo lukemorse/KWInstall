@@ -10,67 +10,54 @@
 import SwiftUI
 
 struct FloorPlanGridView: View {
-    @ObservedObject var viewModel: FloorPlanViewModel
-    @State var pushDetailView = false
-    @State var selectedImageIndex = 0
+    let urls: [URL]
+    @Environment(\.imageCache) var cache: ImageCache
     @State var selection: Int?
+    @State var pushDetailView = false
+    @State var isLoading = false
     
     var body : some View {
-        VStack {
+        let urlArray = urls.chunked(into: 3)
+        return VStack {
             GeometryReader { geometry in
-                List {
-                    if self.viewModel.floorPlanThumbnails.count > 0 {
-                        ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3).count) { row in // create number of rows
+                ScrollView(.vertical, showsIndicators: true) {
+                    VStack {
+                        // create number of rows
+                        ForEach(0..<urlArray.count, id: \.self) { row in
                             HStack {
-                                ForEach(0..<self.viewModel.floorPlanThumbnails.chunked(into: 3)[row].count, id: \.self) { column in // create 3 columns
-                                    
-                                    Image(uiImage: self.viewModel.floorPlanThumbnails[column])
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: geometry.size.width / 3.5)
-                                        .onTapGesture {
-                                            self.selectedImageIndex = row * 3 + column
-                                            self.selection = row * 3 + column
-                                            self.pushDetailView = true
-                                    }
+                                // create 2 columns
+                                ForEach(0..<urlArray[row].count, id: \.self) { column in
+                                    self.getNavLink(index: row * 2 + column, size: geometry.size)
                                 }
-                            }
+                            }.padding()
                         }
                     }
-                    else {
-                        EmptyView()
-                    }
                 }
+                .frame(width: geometry.size.width)
             }
             .frame(height: 300)
             .padding()
-//            getNavLink()
-            navLink
         }
         .onAppear() {
             self.selection = nil
-            if self.viewModel.floorPlanThumbnails.isEmpty {
-                self.viewModel.getFloorPlans()
-            }
         }
     }
     
-    
-//    func getNavLink() -> some View {
-//        
-//        return NavigationLink(destination: self.viewModel.floorPlanThumbnails.count > 0 ? AnyView(FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), viewModel: self.viewModel, index: self.selectedImageIndex)) : AnyView(Text("error")), tag: self.selectedImageIndex, selection: self.$selection) {
-//            Text("link").hidden()
-//        }
-//    }
-    
-    var navLink : some View {
-        if self.viewModel.floorPlanThumbnails.count > 0 {
-            return AnyView(NavigationLink("", destination: FloorPlanDetailView(with: Image(uiImage: self.viewModel.floorPlanThumbnails[self.selectedImageIndex]), index: self.selectedImageIndex)
-//                .environmentObject(self.viewModel)
-                , isActive: self.$pushDetailView).hidden())
-        } else {
-            return AnyView(EmptyView())
+    func getNavLink(index: Int, size: CGSize) -> some View {
+        let asyncImage = AsyncImage(url: urls[index], cache: self.cache, placeholder: Text("Loading...").padding(), configuration:
+        {$0.resizable()})
+        
+        return NavigationLink(destination: FloorPlanDetailView(with: FloorPlanViewModel(url: urls[index])), tag: index, selection: $selection) {
+            asyncImage
+                .aspectRatio(contentMode: .fit)
+                .border(Color.black)
+                .frame(width: size.width / 2.5)
+                .onTapGesture {
+                    self.selection = index
+            }
         }
+        .buttonStyle(PlainButtonStyle())
+        .inExpandingRectangle()
     }
     
 }

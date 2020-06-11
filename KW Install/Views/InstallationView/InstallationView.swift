@@ -14,12 +14,10 @@ import MessageUI
 struct InstallationView: View {
     @EnvironmentObject var mainViewModel: MainViewModel
     @ObservedObject var viewModel: InstallationViewModel
-    @Binding var installation: Installation
     @State var mailResult: Result<MFMailComposeResult, Error>? = nil
     @State var isShowingMailView = false
     
-    init(schoolName: String, docID: String) {
-        let viewModel = InstallationViewModel(schoolName: schoolName, docID: docID)
+    init(viewModel: InstallationViewModel) {
         self.viewModel = viewModel
     }
     
@@ -28,7 +26,7 @@ struct InstallationView: View {
             ScrollView {
                 mapView
                 
-                Text(installation.districtName + ": " + installation.schoolName)
+                Text(viewModel.installation.districtName + ": " + viewModel.installation.schoolName)
                     .font(.title)
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 10.0)
@@ -41,12 +39,12 @@ struct InstallationView: View {
                 statusPicker
                 
                 Group {
-                    Text("School Contact Person: " + installation.schoolContact)
+                    Text("School Contact Person: " + viewModel.installation.schoolContact)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("District Contact Person: " + installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of Floors: " + String(installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of Rooms: " + String(installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of KW-PODS Needed: " + String(installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("District Contact Person: " + viewModel.installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of Floors: " + String(viewModel.installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of Rooms: " + String(viewModel.installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
+                    Text("Number of KW-PODS Needed: " + String(viewModel.installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .padding(.vertical, 10.0)
                 
@@ -63,23 +61,28 @@ struct InstallationView: View {
                 }
                 .disabled(!MFMailComposeViewController.canSendMail())
                 .sheet(isPresented: $isShowingMailView) {
-                    MailView(emails: [self.installation.email], result: self.$mailResult)
+                    MailView(emails: [self.viewModel.installation.email], result: self.$mailResult)
                 }
                 
                 Text("Floorplans:")
-                FloorPlanGridView()
+                floorPlanGridView
                 Spacer()
             }
         }
         .padding()
     }
     
+    var floorPlanGridView: some View {
+        let urls = viewModel.installation.floorPlanUrls.compactMap { URL(string: $0) }
+        return FloorPlanGridView(urls: urls)
+    }
+    
     var statusPicker: some View {
         let stati = Binding<InstallationStatus>(
-            get: {return self.installation.status},
+            get: {return self.viewModel.installation.status},
             set: {
-                self.installation.status = $0
-                self.mainViewModel.updateInstallationStatus(for: self.installation.uid, status: $0)
+                self.viewModel.installation.status = $0
+                self.mainViewModel.updateInstallationStatus(for: self.viewModel.installation.uid, status: $0)
         })
         
         return Picker(selection: stati, label: Text("Status")) {
@@ -95,7 +98,7 @@ struct InstallationView: View {
 //    }
     
     var mapView: some View {
-        return MapView(address: self.installation.address) {
+        return MapView(address: self.viewModel.installation.address) {
             (gesture, location) in
             self.openMapsAppWithDirections(to: location)
         }
@@ -107,7 +110,7 @@ struct InstallationView: View {
         let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = installation.schoolName
+        mapItem.name = viewModel.installation.schoolName
         mapItem.openInMaps(launchOptions: options)
     }
     

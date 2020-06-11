@@ -6,16 +6,14 @@
 //  Copyright © 2020 Luke Morse. All rights reserved.
 //
 
-enum ActiveSheet {
-   case camera, imageView
-}
+
 
 import SwiftUI
 
 struct FloorPlanDetailView: View {
     
-    let floorPlanImage: Image
-    let floorPlanIndex: Int
+    @Environment(\.imageCache) var cache: ImageCache
+    
     @ObservedObject var floorPlanViewModel: FloorPlanViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     
@@ -33,17 +31,15 @@ struct FloorPlanDetailView: View {
     @State var dragSize: CGSize = CGSize.zero
     @State var lastDrag: CGSize = CGSize.zero
     
-    init(with floorPlanImage: Image, index: Int) {
-        self.floorPlanImage = floorPlanImage
-        self.floorPlanIndex = index
+    init(with floorPlanViewModel: FloorPlanViewModel) {
+        self.floorPlanViewModel = floorPlanViewModel
     }
     
     var body: some View {
         
         GeometryReader { geometry in
             ZStack {
-                self.floorPlanImage
-                        .resizable()
+                AsyncImage(url: self.floorPlanViewModel.url, cache: self.cache, placeholder: Text("Loading..."), configuration: {$0.resizable()})
                     self.podGroup
                 }
                 .scaledToFit()
@@ -70,26 +66,25 @@ struct FloorPlanDetailView: View {
                             self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
                             self.lastDrag = self.dragSize
                         }))
-            
-            .sheet(isPresented: self.$showSheet) {
-                if self.activeSheet == ActiveSheet.camera {
-                    ImagePicker(sourceType: .camera) { image in
-                        self.image = Image(uiImage: image)
-                        self.floorPlanViewModel.uploadPodImage(image: image, floorNumber: self.floorPlanIndex, podType: self.floorPlanViewModel.pods[self.floorPlanIndex][self.tappedPodIndex ?? 0].podType.description) { (url) in
-                            //store URL in Pod model
+                
+                .sheet(isPresented: self.$showSheet) {
+                    if self.activeSheet == ActiveSheet.camera {
+                        ImagePicker(sourceType: .camera) { image in
                             if let podIndex = self.tappedPodIndex {
-                                self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].imageUrl = url
-                                self.floorPlanViewModel.pods[self.floorPlanIndex][podIndex].isComplete = true
-                                self.tappedPodIndex = nil
+                                self.image = Image(uiImage: image)
+                                self.floorPlanViewModel.uploadPodImage(image: image, podType: self.floorPlanViewModel.pods[podIndex].podType.description) { url in
+                                    self.floorPlanViewModel.pods[podIndex].imageUrl = url
+                                    self.floorPlanViewModel.pods[podIndex].isComplete = true
+                                    self.tappedPodIndex = nil
+                                }
                             }
                         }
+                    } else {
+                        AsyncImage(
+                            url: URL(string: self.showPodUrl!)!,
+                            placeholder: Text("Loading ...")
+                        )
                     }
-                } else {
-                    AsyncImage(
-                        url: URL(string: self.showPodUrl!)!,
-                        placeholder: Text("Loading ...")
-                    )
-                }
             }
         }
         .navigationBarItems(trailing: saveButton)
@@ -97,8 +92,7 @@ struct FloorPlanDetailView: View {
     
     var saveButton: some View {
         Button(action: {
-            let installation = self.floorPlanViewModel.installation
-            self.mainViewModel.updatePods(for: installation.floorPlanUrls[self.floorPlanIndex], pods: self.floorPlanViewModel.pods[self.floorPlanIndex])
+            self.floorPlanViewModel.setPods(docID: self.floorPlanViewModel.url.absoluteString)
         }) {
             Text("Save")
                 .foregroundColor(Color.blue)
@@ -107,15 +101,15 @@ struct FloorPlanDetailView: View {
     
     var podGroup: some View {
         Group {
-            ForEach (0..<self.floorPlanViewModel.pods[self.floorPlanIndex].count, id: \.self) { idx in
-                PodNodeView(pod: self.floorPlanViewModel.pods[self.floorPlanIndex][idx])
+            ForEach (0..<self.floorPlanViewModel.pods.count, id: \.self) { index in
+                PodNodeView(pod: self.floorPlanViewModel.pods[index])
                     .onTapGesture {
-                        if (self.floorPlanViewModel.pods[self.floorPlanIndex][idx].isComplete) {
-                            self.showPodUrl = self.floorPlanViewModel.pods[self.floorPlanIndex][idx].imageUrl
+                        if (self.floorPlanViewModel.pods[index].isComplete) {
+                            self.showPodUrl = self.floorPlanViewModel.pods[index].imageUrl
                             self.activeSheet = ActiveSheet.imageView
                             self.showSheet = true
                         } else {
-                            self.tappedPodIndex = idx
+                            self.tappedPodIndex = index
                             self.activeSheet = ActiveSheet.camera
                             self.showSheet = true
                         }
@@ -149,6 +143,10 @@ struct FloorPlanDetailView: View {
         }
         
         return CGSize(width: resultWidth, height: resultHeight)
+    }
+    
+    private enum ActiveSheet {
+       case camera, imageView
     }
 }
 

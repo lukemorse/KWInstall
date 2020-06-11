@@ -6,7 +6,7 @@
 //  Copyright © 2020 Luke Morse. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import FirebaseFirestore
 
 func timeStampToDateString(_ timeStamp: Timestamp) -> String {
@@ -34,6 +34,16 @@ extension Array {
     func chunked(into size: Int) -> [[Element]] {
         return stride(from: 0, to: count, by: size).map {
             Array(self[$0 ..< Swift.min($0 + size, count)])
+        }
+    }
+}
+
+extension View {
+    func inExpandingRectangle() -> some View {
+        ZStack {
+            Rectangle()
+                .fill(Color.clear)
+            self
         }
     }
 }

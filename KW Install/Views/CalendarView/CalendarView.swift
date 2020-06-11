@@ -46,7 +46,7 @@ struct CalendarView : View {
     }
     
     func getNavLink(schoolName: String, docID: String) -> some View {
-        return NavigationLink(destination: InstallationView(schoolName: schoolName, docID: docID)
+        return NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: schoolName, docID: docID))
         ) {
             Text(schoolName)
         }

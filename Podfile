@@ -10,5 +10,5 @@ target 'KW Install' do
     pod 'Firebase/Firestore'
     pod 'CodableFirebase'
     pod 'Introspect'
-    pod 'Kingfisher'
+#    pod 'Kingfisher'
 end
