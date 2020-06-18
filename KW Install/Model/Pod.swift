@@ -46,13 +46,7 @@ extension Pod: Decodable {
         podType = try container.decode(PodType.self, forKey: .podType)
         position = try container.decode(CGPoint.self, forKey: .position)
         isComplete = try container.decode(Bool.self, forKey: .isComplete)
-//        imageUrl = try container.decode(String.self, forKey: .imageUrl)
-        
-        if container.contains(.imageUrl) {
-            self.imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
-        } else {
-            self.imageUrl = nil
-        }
+        imageUrl = try container.decodeIfPresent(String.self, forKey: .imageUrl)
     }
 }
 

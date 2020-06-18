@@ -8,6 +8,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import CodableFirebase
 
 func timeStampToDateString(_ timeStamp: Timestamp) -> String {
     let dateFormatter = DateFormatter()
@@ -47,3 +48,8 @@ extension View {
         }
     }
 }
+
+extension DocumentReference: DocumentReferenceType {}
+extension GeoPoint: GeoPointType {}
+extension FieldValue: FieldValueType {}
+extension Timestamp: TimestampType {}

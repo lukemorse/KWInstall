@@ -16,13 +16,14 @@ struct Installation: Encodable, Identifiable, Hashable  {
     }
     
     var id: Int {hashValue}
-    let uid: String
+    let installationID: String
     var team: Team
     var status: InstallationStatus
     var schoolType: SchoolType
     var address: String
     var districtContact: String
     var districtName: String
+    var districtID: String
     var schoolContact: String
     var schoolName: String
     var email: String
@@ -32,14 +33,15 @@ struct Installation: Encodable, Identifiable, Hashable  {
     var date: Date
     var floorPlanUrls: [String]
     
-    init() {
-        self.uid = UUID().uuidString
+    init(districtID: String) {
+        self.installationID = UUID().uuidString
         self.status = .notStarted
         self.team = Team()
         self.schoolType = .elementary
         self.address = ""
         self.districtContact = ""
         self.districtName = ""
+        self.districtID = districtID
         self.schoolContact = ""
         self.schoolName = ""
         self.email = ""
@@ -51,13 +53,15 @@ struct Installation: Encodable, Identifiable, Hashable  {
     }
     
     private enum CodingKeys: String, CodingKey {
-        case uid
+        
+        case installationID
         case status
         case team
         case schoolType
         case address
         case districtContact
         case districtName
+        case districtID
         case schoolContact
         case schoolName
         case email
@@ -70,13 +74,14 @@ struct Installation: Encodable, Identifiable, Hashable  {
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(uid, forKey: .uid)
+        try container.encode(installationID, forKey: .installationID)
         try container.encode(team, forKey: .team)
         try container.encode(status, forKey: .status)
         try container.encode(schoolType.description, forKey: .schoolType)
         try container.encode(address, forKey: .address)
         try container.encode(districtContact, forKey: .districtContact)
         try container.encode(districtName, forKey: .districtName)
+        try container.encode(districtID, forKey: .districtID)
         try container.encode(schoolContact, forKey: .schoolContact)
         try container.encode(schoolName, forKey: .schoolName)
         try container.encode(email, forKey: .email)
@@ -91,12 +96,13 @@ struct Installation: Encodable, Identifiable, Hashable  {
 extension Installation: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        uid = try container.decode(String.self, forKey: .uid)
+        installationID = try container.decode(String.self, forKey: .installationID)
         status = try container.decode(InstallationStatus.self, forKey: .status)
         team = try container.decode(Team.self, forKey: .team)
         address = try container.decode(String.self, forKey: .address)
         districtContact = try container.decode(String.self, forKey: .districtContact)
         districtName = try container.decode(String.self, forKey: .districtName)
+        districtID = try container.decode(String.self, forKey: .districtID)
         schoolContact = try container.decode(String.self, forKey: .schoolContact)
         schoolName = try container.decode(String.self, forKey: .schoolName)
         email = try container.decode(String.self, forKey: .email)
@@ -115,11 +121,6 @@ extension Installation: Decodable {
         }
     }
 }
-
-extension DocumentReference: DocumentReferenceType {}
-extension GeoPoint: GeoPointType {}
-extension FieldValue: FieldValueType {}
-extension Timestamp: TimestampType {}
 
 enum InstallationStatus: Int, Codable, CaseIterable, Hashable, Identifiable {
     var id: Int { hashValue }

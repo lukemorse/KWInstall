@@ -13,33 +13,30 @@ import CodableFirebase
 struct Team: Encodable, Hashable, Identifiable {
     var id: Int { hashValue }
     
-    let name: String
+    var name: String
     let leader: User
     let members: [User]
-    var installations: [Date: [String:String]]
-    var completedInstallations: [String:String]
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(name)
         hasher.combine(leader)
         hasher.combine(members)
-        hasher.combine(installations)
     }
     
     init(name: String = "",
          leader: User = User(uid: "", name: "", email: "", phone: ""),
          members: [User] = [],
-         installations: [Date: [String:String]] = [:],
-         completedInstallations: [String:String] = [:]) {
+         installations: [Installation] = []) {
         self.name = name
         self.leader = leader
         self.members = members
-        self.installations = installations
-        self.completedInstallations = completedInstallations
     }
     
     private enum CodingKeys: String, CodingKey {
-        case name, leader, members, installations, completedInstallations
+        case name
+        case leader
+        case members
+        case installations
     }
     
     func encode(to encoder: Encoder) throws {
@@ -47,8 +44,6 @@ struct Team: Encodable, Hashable, Identifiable {
         try container.encode(name, forKey: .name)
         try container.encode(leader, forKey: .leader)
         try container.encode(members, forKey: .members)
-        try container.encode(installations, forKey: .installations)
-        try container.encode(completedInstallations, forKey: .completedInstallations)
     }
 }
 
@@ -58,7 +53,5 @@ extension Team: Decodable {
         name = try container.decode(String.self, forKey: .name)
         leader = try container.decode(User.self, forKey: .leader)
         members = try container.decode([User].self, forKey: .members)
-        installations = try container.decode([Date: [String:String]].self, forKey: .installations)
-        completedInstallations = try container.decode([String:String].self, forKey: .completedInstallations)
     }
 }

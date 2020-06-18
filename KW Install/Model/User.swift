@@ -5,7 +5,6 @@
 //  Created by Luke Morse on 4/7/20.
 //  Copyright © 2020 Luke Morse. All rights reserved.
 //
-
 import Foundation
 
 struct User: Encodable, Hashable, Equatable {
@@ -39,9 +38,8 @@ extension User: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         uid = try container.decode(String.self, forKey: .uid)
-        name = try container.decode(String.self, forKey: .name)
+        name = try container.decode(String.self, forKey: .uid)
         email = try container.decode(String.self, forKey: .email)
         phone = try container.decode(String.self, forKey: .phone)
     }
 }
-
