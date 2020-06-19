@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>772290123232-5q9udd87q4r93ngf06ocuaresgbf9vf0.apps.googleusercontent.com</string>
+	<string>607053149780-h6jp81n0uhf7lrsgpr50e0j8s4olk497.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.772290123232-5q9udd87q4r93ngf06ocuaresgbf9vf0</string>
+	<string>com.googleusercontent.apps.607053149780-h6jp81n0uhf7lrsgpr50e0j8s4olk497</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBq75PWlmWl8LEwNcYQzZUbpBLqT3LVeUc</string>
+	<string>AIzaSyCjRFEmJ2zvG6jsPyCEtyYhiRiNm5JDyXo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>772290123232</string>
+	<string>607053149780</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.lukemorse.KW-Install</string>
+	<string>com.lukemorse.KW-Install-Test</string>
 	<key>PROJECT_ID</key>
-	<string>kw-install</string>
+	<string>kw-install-testing</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kw-install.appspot.com</string>
+	<string>kw-install-testing.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:772290123232:ios:f20baae08e19c1bf86c785</string>
+	<string>1:607053149780:ios:d9742d24be5140d3931fc1</string>
 	<key>DATABASE_URL</key>
-	<string>https://kw-install.firebaseio.com</string>
+	<string>https://kw-install-testing.firebaseio.com</string>
 </dict>
 </plist>

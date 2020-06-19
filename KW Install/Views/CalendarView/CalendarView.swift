@@ -13,6 +13,7 @@ struct CalendarView : View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
+    @State var isLoading = false
     
     var body: some View {
         Group {
@@ -22,34 +23,32 @@ struct CalendarView : View {
     }
     
     var installationListView : some View {
-        let arr = mainViewModel.getInstallationArray(date: self.rkManager.selectedDate)
-            if arr.count > 0 {
-                return AnyView(
-                    List {
-                        ForEach(0..<arr.count, id: \.self) {index in
-                            VStack {
-                                Text(arr[index])
-//                                self.getNavLink(index: index, label: arr[index].schoolName)
-                            }
-                            .padding()
-                        }
-                    }
-                )
-            }
-        
-        
-        return AnyView(List {
-            Text("No Installations")
-                .padding()
-            
-        })
-    }
-    
-    func getNavLink(schoolName: String, docID: String) -> some View {
-        return NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: schoolName, docID: docID))
-        ) {
-            Text(schoolName)
+        self.isLoading = true
+        var array: [Installation] = []
+        mainViewModel.fetchInstallations(for: self.rkManager.selectedDate) {installations in
+            array = installations
+            self.isLoading = false
         }
+        if array.count > 0 {
+            return AnyView(
+                List {
+                    ForEach(array, id: \.self) {install in
+                        VStack {
+                            NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: install.schoolName, districtID: install.districtID, docID: install.installationID))
+                            ) {
+                                Text(install.schoolName)
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            )
+        }
+
+        return AnyView(List {
+            Text(isLoading ? "Loading..." : "No Installations")
+                .padding()
+        })
     }
     
     func dateToString(_ date: Date) -> String {

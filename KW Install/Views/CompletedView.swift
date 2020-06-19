@@ -11,42 +11,33 @@ import SwiftUI
 struct CompletedView: View {
     
     @EnvironmentObject var mainViewModel: MainViewModel
+    @State var installs: [Installation] = []
+    @State var isLoading = false
     
     var body: some View {
-        if let completedInstallations = mainViewModel.team?.completedInstallations {
+        //        if let completedInstallations = mainViewModel.team?.completedInstallations {
+        isLoading = true
+        mainViewModel.fetchCompletedInstallations() { installs in
+            self.installs = installs
+            self.isLoading = false
+        }
         
-        return AnyView(VStack {
-            if completedInstallations.isEmpty {
-                emptySection
-            } else {
-                List {
-                    ForEach(completedInstallations.keys.sorted(), id: \.self) {key in
-                        VStack {
-                            self.getNavLink(schoolName: key, docID: completedInstallations[key] ?? "")
+        if installs.count > 0 {
+            return
+                AnyView(List {
+                    ForEach(installs, id: \.self) {install in
+                        NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: install.schoolName, districtID: install.districtID, docID: install.installationID))) {
+                            Text(install.schoolName)
                         }
-                        .padding()
                     }
-                }
-            }
-            
-            Spacer()
-            })
+                })
         }
         return AnyView(emptySection)
     }
     
-    func getNavLink(schoolName: String, docID: String) -> some View {
-        return
-            
-            NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: schoolName, docID: docID)))
-         {
-            Text(schoolName)
-        }
-    }
-    
     var emptySection: some View {
         Section {
-            Text("No results")
+            Text(isLoading ? "Loading..." : "No results")
                 .foregroundColor(.gray)
         }
     }

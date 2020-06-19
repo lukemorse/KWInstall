@@ -16,12 +16,10 @@ class MainViewModel: ObservableObject {
     @Published var team: Team?
     var teamDocID = ""
     var isMasterAccount = false
+    let installationCollection = Firestore.firestore().collection(Constants.kInstallationCollection)
     
     public func fetchTeamData() {
-        if isMasterAccount {
-            self.fetchInstallationMasterList()
-            return
-        }
+        if isMasterAccount {return}
         Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
             if let error = error {
                 print(error.localizedDescription)
@@ -35,69 +33,47 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    private func fetchInstallationMasterList() {
+    public func fetchInstallations(for date: Date, completion: @escaping ([Installation]) -> Void) {
+        let query = isMasterAccount ? installationCollection.whereField("date", isEqualTo: date.description) : installationCollection.whereField("date", isEqualTo: date.description).whereField("teamName", isEqualTo: team?.name ?? "")
         
-    }
-    
-//    public func fetchInstallations() {
-//        Firestore.firestore().collection(Constants.kDistrictCollection).getDocuments { (snapshot, error) in
-//            if let error = error {
-//                print("Error getting documents: \(error)")
-//            } else {
-//                //get district
-//                for document in snapshot!.documents {
-//                    do {
-//                        let district = try FirestoreDecoder().decode(District.self, from: document.data())
-//                        //only continue to add if ready to install
-//                        if district.readyToInstall {
-//                            for install in district.implementationPlan {
-//                                if install.team.name == self.team?.name || self.isMasterAccount {
-//                                    self.addToInstallationDict(install)
-//                                }
-//                            }
-//                        }
-//                    } catch let error {
-//                        print("Error fetching installations:  \(error)")
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-    
-//    private func addToInstallationDict(_ install: Installation) {
-//        let date = removeTimeStamp(fromDate: install.date)
-//        //add to installation dictionary under appropriate key ...
-//        if self.installationDictionary[date] == nil {
-    //            self.installationDictionary.updateValue([install], forKey: date)
-    //        } else {
-    //            //            ... or add that key if it doesn't exist
-    //            self.installationDictionary[date]?.append(install)
-    //        }
-    //    }
-    
-    public func fetchInstallation(docPath: String, completion: @escaping (Installation) -> Void) {
-        Firestore.firestore().collection(Constants.kInstallationCollection).document(docPath).getDocument { (document, error) in
+        query.getDocuments { (snapshot, error) in
             if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
+                print(error)
+                return
+            }
+            var result: [Installation] = []
+            for document in snapshot!.documents {
                 do {
-                    let installation = try FirebaseDecoder().decode(Installation.self, from: document?.data() ?? Installation())
-                    completion(installation)
+                    let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
+                    result.append(install)
                 } catch {
                     print(error)
                 }
             }
+            completion(result)
+            return
         }
     }
     
-    public func uploadInstallation(docPath: String, installation: Installation) {
-        let docRef = Firestore.firestore().collection(Constants.kInstallationCollection).document(docPath)
-        do {
-            let docData = try FirestoreEncoder().encode(installation)
-            docRef.setData(docData)
-        } catch {
-            print(error)
+    public func fetchCompletedInstallations(completion: @escaping ([Installation]) -> Void) {
+        let query = isMasterAccount ? installationCollection.whereField("status", isEqualTo: InstallationStatus.complete) : installationCollection.whereField("teamName", isEqualTo: team?.name ?? "").whereField("status", isEqualTo: InstallationStatus.complete)
+        
+        query.getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            var result: [Installation] = []
+            for document in snapshot!.documents {
+                do {
+                    let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
+                    result.append(install)
+                } catch {
+                    print(error)
+                }
+            }
+            completion(result)
+            return
         }
     }
     
@@ -116,25 +92,25 @@ class MainViewModel: ObservableObject {
         docRef.setData(["status": status], merge: true)
     }
     
-    public func getInstallationArray(date: Date) -> [String] {
-        var result: [String] = []
-        if let team = team {
-            if let arr = team.installations[date] {
-                result = Array(arr.values)
-            }
-        }
-        return result
-    }
-    
-    public func getCompletedInstallations() -> [String] {
-        var result: [String] = []
-        if let team = team {
-            for (schoolName, _) in team.completedInstallations {
-                result.append(schoolName)
-            }
-        }
-        return result
-    }
+//    public func getInstallationArray(date: Date) -> [String] {
+//        var result: [String] = []
+//        if let team = team {
+//            if let arr = team.installations[date] {
+//                result = Array(arr.values)
+//            }
+//        }
+//        return result
+//    }
+//
+//    public func getCompletedInstallations() -> [String] {
+//        var result: [String] = []
+//        if let team = team {
+//            for (schoolName, _) in team.completedInstallations {
+//                result.append(schoolName)
+//            }
+//        }
+//        return result
+//    }
 }
 
 

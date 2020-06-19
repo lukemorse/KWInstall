@@ -25,7 +25,6 @@
 		A33A667D2463169D000CFED1 /* RKDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A66702463169D000CFED1 /* RKDate.swift */; };
 		A344190C243676AB0038ACD3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A344190B243676AB0038ACD3 /* Constants.swift */; };
 		A348CFD9243EB56800AF56D8 /* PasscodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A348CFD8243EB56800AF56D8 /* PasscodeField.swift */; };
-		A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */; };
 		A394986324377F8E00C0B358 /* InstallationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A394986224377F8E00C0B358 /* InstallationView.swift */; };
 		A39498652437805E00C0B358 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39498642437805E00C0B358 /* MapView.swift */; };
 		A39878DA246C56B5000F99AC /* SendGroupMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */; };
@@ -53,6 +52,7 @@
 		A3F61D13243D41C7003E6B32 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D12243D41C7003E6B32 /* Team.swift */; };
 		A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D18243E130B003E6B32 /* MainViewModel.swift */; };
 		AF017FA024917C7C0022851B /* InstallationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF017F9F24917C7C0022851B /* InstallationViewModel.swift */; };
+		AF136362249D3D6F005D3D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */; };
 		AF4E855E24785359002F8E6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E855D24785359002F8E6C /* LoginView.swift */; };
 		AFB0C13124787DED0023BB06 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0C13024787DED0023BB06 /* AsyncImage.swift */; };
 		AFC83A8124782E3700C02C10 /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC83A8024782E3700C02C10 /* LogInData.swift */; };
@@ -83,13 +83,12 @@
 		A33A66702463169D000CFED1 /* RKDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RKDate.swift; sourceTree = "<group>"; };
 		A344190B243676AB0038ACD3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A348CFD8243EB56800AF56D8 /* PasscodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeField.swift; sourceTree = "<group>"; };
-		A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A394986224377F8E00C0B358 /* InstallationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationView.swift; sourceTree = "<group>"; };
 		A39498642437805E00C0B358 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A39878D9246C56B5000F99AC /* SendGroupMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendGroupMessageButton.swift; sourceTree = "<group>"; };
 		A39B28D524379EE7003046C5 /* FloorPlanGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorPlanGridView.swift; sourceTree = "<group>"; };
 		A3B133A9246060000082A618 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AppIcon.appiconset; sourceTree = "<group>"; };
-		A3B3815D243663590030582B /* KW Install.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3B3815D243663590030582B /* KW Install Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KW Install Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3B38160243663590030582B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3B38162243663590030582B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A3B38164243663590030582B /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -117,6 +116,7 @@
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		AF017F9F24917C7C0022851B /* InstallationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationViewModel.swift; sourceTree = "<group>"; };
+		AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AF4E855D24785359002F8E6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AFB0C13024787DED0023BB06 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		AFC83A8024782E3700C02C10 /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		A3B3815E243663590030582B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A3B3815D243663590030582B /* KW Install.app */,
+				A3B3815D243663590030582B /* KW Install Test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,7 +252,7 @@
 				A3B133A9246060000082A618 /* AppIcon.appiconset */,
 				A3B3816B2436635B0030582B /* LaunchScreen.storyboard */,
 				A3B3816E2436635B0030582B /* Info.plist */,
-				A36F2D1E243BB67D00E1674A /* GoogleService-Info.plist */,
+				AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */,
 				A3B381682436635B0030582B /* Preview Content */,
 				A344190B243676AB0038ACD3 /* Constants.swift */,
 				AFC83A8024782E3700C02C10 /* LogInData.swift */,
@@ -349,7 +349,7 @@
 			);
 			name = "KW Install";
 			productName = "KW Install";
-			productReference = A3B3815D243663590030582B /* KW Install.app */;
+			productReference = A3B3815D243663590030582B /* KW Install Test.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -391,8 +391,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3B3816D2436635B0030582B /* LaunchScreen.storyboard in Resources */,
-				A36F2D1F243BB67D00E1674A /* GoogleService-Info.plist in Resources */,
 				A3B3816A2436635B0030582B /* Preview Assets.xcassets in Resources */,
+				AF136362249D3D6F005D3D7A /* GoogleService-Info.plist in Resources */,
 				A3B133AA246060000082A618 /* AppIcon.appiconset in Resources */,
 				A3B381672436635B0030582B /* Assets.xcassets in Resources */,
 			);
@@ -639,8 +639,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install-Test";
+				PRODUCT_NAME = "KW Install Test";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -663,8 +663,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.lukemorse.KW-Install-Test";
+				PRODUCT_NAME = "KW Install Test";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

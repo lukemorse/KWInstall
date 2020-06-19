@@ -13,8 +13,8 @@ import CodableFirebase
 class InstallationViewModel: ObservableObject {
     @Published var installation: Installation
     
-    init(schoolName: String, docID: String) {
-        var installation = Installation()
+    init(schoolName: String, districtID: String, docID: String) {
+        var installation = Installation(districtID: districtID)
         installation.schoolName = schoolName
         self.installation = installation
         

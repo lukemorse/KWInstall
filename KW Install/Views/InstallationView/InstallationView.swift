@@ -78,14 +78,14 @@ struct InstallationView: View {
     }
     
     var statusPicker: some View {
-        let stati = Binding<InstallationStatus>(
-            get: {return self.viewModel.installation.status},
-            set: {
-                self.viewModel.installation.status = $0
-                self.mainViewModel.updateInstallationStatus(for: self.viewModel.installation.uid, status: $0)
-        })
+//        let statuses = Binding<InstallationStatus>(
+//            get: {return self.viewModel.installation.status},
+//            set: {
+//                self.viewModel.installation.status = $0
+//                self.mainViewModel.updateInstallationStatus(for: self.viewModel.installation.installationID, status: $0)
+//        })
         
-        return Picker(selection: stati, label: Text("Status")) {
+        return Picker(selection: self.$viewModel.installation.status, label: Text("Status")) {
             ForEach(InstallationStatus.allCases) { status in
                 Text(status.description).tag(status)
             }
