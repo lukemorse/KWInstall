@@ -15,7 +15,6 @@ class CalendarViewModel: ObservableObject {
     let installationCollection = Firestore.firestore().collection(Constants.kInstallationCollection)
     @Published var installations: [Installation] = []
     
-    
 //    func updateStatus(date: Date) {
 ////        let data: [String: Any] = ["implementationPlan" : status.description]
 ////        if let implementationPlan = installationDictionary[date] {
@@ -32,11 +31,8 @@ class CalendarViewModel: ObservableObject {
 //    }
     
     public func fetchInstallations(for date: Date, isMaster: Bool, teamName: String) {
-        
         let query = isMaster ? installationCollection.whereField("date", isInDate: date) :
             installationCollection.whereField("date", isInDate: date).whereField("teamName", isEqualTo: teamName)
-        
-//        let query = installationCollection.whereField("date", isInDate: date)
         
         query.getDocuments { (snapshot, error) in
             if let error = error {

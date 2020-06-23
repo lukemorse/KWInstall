@@ -33,7 +33,7 @@ struct Constants {
     static let kTeamCollection = "teams"
     static let kInstallationCollection = "installs"
     static let kFloorPlanCollection = "floorPlansCollection"
-    static let kPodCollection = "pods"
+    static let kPodSubCollection = "pods"
     static let kSalesUserCollection = "salesUsers"
     static let kInstallationUserCollection = "installationUsers"
     

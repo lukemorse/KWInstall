@@ -73,19 +73,13 @@ struct InstallationView: View {
     }
     
     var floorPlanGridView: some View {
-        let urls = viewModel.installation.floorPlanUrls.compactMap { URL(string: $0) }
-        return FloorPlanGridView(urls: urls)
+        FloorPlanGridView(installID: self.viewModel.installation.installationID, urls:
+            viewModel.installation.floorPlanUrls.compactMap { URL(string: $0) }
+        )
     }
     
     var statusPicker: some View {
-//        let statuses = Binding<InstallationStatus>(
-//            get: {return self.viewModel.installation.status},
-//            set: {
-//                self.viewModel.installation.status = $0
-//                self.mainViewModel.updateInstallationStatus(for: self.viewModel.installation.installationID, status: $0)
-//        })
-        
-        return Picker(selection: self.$viewModel.installation.status, label: Text("Status")) {
+        Picker(selection: self.$viewModel.installation.status, label: Text("Status")) {
             ForEach(InstallationStatus.allCases) { status in
                 Text(status.description).tag(status)
             }
@@ -93,12 +87,8 @@ struct InstallationView: View {
         .pickerStyle(SegmentedPickerStyle())
     }
     
-//    func makeMap(address: String) -> some View {
-//
-//    }
-    
     var mapView: some View {
-        return MapView(address: self.viewModel.installation.address) {
+        MapView(address: self.viewModel.installation.address) {
             (gesture, location) in
             self.openMapsAppWithDirections(to: location)
         }
@@ -116,8 +106,8 @@ struct InstallationView: View {
     
 }
 
-//struct InstallationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InstallationView(installation: .constant(Installation())).environmentObject(MainViewModel()).environmentObject(FloorPlanViewModel())
-//    }
-//}
+struct InstallationView_Previews: PreviewProvider {
+    static var previews: some View {
+        InstallationView(viewModel: InstallationViewModel(installation: Installation(districtID: "123"))).environmentObject(MainViewModel())
+    }
+}

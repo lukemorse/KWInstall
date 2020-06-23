@@ -26,7 +26,7 @@ struct CompletedView: View {
             return
                 AnyView(List {
                     ForEach(installs, id: \.self) {install in
-                        NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: install.schoolName, districtID: install.districtID, docID: install.installationID))) {
+                        NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(installation: install))) {
                             Text(install.schoolName)
                         }
                     }

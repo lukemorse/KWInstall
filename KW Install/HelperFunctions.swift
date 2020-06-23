@@ -80,9 +80,7 @@ extension CollectionReference {
         else {
             fatalError("Could not find start date or calculate end date.")
         }
-        let startTimestamp = Timestamp(date: start)
-        let endTimestamp = Timestamp(date: end)
-        return whereField(field, isGreaterThan: startTimestamp).whereField(field, isLessThan: endTimestamp)
+        return whereField(field, isGreaterThan: start).whereField(field, isLessThan: end)
     }
 }
 

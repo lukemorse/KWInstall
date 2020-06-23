@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct FloorPlanGridView: View {
+    let installID: String
     let urls: [URL]
     @Environment(\.imageCache) var cache: ImageCache
     @State var selection: Int?
@@ -47,7 +48,7 @@ struct FloorPlanGridView: View {
         let asyncImage = AsyncImage(url: urls[index], cache: self.cache, placeholder: Text("Loading...").padding(), configuration:
         {$0.resizable()})
         
-        return NavigationLink(destination: FloorPlanDetailView(with: FloorPlanViewModel(url: urls[index])), tag: index, selection: $selection) {
+        return NavigationLink(destination: FloorPlanDetailView(with: FloorPlanViewModel(url: urls[index], installID: self.installID, floorNumString: String(index))), tag: index, selection: $selection) {
             asyncImage
                 .aspectRatio(contentMode: .fit)
                 .border(Color.black)

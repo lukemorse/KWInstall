@@ -34,7 +34,7 @@ struct CalendarView : View {
                 List {
                     ForEach(self.viewModel.installations, id: \.self) {install in
                         VStack {
-                            NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: install.schoolName, districtID: install.districtID, docID: install.installationID))
+                            NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(installation: install))
                             ) {
                                 Text(install.schoolName)
                             }

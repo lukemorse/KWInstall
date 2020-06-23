@@ -15,31 +15,34 @@ import FirebaseStorage
 class FloorPlanViewModel: ObservableObject {
     
     let url: URL
+    let podDocRef: DocumentReference
+    
     @Published var floorPlanThumbnails: [UIImage] = []
     @Published var pods: [Pod] = []
     
-    init(url: URL) {
+    init(url: URL, installID: String, floorNumString: String) {
         self.url = url
+        self.podDocRef = Firestore.firestore().collection(Constants.kInstallationCollection).document(installID).collection("pods").document(floorNumString)
     }
     
-    func setPods(docID: String) {
+    func setPods() {
         do {
             let data = try FirestoreEncoder().encode(self.pods)
-            Firestore.firestore().collection(Constants.kPodCollection).document(docID).setData(data)
+            self.podDocRef.setData(data)
         } catch {
             print(error)
         }
     }
     
-    func fetchPods(docID: String) {
-        Firestore.firestore().collection(Constants.kPodCollection).document(docID).getDocument { document, error in
+    func fetchPods() {
+        self.podDocRef.getDocument { document, error in
             if let error = error {
                 print(error.localizedDescription)
             }
             if let document = document {
                 do {
-                    let pods = try FirestoreDecoder().decode([Pod].self, from: document.data() ?? [:])
-                    self.pods = pods
+                    let pods = try FirestoreDecoder().decode([String:[Pod]].self, from: document.data() ?? [:])
+                    self.pods = pods["pods"] ?? []
                 } catch {
                     print(error)
                 }
@@ -48,38 +51,6 @@ class FloorPlanViewModel: ObservableObject {
             }
         }
     }
-    
-//    func getFloorPlans() {
-//            for (index, url) in installation.floorPlanUrls.enumerated() {
-//                downloadImage(with: url)
-////                if index < pods.count {
-////                    if pods[index].isEmpty {
-////                        self.pods[index] = installation.pods[url] ?? []
-////                    } else {
-////                        self.pods.append(installation.pods[url] ?? [])
-////                    }
-////                }
-////                else {
-////                    self.pods.append(installation.pods[url] ?? [])
-////                }
-//        }
-//    }
-//
-//    func downloadImage(with urlString : String) {
-//        guard let url = URL.init(string: urlString) else {
-//            return
-//        }
-//        let resource = ImageResource(downloadURL: url)
-//
-//        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
-//            switch result {
-//            case .success(let value):
-//                self.floorPlanThumbnails.append(value.image)
-//            case .failure(let error):
-//                print("Error: \(error)")
-//            }
-//        }
-//    }
     
     func uploadPodImage(image: UIImage, podType: String, completion: @escaping (_ url: String?) -> Void) {
         
@@ -101,9 +72,4 @@ class FloorPlanViewModel: ObservableObject {
             }
         }   
     }
-    
-    func updatePods(url: String) {
-        
-    }
-    
 }

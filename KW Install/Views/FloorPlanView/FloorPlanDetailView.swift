@@ -14,7 +14,7 @@ struct FloorPlanDetailView: View {
     
     @Environment(\.imageCache) var cache: ImageCache
     
-    @ObservedObject var floorPlanViewModel: FloorPlanViewModel
+    @ObservedObject var viewModel: FloorPlanViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     
     @State var tappedPodIndex: Int?
@@ -32,14 +32,14 @@ struct FloorPlanDetailView: View {
     @State var lastDrag: CGSize = CGSize.zero
     
     init(with floorPlanViewModel: FloorPlanViewModel) {
-        self.floorPlanViewModel = floorPlanViewModel
+        self.viewModel = floorPlanViewModel
     }
     
     var body: some View {
         
         GeometryReader { geometry in
             ZStack {
-                AsyncImage(url: self.floorPlanViewModel.url, cache: self.cache, placeholder: Text("Loading..."), configuration: {$0.resizable()})
+                AsyncImage(url: self.viewModel.url, cache: self.cache, placeholder: Text("Loading..."), configuration: {$0.resizable()})
                     self.podGroup
                 }
                 .scaledToFit()
@@ -72,9 +72,9 @@ struct FloorPlanDetailView: View {
                         ImagePicker(sourceType: .camera) { image in
                             if let podIndex = self.tappedPodIndex {
                                 self.image = Image(uiImage: image)
-                                self.floorPlanViewModel.uploadPodImage(image: image, podType: self.floorPlanViewModel.pods[podIndex].podType.description) { url in
-                                    self.floorPlanViewModel.pods[podIndex].imageUrl = url
-                                    self.floorPlanViewModel.pods[podIndex].isComplete = true
+                                self.viewModel.uploadPodImage(image: image, podType: self.viewModel.pods[podIndex].podType.description) { url in
+                                    self.viewModel.pods[podIndex].imageUrl = url
+                                    self.viewModel.pods[podIndex].isComplete = true
                                     self.tappedPodIndex = nil
                                 }
                             }
@@ -88,11 +88,14 @@ struct FloorPlanDetailView: View {
             }
         }
         .navigationBarItems(trailing: saveButton)
+        .onAppear() {
+            self.viewModel.fetchPods()
+        }
     }
     
     var saveButton: some View {
         Button(action: {
-            self.floorPlanViewModel.setPods(docID: self.floorPlanViewModel.url.absoluteString)
+            self.viewModel.setPods()
         }) {
             Text("Save")
                 .foregroundColor(Color.blue)
@@ -101,11 +104,11 @@ struct FloorPlanDetailView: View {
     
     var podGroup: some View {
         Group {
-            ForEach (0..<self.floorPlanViewModel.pods.count, id: \.self) { index in
-                PodNodeView(pod: self.floorPlanViewModel.pods[index])
+            ForEach (0..<self.viewModel.pods.count, id: \.self) { index in
+                PodNodeView(pod: self.viewModel.pods[index])
                     .onTapGesture {
-                        if (self.floorPlanViewModel.pods[index].isComplete) {
-                            self.showPodUrl = self.floorPlanViewModel.pods[index].imageUrl
+                        if (self.viewModel.pods[index].isComplete) {
+                            self.showPodUrl = self.viewModel.pods[index].imageUrl
                             self.activeSheet = ActiveSheet.imageView
                             self.showSheet = true
                         } else {
