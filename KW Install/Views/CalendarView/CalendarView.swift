@@ -23,8 +23,12 @@ struct CalendarView : View {
         }
         .onAppear() {
             self.rkManager.onDateTapped = {date in
-                self.viewModel.fetchInstallations(for: date.formatForDB(), isMaster: self.mainViewModel.isMasterAccount, teamName: self.mainViewModel.team?.name ?? "")
+                self.isLoading = true
+                self.viewModel.fetchInstallations(for: date.formatForDB(), isMaster: self.mainViewModel.isMasterAccount, teamName: self.mainViewModel.team?.name ?? "") {
+                    self.isLoading = false
+                }
             }
+            self.rkManager.onDateTapped(self.rkManager.selectedDate)
         }
     }
     
