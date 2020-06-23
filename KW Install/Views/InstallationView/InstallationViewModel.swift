@@ -19,6 +19,6 @@ class InstallationViewModel: ObservableObject {
     
     func setStatus(status: InstallationStatus) {
         self.installation.status = status
-        Firestore.firestore().collection(Constants.kInstallationCollection).document(installation.installationID).setData(["status": status], merge: true)
+        Firestore.firestore().collection(Constants.kInstallationCollection).document(installation.installationID).setData(["status": status.rawValue], merge: true)
     }
 }
