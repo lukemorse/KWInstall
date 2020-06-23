@@ -15,10 +15,9 @@ struct FloorPlanDetailView: View {
     @Environment(\.imageCache) var cache: ImageCache
     
     @ObservedObject var viewModel: FloorPlanViewModel
-    @EnvironmentObject var mainViewModel: MainViewModel
+//    @EnvironmentObject var mainViewModel: MainViewModel
     
     @State var tappedPodIndex: Int?
-    @State var image: Image? = nil
     @State var showPodUrl: String?
     @State private var showSheet = false
     @State private var activeSheet: ActiveSheet = .camera
@@ -43,7 +42,6 @@ struct FloorPlanDetailView: View {
                     self.podGroup
                 }
                 .scaledToFit()
-                .animation(.linear)
                 .scaleEffect(self.scale)
                 .offset(self.dragSize)
                 .gesture(MagnificationGesture().onChanged { val in
@@ -58,7 +56,7 @@ struct FloorPlanDetailView: View {
                     if self.scale < 1 {self.scale = 1}
                     })
                     .simultaneousGesture(DragGesture(minimumDistance: 1, coordinateSpace: .local).onChanged({ val in
-                        
+
                         self.tapPoint = val.startLocation
                         self.dragSize = CGSize(width: val.translation.width + self.lastDrag.width, height: val.translation.height + self.lastDrag.height)
                     })
@@ -71,7 +69,6 @@ struct FloorPlanDetailView: View {
                     if self.activeSheet == ActiveSheet.camera {
                         ImagePicker(sourceType: .camera) { image in
                             if let podIndex = self.tappedPodIndex {
-                                self.image = Image(uiImage: image)
                                 self.viewModel.uploadPodImage(image: image, podType: self.viewModel.pods[podIndex].podType.description) { url in
                                     self.viewModel.pods[podIndex].imageUrl = url
                                     self.viewModel.pods[podIndex].isComplete = true
@@ -121,32 +118,32 @@ struct FloorPlanDetailView: View {
         }
     }
     
-    func adjustPanForBoundaries(value: DragGesture.Value, geoProxy: GeometryProxy) -> CGSize {
-        let offsetWidth = (geoProxy.frame(in: .global).maxX * self.scale - geoProxy.frame(in: .global).maxX) / 2
-        let newDraggedWidth = self.dragSize.width * self.scale
-        var resultWidth: CGFloat = 0
-        let offsetHeight = (geoProxy.frame(in: .global).maxY * self.scale - geoProxy.frame(in: .global).maxY) / 2
-        let newDraggedHeight = self.dragSize.height * self.scale
-        var resultHeight: CGFloat = 0
-        
-        if newDraggedWidth > offsetWidth {
-            resultWidth = offsetWidth / self.scale
-        } else if newDraggedWidth < -offsetWidth {
-            resultWidth = -offsetWidth / self.scale
-        } else {
-            resultWidth = value.translation.width + self.lastDrag.width
-        }
-            
-        if newDraggedHeight > offsetHeight {
-            resultHeight = offsetHeight / self.scale
-        } else if newDraggedHeight < -offsetHeight {
-            resultHeight = -offsetHeight / self.scale
-        } else {
-            resultHeight = value.translation.height + self.lastDrag.height
-        }
-        
-        return CGSize(width: resultWidth, height: resultHeight)
-    }
+//    func adjustPanForBoundaries(value: DragGesture.Value, geoProxy: GeometryProxy) -> CGSize {
+//        let offsetWidth = (geoProxy.frame(in: .global).maxX * self.scale - geoProxy.frame(in: .global).maxX) / 2
+//        let newDraggedWidth = self.dragSize.width * self.scale
+//        var resultWidth: CGFloat = 0
+//        let offsetHeight = (geoProxy.frame(in: .global).maxY * self.scale - geoProxy.frame(in: .global).maxY) / 2
+//        let newDraggedHeight = self.dragSize.height * self.scale
+//        var resultHeight: CGFloat = 0
+//
+//        if newDraggedWidth > offsetWidth {
+//            resultWidth = offsetWidth / self.scale
+//        } else if newDraggedWidth < -offsetWidth {
+//            resultWidth = -offsetWidth / self.scale
+//        } else {
+//            resultWidth = value.translation.width + self.lastDrag.width
+//        }
+//
+//        if newDraggedHeight > offsetHeight {
+//            resultHeight = offsetHeight / self.scale
+//        } else if newDraggedHeight < -offsetHeight {
+//            resultHeight = -offsetHeight / self.scale
+//        } else {
+//            resultHeight = value.translation.height + self.lastDrag.height
+//        }
+//
+//        return CGSize(width: resultWidth, height: resultHeight)
+//    }
     
     private enum ActiveSheet {
        case camera, imageView
