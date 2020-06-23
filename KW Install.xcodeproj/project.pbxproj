@@ -53,6 +53,7 @@
 		A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F61D18243E130B003E6B32 /* MainViewModel.swift */; };
 		AF017FA024917C7C0022851B /* InstallationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF017F9F24917C7C0022851B /* InstallationViewModel.swift */; };
 		AF136362249D3D6F005D3D7A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */; };
+		AF49C43C24A27CE5009D6879 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49C43B24A27CE5009D6879 /* AlertItem.swift */; };
 		AF4E855E24785359002F8E6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E855D24785359002F8E6C /* LoginView.swift */; };
 		AF7ABBE424A13CE400D2E451 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBE324A13CE400D2E451 /* CalendarViewModel.swift */; };
 		AFB0C13124787DED0023BB06 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0C13024787DED0023BB06 /* AsyncImage.swift */; };
@@ -118,6 +119,7 @@
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		AF017F9F24917C7C0022851B /* InstallationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstallationViewModel.swift; sourceTree = "<group>"; };
 		AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AF49C43B24A27CE5009D6879 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		AF4E855D24785359002F8E6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AF7ABBE324A13CE400D2E451 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		AFB0C13024787DED0023BB06 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				A31C8C7F243BE0C000C6084D /* Model */,
 				A344190D243688020038ACD3 /* Views */,
+				AF49C43D24A27CF2009D6879 /* Helpers */,
 				A3B38160243663590030582B /* AppDelegate.swift */,
 				A3B38162243663590030582B /* SceneDelegate.swift */,
 				A3B381662436635B0030582B /* Assets.xcassets */,
@@ -257,9 +260,6 @@
 				A3B3816E2436635B0030582B /* Info.plist */,
 				AF136361249D3D6F005D3D7A /* GoogleService-Info.plist */,
 				A3B381682436635B0030582B /* Preview Content */,
-				A344190B243676AB0038ACD3 /* Constants.swift */,
-				AFC83A8024782E3700C02C10 /* LogInData.swift */,
-				A3F1DFCA244002D6005494EE /* HelperFunctions.swift */,
 			);
 			path = "KW Install";
 			sourceTree = "<group>";
@@ -331,6 +331,17 @@
 				A1EA601CDFBCBB26BD4ACDDA /* Pods-KW Install.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		AF49C43D24A27CF2009D6879 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A344190B243676AB0038ACD3 /* Constants.swift */,
+				AFC83A8024782E3700C02C10 /* LogInData.swift */,
+				A3F1DFCA244002D6005494EE /* HelperFunctions.swift */,
+				AF49C43B24A27CE5009D6879 /* AlertItem.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,6 +504,7 @@
 				A3F605DB243CFCFE00780235 /* MailView.swift in Sources */,
 				AF017FA024917C7C0022851B /* InstallationViewModel.swift in Sources */,
 				A3F61D11243D3F98003E6B32 /* User.swift in Sources */,
+				AF49C43C24A27CE5009D6879 /* AlertItem.swift in Sources */,
 				A3D7653C243B68D100C772AF /* ContactsView.swift in Sources */,
 				A33A667D2463169D000CFED1 /* RKDate.swift in Sources */,
 			);

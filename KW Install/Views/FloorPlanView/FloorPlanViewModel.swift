@@ -25,10 +25,17 @@ class FloorPlanViewModel: ObservableObject {
         self.podDocRef = Firestore.firestore().collection(Constants.kInstallationCollection).document(installID).collection("pods").document(floorNumString)
     }
     
-    func setPods() {
+    func setPods(completion: @escaping (Bool) -> ()) {
         do {
-            let data = try FirestoreEncoder().encode(self.pods)
-            self.podDocRef.setData(data)
+            let data = try FirestoreEncoder().encode(["pods" : self.pods])
+            self.podDocRef.setData(data) { (error) in
+                if let error = error {
+                    print(error)
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
         } catch {
             print(error)
         }

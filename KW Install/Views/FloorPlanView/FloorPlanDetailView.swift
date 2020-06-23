@@ -11,12 +11,10 @@
 import SwiftUI
 
 struct FloorPlanDetailView: View {
-    
     @Environment(\.imageCache) var cache: ImageCache
-    
     @ObservedObject var viewModel: FloorPlanViewModel
-//    @EnvironmentObject var mainViewModel: MainViewModel
     
+    @State var alertItem: AlertItem?
     @State var tappedPodIndex: Int?
     @State var showPodUrl: String?
     @State private var showSheet = false
@@ -88,11 +86,16 @@ struct FloorPlanDetailView: View {
         .onAppear() {
             self.viewModel.fetchPods()
         }
+        .alert(item: $alertItem) {alertItem in
+            Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        }
     }
     
     var saveButton: some View {
         Button(action: {
-            self.viewModel.setPods()
+            self.viewModel.setPods() { success in
+                self.alertItem = AlertItem(title: Text(success ? "Saved Pods" : "Error Saving Pods"), message: nil, dismissButton: .cancel(Text("OK")))
+            }
         }) {
             Text("Save")
                 .foregroundColor(Color.blue)
