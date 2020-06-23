@@ -50,7 +50,7 @@ struct MainView: View {
             
             //Completed
             NavigationView {
-                CompletedView().navigationBarTitle(
+                CompletedView(viewModel: self.viewModel).navigationBarTitle(
                     Text("Completed"), displayMode: .inline)
                     .navigationBarItems(leading:
                         Image("Logo")

@@ -14,6 +14,7 @@ import CodableFirebase
 class MainViewModel: ObservableObject {
     
     @Published var team: Team?
+    @Published var completedInstalls: [Installation] = []
     var teamDocID = ""
     var isMasterAccount = false
     let installationCollection = Firestore.firestore().collection(Constants.kInstallationCollection)
@@ -33,25 +34,23 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    public func fetchCompletedInstallations(completion: @escaping ([Installation]) -> Void) {
-        let query = isMasterAccount ? installationCollection.whereField("status", isEqualTo: InstallationStatus.complete) : installationCollection.whereField("teamName", isEqualTo: team?.name ?? "").whereField("status", isEqualTo: InstallationStatus.complete)
+    public func fetchCompletedInstallations(completion: @escaping () -> ()) {
+        let query = isMasterAccount ? installationCollection.whereField("status", isEqualTo: InstallationStatus.complete.rawValue) : installationCollection.whereField("teamName", isEqualTo: team?.name ?? "").whereField("status", isEqualTo: InstallationStatus.complete.rawValue)
         
         query.getDocuments { (snapshot, error) in
             if let error = error {
                 print(error)
                 return
             }
-            var result: [Installation] = []
             for document in snapshot!.documents {
                 do {
                     let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
-                    result.append(install)
+                    self.completedInstalls.append(install)
                 } catch {
                     print(error)
                 }
+                completion()
             }
-            completion(result)
-            return
         }
     }
 }

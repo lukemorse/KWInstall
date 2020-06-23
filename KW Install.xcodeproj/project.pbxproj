@@ -197,7 +197,7 @@
 				A3F1DFD5244115DC005494EE /* InstallationView */,
 				A3F1DFD42441155D005494EE /* FloorPlanView */,
 				A39878D6246C5656000F99AC /* ContactsView */,
-				A3D76539243B684B00C772AF /* CompletedView.swift */,
+				AFBE875124A280BC001DDE3B /* CompletedView */,
 				A3D7653D243B68DB00C772AF /* ReferencesView.swift */,
 				A348CFD8243EB56800AF56D8 /* PasscodeField.swift */,
 				A3F1DFCE2440BF7C005494EE /* StartView.swift */,
@@ -342,6 +342,14 @@
 				AF49C43B24A27CE5009D6879 /* AlertItem.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		AFBE875124A280BC001DDE3B /* CompletedView */ = {
+			isa = PBXGroup;
+			children = (
+				A3D76539243B684B00C772AF /* CompletedView.swift */,
+			);
+			path = CompletedView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -10,22 +10,24 @@ import SwiftUI
 
 struct CompletedView: View {
     
-    @EnvironmentObject var mainViewModel: MainViewModel
-    @State var installs: [Installation] = []
+    @ObservedObject var viewModel: MainViewModel
     @State var isLoading = false
     
     var body: some View {
-        //        if let completedInstallations = mainViewModel.team?.completedInstallations {
-        isLoading = true
-        mainViewModel.fetchCompletedInstallations() { installs in
-            self.installs = installs
-            self.isLoading = false
+        installationListView
+            .onAppear() {
+                self.isLoading = true
+                self.viewModel.fetchCompletedInstallations() {
+                    self.isLoading = false
+                }
         }
-        
-        if installs.count > 0 {
+    }
+    
+    var installationListView: some View {
+        if viewModel.completedInstalls.count > 0 {
             return
                 AnyView(List {
-                    ForEach(installs, id: \.self) {install in
+                    ForEach(viewModel.completedInstalls, id: \.self) {install in
                         NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(installation: install))) {
                             Text(install.schoolName)
                         }
@@ -45,6 +47,6 @@ struct CompletedView: View {
 
 struct CompletedView_Previews: PreviewProvider {
     static var previews: some View {
-        return CompletedView().environmentObject(MainViewModel())
+        return CompletedView(viewModel: MainViewModel())
     }
 }
