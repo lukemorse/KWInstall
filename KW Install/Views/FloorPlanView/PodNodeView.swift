@@ -29,8 +29,7 @@ struct PodNodeView: Identifiable, Hashable, Equatable, View {
             .frame(
                 width: pod.podType == .horizontal_hallway ? 7.5 : 5,
                 height: pod.podType == .vertical_hallway ? 7.5 : 5)
-            .position(pod.position)
-            .colorMultiply(pod.isComplete ? Color.green : Color.red)
+            .colorMultiply(pod.imageUrl == nil ? Color.red : Color.green)
     }
     
 
@@ -45,6 +44,6 @@ let podImageDict: [PodType : String] = [
 
 struct PodNodeView_Previews: PreviewProvider {
     static var previews: some View {
-        PodNodeView(pod: Pod(podType: .vertical_hallway, position: CGPoint(x: 100, y: 100)))
+        PodNodeView(pod: Pod(podType: .vertical_hallway, xMul: 0.5, yMul: 0.5))
     }
 }

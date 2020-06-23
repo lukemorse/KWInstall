@@ -69,7 +69,6 @@ struct FloorPlanDetailView: View {
                             if let podIndex = self.tappedPodIndex {
                                 self.viewModel.uploadPodImage(image: image, podType: self.viewModel.pods[podIndex].podType.description) { url in
                                     self.viewModel.pods[podIndex].imageUrl = url
-                                    self.viewModel.pods[podIndex].isComplete = true
                                     self.tappedPodIndex = nil
                                 }
                             }
@@ -103,22 +102,30 @@ struct FloorPlanDetailView: View {
     }
     
     var podGroup: some View {
-        Group {
-            ForEach (0..<self.viewModel.pods.count, id: \.self) { index in
-                PodNodeView(pod: self.viewModel.pods[index])
-                    .onTapGesture {
-                        if (self.viewModel.pods[index].isComplete) {
-                            self.showPodUrl = self.viewModel.pods[index].imageUrl
-                            self.activeSheet = ActiveSheet.imageView
-                            self.showSheet = true
-                        } else {
-                            self.tappedPodIndex = index
-                            self.activeSheet = ActiveSheet.camera
-                            self.showSheet = true
-                        }
+        GeometryReader { geo in
+            Group {
+                ForEach (0..<self.viewModel.pods.count, id: \.self) { index in
+                    self.getPodNodeView(index: index, size: geo.size)
+                        .onTapGesture {
+                            if (self.viewModel.pods[index].imageUrl != nil) {
+                                self.showPodUrl = self.viewModel.pods[index].imageUrl
+                                self.activeSheet = ActiveSheet.imageView
+                                self.showSheet = true
+                            } else {
+                                self.tappedPodIndex = index
+                                self.activeSheet = ActiveSheet.camera
+                                self.showSheet = true
+                            }
+                    }
                 }
             }
         }
+    }
+    
+    func getPodNodeView(index: Int, size: CGSize) -> some View {
+        let pod = self.viewModel.pods[index]
+        let position = CGPoint(x: CGFloat(pod.xMul) * size.width, y: CGFloat(pod.yMul) * size.height)
+        return PodNodeView(pod: pod).position(position)
     }
     
 //    func adjustPanForBoundaries(value: DragGesture.Value, geoProxy: GeometryProxy) -> CGSize {
