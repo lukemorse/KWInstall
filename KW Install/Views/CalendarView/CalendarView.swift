@@ -11,6 +11,7 @@ import Firebase
 
 struct CalendarView : View {
     
+    @ObservedObject var viewModel: CalendarViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
     @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
     @State var isLoading = false
@@ -20,19 +21,18 @@ struct CalendarView : View {
             installationListView
             RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
         }
+        .onAppear() {
+            self.rkManager.onDateTapped = {date in
+                self.viewModel.fetchInstallations(for: date.formatForDB(), isMaster: self.mainViewModel.isMasterAccount, teamName: self.mainViewModel.team?.name ?? "")
+            }
+        }
     }
     
     var installationListView : some View {
-        self.isLoading = true
-        var array: [Installation] = []
-        mainViewModel.fetchInstallations(for: self.rkManager.selectedDate) {installations in
-            array = installations
-            self.isLoading = false
-        }
-        if array.count > 0 {
+        if viewModel.installations.count > 0 {
             return AnyView(
                 List {
-                    ForEach(array, id: \.self) {install in
+                    ForEach(self.viewModel.installations, id: \.self) {install in
                         VStack {
                             NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(schoolName: install.schoolName, districtID: install.districtID, docID: install.installationID))
                             ) {
@@ -89,7 +89,7 @@ struct CalendarView : View {
 #if DEBUG
 struct CalendarView_Previews : PreviewProvider {
     static var previews: some View {
-        CalendarView()
+        CalendarView(viewModel: CalendarViewModel())
     }
 }
 #endif

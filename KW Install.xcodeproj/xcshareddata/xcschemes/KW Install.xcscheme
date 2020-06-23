@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A3B3815C243663590030582B"
-               BuildableName = "KW Install.app"
+               BuildableName = "KW Install Test.app"
                BlueprintName = "KW Install"
                ReferencedContainer = "container:KW Install.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A3B3815C243663590030582B"
-            BuildableName = "KW Install.app"
+            BuildableName = "KW Install Test.app"
             BlueprintName = "KW Install"
             ReferencedContainer = "container:KW Install.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A3B3815C243663590030582B"
-            BuildableName = "KW Install.app"
+            BuildableName = "KW Install Test.app"
             BlueprintName = "KW Install"
             ReferencedContainer = "container:KW Install.xcodeproj">
          </BuildableReference>

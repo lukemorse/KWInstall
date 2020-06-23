@@ -132,6 +132,7 @@ public struct RKMonth: View {
             switch rkManager.mode {
             case 0:
                 rkManager.selectedDate = date
+                rkManager.onDateTapped(date)
 //                if rkManager.selectedDate != nil &&
 //                    rkManager.calendar.isDate(rkManager.selectedDate, inSameDayAs: date) {
 //                    rkManager.selectedDate = nil

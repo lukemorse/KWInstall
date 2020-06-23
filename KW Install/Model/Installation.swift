@@ -56,7 +56,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
         
         case installationID
         case status
-        case team
+        case teamName
         case schoolType
         case address
         case districtContact
@@ -75,7 +75,7 @@ struct Installation: Encodable, Identifiable, Hashable  {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(installationID, forKey: .installationID)
-        try container.encode(teamName, forKey: .team)
+        try container.encode(teamName, forKey: .teamName)
         try container.encode(status, forKey: .status)
         try container.encode(schoolType.description, forKey: .schoolType)
         try container.encode(address, forKey: .address)
@@ -88,8 +88,8 @@ struct Installation: Encodable, Identifiable, Hashable  {
         try container.encode(numFloors, forKey: .numFloors)
         try container.encode(numRooms, forKey: .numRooms)
         try container.encode(numPods, forKey: .numPods)
-        try container.encode(Timestamp(date: date), forKey: .date)
         try container.encode(floorPlanUrls, forKey: .floorPlanURLs)
+        try container.encode(Timestamp(date: date.formatForDB()), forKey: .date)
     }
 }
 
@@ -98,7 +98,7 @@ extension Installation: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         installationID = try container.decode(String.self, forKey: .installationID)
         status = try container.decode(InstallationStatus.self, forKey: .status)
-        teamName = try container.decode(String.self, forKey: .team)
+        teamName = try container.decode(String.self, forKey: .teamName)
         address = try container.decode(String.self, forKey: .address)
         districtContact = try container.decode(String.self, forKey: .districtContact)
         districtName = try container.decode(String.self, forKey: .districtName)
@@ -112,7 +112,7 @@ extension Installation: Decodable {
         floorPlanUrls = try container.decode([String].self, forKey: .floorPlanURLs)
         
         let timeStamp: Timestamp = try container.decode(Timestamp.self, forKey: .date)
-        date = timeStamp.dateValue()
+        date =  readFromDB(date: timeStamp.dateValue())
         
         if let schoolTypeValue = try? container.decode(Int.self, forKey: .schoolType) {
             schoolType = SchoolType(rawValue: schoolTypeValue) ?? SchoolType.unknown

@@ -10,6 +10,8 @@ import SwiftUI
 
 public class RKManager : ObservableObject {
     
+    public var onDateTapped: (Date) -> ()
+    
     @Published public var calendar = Calendar.current
     @Published public var minimumDate: Date = Date()
     @Published public var maximumDate: Date = Date()
@@ -50,7 +52,8 @@ public class RKManager : ObservableObject {
     
     let calendarUnitYMD = Set<Calendar.Component>([.year, .month, .day])
     
-    public init(calendar: Calendar, minimumDate: Date, maximumDate: Date, mode: Int) {
+    public init(calendar: Calendar, minimumDate: Date, maximumDate: Date, mode: Int, onDateTapped: @escaping (Date) -> () = {date in}) {
+        self.onDateTapped = onDateTapped
         self.calendar = calendar
         self.minimumDate = minimumDate
         self.maximumDate = maximumDate
@@ -68,6 +71,7 @@ public class RKManager : ObservableObject {
         self.startDate = nil
         self.endDate = nil
         self.locale = .current
+        self.onDateTapped = {date in}
     }
     
     func selectedDatesContains(date: Date) -> Bool {

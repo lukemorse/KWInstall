@@ -33,28 +33,6 @@ class MainViewModel: ObservableObject {
         }
     }
     
-    public func fetchInstallations(for date: Date, completion: @escaping ([Installation]) -> Void) {
-        let query = isMasterAccount ? installationCollection.whereField("date", isEqualTo: date.description) : installationCollection.whereField("date", isEqualTo: date.description).whereField("teamName", isEqualTo: team?.name ?? "")
-        
-        query.getDocuments { (snapshot, error) in
-            if let error = error {
-                print(error)
-                return
-            }
-            var result: [Installation] = []
-            for document in snapshot!.documents {
-                do {
-                    let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
-                    result.append(install)
-                } catch {
-                    print(error)
-                }
-            }
-            completion(result)
-            return
-        }
-    }
-    
     public func fetchCompletedInstallations(completion: @escaping ([Installation]) -> Void) {
         let query = isMasterAccount ? installationCollection.whereField("status", isEqualTo: InstallationStatus.complete) : installationCollection.whereField("teamName", isEqualTo: team?.name ?? "").whereField("status", isEqualTo: InstallationStatus.complete)
         
