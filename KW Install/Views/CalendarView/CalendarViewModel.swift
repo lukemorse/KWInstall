@@ -16,8 +16,10 @@ class CalendarViewModel: ObservableObject {
     @Published var installations: [Installation] = []
     
     public func fetchInstallations(for date: Date, isMaster: Bool, teamName: String, completion: @escaping () -> ()) {
-        let query = isMaster ? installationCollection.whereField("date", isInDate: date) :
-            installationCollection.whereField("date", isInDate: date).whereField("teamName", isEqualTo: teamName)
+        var query = installationCollection.whereField("date", isInDate: date).whereField("status", isLessThan: InstallationStatus.complete.rawValue)
+        if !isMaster {
+            query = query.whereField("teamName", isEqualTo: teamName)
+        }
         
         query.getDocuments { (snapshot, error) in
             if let error = error {
