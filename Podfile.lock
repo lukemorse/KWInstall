@@ -340,7 +340,6 @@ PODS:
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.4.0)
   - Introspect (0.1.0)
-  - JTAppleCalendar (7.1.8)
   - leveldb-library (1.22)
   - nanopb (1.30905.0):
     - nanopb/decode (= 1.30905.0)
@@ -356,7 +355,6 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - Introspect
-  - JTAppleCalendar (~> 7.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -381,7 +379,6 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - Introspect
-    - JTAppleCalendar
     - leveldb-library
     - nanopb
     - PromisesObjC
@@ -408,11 +405,10 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   Introspect: ad32f2b7b9e7ac2c008b9dfec3d5325fbd3660fa
-  JTAppleCalendar: b7fb40852f5f319fe55c8ec3861f1de0edc99cc8
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
 
-PODFILE CHECKSUM: 925fdb36d8f60fc5818604ed089835b86661c55c
+PODFILE CHECKSUM: 7e6ecd66a9b5f4e8c16b1377d877fb7ca33a9f94
 
 COCOAPODS: 1.9.3

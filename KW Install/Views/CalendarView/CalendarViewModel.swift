@@ -16,7 +16,7 @@ class CalendarViewModel: ObservableObject {
     @Published var installations: [Installation] = []
     
     public func fetchInstallations(for date: Date, isMaster: Bool, teamName: String, completion: @escaping () -> ()) {
-        var query = installationCollection.whereField("date", isInDate: date).whereField("status", isLessThan: InstallationStatus.complete.rawValue)
+        var query = installationCollection.whereField("date", isInDate: date)
         if !isMaster {
             query = query.whereField("teamName", isEqualTo: teamName)
         }
@@ -30,7 +30,11 @@ class CalendarViewModel: ObservableObject {
             for document in snapshot!.documents {
                 do {
                     let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
-                    self.installations.append(install)
+                    //filter out complete installs
+                    if install.status != .complete {
+                        self.installations.append(install)
+                    }
+                    
                 } catch {
                     print(error)
                 }
