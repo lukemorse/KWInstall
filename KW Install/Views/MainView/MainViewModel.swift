@@ -42,6 +42,7 @@ class MainViewModel: ObservableObject {
                 print(error)
                 return
             }
+            self.completedInstalls = []
             for document in snapshot!.documents {
                 do {
                     let install = try FirestoreDecoder().decode(Installation.self, from: document.data())
@@ -49,8 +50,8 @@ class MainViewModel: ObservableObject {
                 } catch {
                     print(error)
                 }
-                completion()
             }
+            completion()
         }
     }
 }

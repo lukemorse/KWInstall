@@ -8,27 +8,17 @@
 
 import SwiftUI
 import Firebase
+import Combine
 
 struct CalendarView : View {
     
     @ObservedObject var viewModel: CalendarViewModel
     @EnvironmentObject var mainViewModel: MainViewModel
-    @ObservedObject var rkManager = RKManager(calendar: Calendar.current, minimumDate: Date().addingTimeInterval(-60*60*24*7), maximumDate: Date().addingTimeInterval(60*60*24*365), mode: 0)
-    @State var isLoading = false
     
     var body: some View {
         Group {
             installationListView
-            RKViewController(isPresented: .constant(true), rkManager: self.rkManager)
-        }
-        .onAppear() {
-            self.rkManager.onDateTapped = {date in
-                self.isLoading = true
-                self.viewModel.fetchInstallations(for: date.formatForDB(), isMaster: self.mainViewModel.isMasterAccount, teamName: self.mainViewModel.team?.name ?? "") {
-                    self.isLoading = false
-                }
-            }
-            self.rkManager.onDateTapped(self.rkManager.selectedDate)
+            RKViewController(isPresented: .constant(true), rkManager: self.viewModel.rkManager)
         }
     }
     
@@ -50,7 +40,7 @@ struct CalendarView : View {
         }
 
         return AnyView(List {
-            Text(isLoading ? "Loading..." : "No Installations")
+            Text(viewModel.isLoading ? "Loading..." : "No Installations")
                 .padding()
         })
     }
@@ -89,12 +79,12 @@ struct CalendarView : View {
     }
 }
 
-
-#if DEBUG
-struct CalendarView_Previews : PreviewProvider {
-    static var previews: some View {
-        CalendarView(viewModel: CalendarViewModel())
-    }
-}
-#endif
+//
+//#if DEBUG
+//struct CalendarView_Previews : PreviewProvider {
+//    static var previews: some View {
+//        CalendarView(viewModel: CalendarViewModel(isMaster: <#Bool#>, teamName: <#String#>))
+//    }
+//}
+//#endif
 

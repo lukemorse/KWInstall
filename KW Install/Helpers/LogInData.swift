@@ -17,7 +17,8 @@ class LogInData {
         "alizairs"  : "0033",
         "rienr"     : "0055",
         "jessev"    : "0044",
-        "nickn"     : "0066"
+        "nickn"     : "0066",
+        "test"      : ""
     ]
     
     //username: teamDocID
@@ -27,6 +28,7 @@ class LogInData {
         "alizairs"  : "HTi0zcQfHpkasW89JnOx",
         "rienr"     : "V2ZaMrVtgsJJNPn7Ou74",
         "jessev"    : "JWDH5gpVb7b8JE2PMPVY",
-        "nickn"     : "JivBc1gyVwMZFolGplHH"
+        "nickn"     : "JivBc1gyVwMZFolGplHH",
+        "test"      : "iXz7LDazKgilD5ncOc1i"
     ]
 }

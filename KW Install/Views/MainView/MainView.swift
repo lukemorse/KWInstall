@@ -18,7 +18,7 @@ struct MainView: View {
             
             //Calendar
             NavigationView {
-                CalendarView(viewModel: CalendarViewModel())
+                CalendarView(viewModel: CalendarViewModel(isMaster: viewModel.isMasterAccount, teamName: viewModel.team?.name ?? ""))
                     .navigationBarTitle(
                         Text("Today's Installations"), displayMode: .inline)
                     .navigationBarItems(leading:
