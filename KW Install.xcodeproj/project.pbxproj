@@ -116,6 +116,7 @@
 		A3F61D12243D41C7003E6B32 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		A3F61D18243E130B003E6B32 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		AF4E855D24785359002F8E6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AF874A8E24A399A2008BB052 /* KW Install.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KW Install.entitlements"; sourceTree = "<group>"; };
 		AFB0C13024787DED0023BB06 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		AFC83A8024782E3700C02C10 /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +243,7 @@
 		A3B3815F243663590030582B /* KW Install */ = {
 			isa = PBXGroup;
 			children = (
+				AF874A8E24A399A2008BB052 /* KW Install.entitlements */,
 				A31C8C7F243BE0C000C6084D /* Model */,
 				A344190D243688020038ACD3 /* Views */,
 				A3B38160243663590030582B /* AppDelegate.swift */,
@@ -625,8 +627,9 @@
 				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "KW Install/KW Install.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"KW Install/Preview Content\"";
 				DEVELOPMENT_TEAM = KRW4A286K8;
 				ENABLE_PREVIEWS = YES;
@@ -650,8 +653,9 @@
 				ALWAYS_SEARCH_USER_PATHS = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "KW Install/KW Install.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"KW Install/Preview Content\"";
 				DEVELOPMENT_TEAM = KRW4A286K8;
 				ENABLE_PREVIEWS = YES;
