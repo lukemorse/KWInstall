@@ -56,6 +56,7 @@
 		AF49C43C24A27CE5009D6879 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF49C43B24A27CE5009D6879 /* AlertItem.swift */; };
 		AF4E855E24785359002F8E6C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4E855D24785359002F8E6C /* LoginView.swift */; };
 		AF7ABBE424A13CE400D2E451 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7ABBE324A13CE400D2E451 /* CalendarViewModel.swift */; };
+		AF874A9224A3FAFA008BB052 /* KeyboardOffsetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF874A9124A3FAFA008BB052 /* KeyboardOffsetModifier.swift */; };
 		AFB0C13124787DED0023BB06 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB0C13024787DED0023BB06 /* AsyncImage.swift */; };
 		AFC83A8124782E3700C02C10 /* LogInData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC83A8024782E3700C02C10 /* LogInData.swift */; };
 		C421D8DA391899005E19BB29 /* Pods_KW_Install.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19030538E7CBE4179E897444 /* Pods_KW_Install.framework */; };
@@ -122,6 +123,7 @@
 		AF49C43B24A27CE5009D6879 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		AF4E855D24785359002F8E6C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		AF7ABBE324A13CE400D2E451 /* CalendarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		AF874A9124A3FAFA008BB052 /* KeyboardOffsetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardOffsetModifier.swift; sourceTree = "<group>"; };
 		AFB0C13024787DED0023BB06 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
 		AFC83A8024782E3700C02C10 /* LogInData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInData.swift; sourceTree = "<group>"; };
 		C81F60C6A5B490085D96CC8E /* Pods_KW_InstallTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KW_InstallTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +341,7 @@
 				A344190B243676AB0038ACD3 /* Constants.swift */,
 				AFC83A8024782E3700C02C10 /* LogInData.swift */,
 				A3F1DFCA244002D6005494EE /* HelperFunctions.swift */,
+				AF874A9124A3FAFA008BB052 /* KeyboardOffsetModifier.swift */,
 				AF49C43B24A27CE5009D6879 /* AlertItem.swift */,
 			);
 			path = Helpers;
@@ -481,6 +484,7 @@
 				A33A66762463169D000CFED1 /* ScrollableView.swift in Sources */,
 				A33A66792463169D000CFED1 /* RKMonthHeader.swift in Sources */,
 				A33A66772463169D000CFED1 /* RKWeekdayHeader.swift in Sources */,
+				AF874A9224A3FAFA008BB052 /* KeyboardOffsetModifier.swift in Sources */,
 				A3F61D19243E130B003E6B32 /* MainViewModel.swift in Sources */,
 				A33A667C2463169D000CFED1 /* RKColorSettings.swift in Sources */,
 				A33A667B2463169D000CFED1 /* RKCell.swift in Sources */,

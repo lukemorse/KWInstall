@@ -30,7 +30,7 @@ class CalendarViewModel: ObservableObject {
                     self.onDateTapped(date: date)
                 }
         }
-    .store(in: &disposables)
+        .store(in: &disposables)
     }
     
     func onDateTapped(date: Date) {

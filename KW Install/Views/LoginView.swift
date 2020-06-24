@@ -21,14 +21,14 @@ struct LoginView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300)
-//                .frame(width: 125, alignment: .center)
             TextField("Enter email/username", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .textContentType(.oneTimeCode)
                 .keyboardType(.emailAddress)
-                
+            
             SecureField("Enter password", text: $password)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
             Button(action: {
                 self.attemptLogin()
             }) {
@@ -40,6 +40,7 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .cornerRadius(15)
             }
+            .enableKeyboardOffset()
             .alert(isPresented: self.$showingLoginAlert) {
                 Alert(title: Text("Hello"))
             }
