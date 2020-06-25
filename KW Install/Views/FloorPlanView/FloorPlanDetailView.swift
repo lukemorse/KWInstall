@@ -67,8 +67,8 @@ struct FloorPlanDetailView: View {
                     if self.activeSheet == ActiveSheet.camera {
                         ImagePicker(sourceType: .camera) { image in
                             if let podIndex = self.tappedPodIndex {
-                                self.viewModel.uploadPodImage(image: image, podType: self.viewModel.pods[podIndex].podType.description) { url in
-                                    self.viewModel.pods[podIndex].imageUrl = url
+                                self.viewModel.uploadPodImage(image: image, podIndex: podIndex) { (success) in
+                                    //TODO: alert on success/fail
                                     self.tappedPodIndex = nil
                                 }
                             }
@@ -81,7 +81,7 @@ struct FloorPlanDetailView: View {
                     }
             }
         }
-        .navigationBarItems(trailing: saveButton)
+//        .navigationBarItems(trailing: saveButton)
         .onAppear() {
             self.viewModel.fetchPods()
         }
@@ -90,16 +90,16 @@ struct FloorPlanDetailView: View {
         }
     }
     
-    var saveButton: some View {
-        Button(action: {
-            self.viewModel.setPods() { success in
-                self.alertItem = AlertItem(title: Text(success ? "Saved Pods" : "Error Saving Pods"), message: nil, dismissButton: .cancel(Text("OK")))
-            }
-        }) {
-            Text("Save")
-                .foregroundColor(Color.blue)
-        }
-    }
+//    var saveButton: some View {
+//        Button(action: {
+//            self.viewModel.setPods() { success in
+//                self.alertItem = AlertItem(title: Text(success ? "Saved Pods" : "Error Saving Pods"), message: nil, dismissButton: .cancel(Text("OK")))
+//            }
+//        }) {
+//            Text("Save")
+//                .foregroundColor(Color.blue)
+//        }
+//    }
     
     var podGroup: some View {
         GeometryReader { geo in

@@ -25,21 +25,21 @@ class FloorPlanViewModel: ObservableObject {
         self.podDocRef = Firestore.firestore().collection(Constants.kInstallationCollection).document(installID).collection("pods").document(floorNumString)
     }
     
-    func setPods(completion: @escaping (Bool) -> ()) {
-        do {
-            let data = try FirestoreEncoder().encode(["pods" : self.pods])
-            self.podDocRef.setData(data) { (error) in
-                if let error = error {
-                    print(error)
-                    completion(false)
-                } else {
-                    completion(true)
-                }
-            }
-        } catch {
-            print(error)
-        }
-    }
+//    func setPods(completion: @escaping (Bool) -> ()) {
+//        do {
+//            let data = try FirestoreEncoder().encode(["pods" : self.pods])
+//            self.podDocRef.setData(data) { (error) in
+//                if let error = error {
+//                    print(error)
+//                    completion(false)
+//                } else {
+//                    completion(true)
+//                }
+//            }
+//        } catch {
+//            print(error)
+//        }
+//    }
     
     func fetchPods() {
         self.podDocRef.getDocument { document, error in
@@ -48,8 +48,8 @@ class FloorPlanViewModel: ObservableObject {
             }
             if let document = document {
                 do {
-                    let pods = try FirestoreDecoder().decode([String:[Pod]].self, from: document.data() ?? [:])
-                    self.pods = pods["pods"] ?? []
+                    let podDict = try FirestoreDecoder().decode([String:Pod].self, from: document.data() ?? [:])
+                    self.pods = Array(podDict.values)
                 } catch {
                     print(error)
                 }
@@ -59,24 +59,41 @@ class FloorPlanViewModel: ObservableObject {
         }
     }
     
-    func uploadPodImage(image: UIImage, podType: String, completion: @escaping (_ url: String?) -> Void) {
-        
-        let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child(self.url.absoluteString).child(podType).child(UUID().uuidString)
+    func uploadPodImage(image: UIImage, podIndex: Int, completion: @escaping (Bool) -> Void) {
+        let pod = pods[podIndex]
+        let storageRef = Storage.storage().reference().child(Constants.kPodImageFolder).child(self.url.absoluteString).child(pod.podType.description).child(UUID().uuidString)
         
         if let uploadData = image.jpegData(compressionQuality: 0.25) {
             storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
                 if let error = error {
                     print(error.localizedDescription)
-                    completion(nil)
+                    completion(false)
                 } else {
                     storageRef.downloadURL(completion: { (url, error) in
                         if let error = error {
                             print(error.localizedDescription)
                         }
-                        completion(url?.absoluteString)
+//                        completion(url?.absoluteString)
+                        self.pods[podIndex].imageUrl = url?.absoluteString
+                        self.setPod(pod: self.pods[podIndex]) { (success) in
+                            completion(success)
+                        }
                     })
                 }
             }
         }   
+    }
+    
+    private func setPod(pod: Pod, completion: @escaping (Bool) -> ()) {
+//            let data = try FirestoreEncoder().encode(pod)
+        self.podDocRef.updateData(["\(pod.uid).imageUrl" : pod.imageUrl as Any]) { (error) in
+                if let error = error {
+                    print(error)
+                    completion(false)
+                    return
+                }
+                completion(true)
+            }
+        
     }
 }
