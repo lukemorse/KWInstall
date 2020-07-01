@@ -17,29 +17,11 @@ struct LoginView: View {
     
     var body: some View {
         VStack(spacing: 20.0) {
-            Image("Launch Image")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 300)
-            TextField("Enter email/username", text: $username)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .textContentType(.oneTimeCode)
-                .keyboardType(.emailAddress)
-            
-            SecureField("Enter password", text: $password)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-            Button(action: {
-                self.attemptLogin()
-            }) {
-                Text("Submit")
-                    .fontWeight(.bold)
-                    .font(.title)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(15)
-            }
+            logo
+            usernameField
+            passwordField
+            logInButton
+                
             .enableKeyboardOffset()
             .alert(isPresented: self.$showingLoginAlert) {
                 Alert(title: Text("Hello"))
@@ -54,6 +36,40 @@ struct LoginView: View {
             if !success {
                 showingLoginAlert = true
             }
+        }
+    }
+    
+    var logo: some View {
+        Image("Launch Image")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 300)
+    }
+    
+    var usernameField: some View {
+        TextField("Enter username", text: $username)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .textContentType(.oneTimeCode)
+        .keyboardType(.emailAddress)
+    }
+    
+    var passwordField: some View {
+        SecureField("Enter password", text: $password)
+        .textFieldStyle(RoundedBorderTextFieldStyle())
+        .keyboardType(.numberPad)
+    }
+    
+    var logInButton: some View {
+        Button(action: {
+            self.attemptLogin()
+        }) {
+            Text("Submit")
+                .fontWeight(.bold)
+                .font(.title)
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(15)
         }
     }
 }

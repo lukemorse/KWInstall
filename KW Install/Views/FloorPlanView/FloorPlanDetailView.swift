@@ -81,7 +81,6 @@ struct FloorPlanDetailView: View {
                     }
             }
         }
-//        .navigationBarItems(trailing: saveButton)
         .onAppear() {
             self.viewModel.fetchPods()
         }
@@ -89,17 +88,6 @@ struct FloorPlanDetailView: View {
             Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         }
     }
-    
-//    var saveButton: some View {
-//        Button(action: {
-//            self.viewModel.setPods() { success in
-//                self.alertItem = AlertItem(title: Text(success ? "Saved Pods" : "Error Saving Pods"), message: nil, dismissButton: .cancel(Text("OK")))
-//            }
-//        }) {
-//            Text("Save")
-//                .foregroundColor(Color.blue)
-//        }
-//    }
     
     var podGroup: some View {
         GeometryReader { geo in
