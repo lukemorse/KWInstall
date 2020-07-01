@@ -15,13 +15,12 @@ class MainViewModel: ObservableObject {
     
     @Published var team: Team?
     @Published var completedInstalls: [Installation] = []
-    var teamDocID = ""
     var isMasterAccount = false
     let installationCollection = Firestore.firestore().collection(Constants.kInstallationCollection)
     
-    public func fetchTeamData() {
+    public func fetchTeamData(teamName: String) {
         if isMasterAccount {return}
-        Firestore.firestore().collection("teams").document(teamDocID).getDocument { document, error in
+        Firestore.firestore().collection("teams").document(teamName).getDocument { document, error in
             if let error = error {
                 print(error.localizedDescription)
             }

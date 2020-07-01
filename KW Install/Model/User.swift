@@ -38,7 +38,7 @@ extension User: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         uid = try container.decode(String.self, forKey: .uid)
-        name = try container.decode(String.self, forKey: .uid)
+        name = try container.decode(String.self, forKey: .name)
         email = try container.decode(String.self, forKey: .email)
         phone = try container.decode(String.self, forKey: .phone)
     }

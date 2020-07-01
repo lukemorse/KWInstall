@@ -80,11 +80,11 @@ struct MainView: View {
             
         }
         .accentColor(Color.red)
-        .onAppear(){
-            if self.viewModel.team == nil {
-                self.viewModel.fetchTeamData()
-            }
-        }
+//        .onAppear(){
+//            if self.viewModel.team == nil {
+//                self.viewModel.fetchTeamData()
+//            }
+//        }
     }
     
     func getTeamEmails() -> [String] {

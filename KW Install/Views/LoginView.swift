@@ -7,13 +7,18 @@
 //
 
 import SwiftUI
+import FirebaseFirestore
+import CodableFirebase
 
 struct LoginView: View {
+    @ObservedObject var viewModel: ViewModel
     @State private var username: String = ""
     @State private var password: String = ""
     @State private var showingLoginAlert = false
     
-    var handler: (String, String, (Bool) -> Void) -> Void
+    init(logInHandler: @escaping (Bool, String?) -> ()) {
+        self.viewModel = ViewModel(logInHandler: logInHandler)
+    }
     
     var body: some View {
         VStack(spacing: 20.0) {
@@ -22,46 +27,38 @@ struct LoginView: View {
             passwordField
             logInButton
                 
-            .enableKeyboardOffset()
-            .alert(isPresented: self.$showingLoginAlert) {
-                Alert(title: Text("Hello"))
+                .enableKeyboardOffset()
+                .alert(isPresented: self.$showingLoginAlert) {
+                    Alert(title: Text("Hello"))
             }
         }
         .padding()
     }
     
-    func attemptLogin() {
-        handler(username,password) { success in
-            print(success)
-            if !success {
-                showingLoginAlert = true
-            }
-        }
-    }
-    
     var logo: some View {
         Image("Launch Image")
-        .resizable()
-        .aspectRatio(contentMode: .fit)
-        .frame(width: 300)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 300)
+            .shadow(color: .blue, radius: 5, x: 20, y: 5)
     }
     
     var usernameField: some View {
         TextField("Enter username", text: $username)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .textContentType(.oneTimeCode)
-        .keyboardType(.emailAddress)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .textContentType(.oneTimeCode)
+            .keyboardType(.emailAddress)
     }
     
     var passwordField: some View {
         SecureField("Enter password", text: $password)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
-        .keyboardType(.numberPad)
+            .textFieldStyle(RoundedBorderTextFieldStyle())
+            .keyboardType(.numberPad)
     }
     
     var logInButton: some View {
         Button(action: {
-            self.attemptLogin()
+            self.viewModel.attemptLogIn(username: self.username, password: self.password)
         }) {
             Text("Submit")
                 .fontWeight(.bold)
@@ -72,12 +69,46 @@ struct LoginView: View {
                 .cornerRadius(15)
         }
     }
-}
-
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView { (username, password, callBack: (Bool) -> Void) in
+    
+    class ViewModel: ObservableObject {
+        let logInHandler: (Bool, String?) -> Void
+        @Published var loading = false
+        
+        init(logInHandler: @escaping (Bool, String?) -> Void) {
+            self.logInHandler = logInHandler
+        }
+        
+        func attemptLogIn(username: String, password: String) {
+            loading = true
+            let adjustedUsername = username.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            Firestore.firestore().collection(Constants.kLogInDataCollection).document(adjustedUsername).getDocument { (document, error) in
+                if let error = error {
+                    print(error)
+                    self.logInHandler(false, nil)
+                    self.loading = false
+                } else {
+                    do {
+                        let doc = try FirestoreDecoder().decode([String:String].self, from: document!.data()!)
+                        if doc["password"] == password {
+                            self.loading = false
+                            self.logInHandler(true, doc["teamName"] ?? "")
+                        } else {
+                            self.loading = false
+                            self.logInHandler(false, nil)
+                        }
+                    } catch {
+                        self.loading = false
+                        print(error)
+                    }
+                }
+            }
         }
     }
 }
+
+
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView {}
+//    }
+//}

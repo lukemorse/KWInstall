@@ -15,23 +15,15 @@ struct StartView: View {
     
     var body: some View {
         Group {
-            isLoggedIn ? AnyView(MainView()) : AnyView(LoginView { (username, password, callBack: (Bool) -> Void) in
-                var result = false
-                let adjustedUsername = username.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-                
-                if LogInData.data.keys.contains(adjustedUsername) {
-                    if LogInData.data[adjustedUsername] == password {
-                        result = true
-                        if let teamDocID = LogInData.teamDocIdDict[adjustedUsername] {
-                            self.mainViewModel.teamDocID = teamDocID
-                        }
-                        if adjustedUsername == Constants.kMasterAccountName {
-                            self.mainViewModel.isMasterAccount = true
-                        }
+            isLoggedIn ? AnyView(MainView()) : AnyView(LoginView { (success, teamName) in
+                if success {
+//                    self.mainViewModel.currentUser = username ?? ""
+                    if let teamName = teamName {
+                        self.mainViewModel.fetchTeamData(teamName: teamName)
                     }
+                    self.isLoggedIn = true
                 }
-                self.setLoggedIn(newVal: result)
-                if !result {
+                else {
                     self.showingLoginAlert = true
                 }
             })
@@ -42,9 +34,7 @@ struct StartView: View {
         
     }
     
-    private func setLoggedIn(newVal: Bool) {
-        self.isLoggedIn = newVal
-    }
+    
 }
 
 struct StartView_Previews: PreviewProvider {
