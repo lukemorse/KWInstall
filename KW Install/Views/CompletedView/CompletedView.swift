@@ -31,6 +31,7 @@ struct CompletedView: View {
                         NavigationLink(destination: InstallationView(viewModel: InstallationViewModel(installation: install))) {
                             Text(install.schoolName)
                         }
+                    .padding()
                     }
                 })
         }

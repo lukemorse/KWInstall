@@ -25,51 +25,71 @@ struct InstallationView: View {
         VStack() {
             ScrollView {
                 mapView
-                
-                Text(viewModel.installation.districtName + ": " + viewModel.installation.schoolName)
-                    .font(.title)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical, 10.0)
-                Text("Quick Information:")
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.center)
-                    .padding(.vertical, 10.0)
-                
+                schoolLabel
                 statusPicker
-                
-                Group {
-                    Text("School Contact Person: " + viewModel.installation.schoolContact)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("District Contact Person: " + viewModel.installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of Floors: " + String(viewModel.installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of Rooms: " + String(viewModel.installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
-                    Text("Number of KW-PODS Needed: " + String(viewModel.installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
-                }
-                .padding(.vertical, 10.0)
-                
-                Button(action: {
-                    self.isShowingMailView.toggle()
-                })
-                {
-                    Text("Send En-Route Message")
-                        .font(.headline)
-                        .padding(10.0)
-                        .foregroundColor(Color.black)
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                }
+                quickInfoTitle
+                quickInfo
+                sendMessageButton
                 .disabled(!MFMailComposeViewController.canSendMail())
                 .sheet(isPresented: $isShowingMailView) {
                     MailView(emails: [self.viewModel.installation.email], result: self.$mailResult)
                 }
-                
-                Text("Floorplans:")
+                floorPlansTitle
                 floorPlanGridView
                 Spacer()
             }
         }
         .padding()
+    }
+    
+    var schoolLabel: some View {
+        Text(viewModel.installation.districtName + ": " + viewModel.installation.schoolName)
+        .font(.title)
+        .multilineTextAlignment(.center)
+        .padding(.vertical, 10.0)
+    }
+    
+    var quickInfoTitle: some View {
+        Text("Quick Information:")
+            .font(.title)
+            .fontWeight(.bold)
+            .multilineTextAlignment(.center)
+            .padding(.vertical, 10.0)
+    }
+    
+    var quickInfo: some View {
+        Group {
+            Text("School Contact Person: " + viewModel.installation.schoolContact)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("District Contact Person: " + viewModel.installation.districtContact).frame(maxWidth: .infinity, alignment: .leading)
+            Text("Number of Floors: " + String(viewModel.installation.numFloors)).frame(maxWidth: .infinity, alignment: .leading)
+            Text("Number of Rooms: " + String(viewModel.installation.numRooms)).frame(maxWidth: .infinity, alignment: .leading)
+            Text("Number of KW-PODS Needed: " + String(viewModel.installation.numPods)).frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .padding(.vertical, 10.0)
+    }
+    
+    var sendMessageButton: some View {
+        Button(action: {
+            self.isShowingMailView.toggle()
+        })
+        {
+            Text("Send En-Route Message")
+                .font(.title)
+                .padding(10.0)
+                .foregroundColor(Color.black)
+                .background(Color.blue)
+                .cornerRadius(15)
+        }
+        .padding(.vertical, 20)
+    }
+    
+    var floorPlansTitle: some View {
+        Text("Floorplans:")
+            .font(.title)
+            .fontWeight(.bold)
+            .multilineTextAlignment(.center)
+            .padding(.vertical, 10.0)
     }
     
     var floorPlanGridView: some View {
